@@ -21,12 +21,13 @@
 		reg = <0xffff0000 0xfe00>;
 	};
 	chosen {
-		stdout-path = "serial0:115200n8";
+		stdout-path = "serial0:110n8";
 	};
 	aliases {
 		serial0 = &uart0;
 		spi0 = &qspi;
-		serial1 = &coresight;
+		serial1 = &axi_uartlite_0;
+		serial2 = &coresight;
 		ethernet0 = &gem1;
 	};
 	cpus_a9: cpus-a9@0 {
@@ -36,6 +37,7 @@
 			      <0x0 &ps7_ram_0_memory 0x0 0x30000>, 
 			      <0xffff0000 &ps7_ram_1_memory 0xffff0000 0xfe00>, 
 			      <0x41200000 &axi_gpio_0 0x41200000 0x10000>, 
+			      <0x42c00000 &axi_uartlite_0 0x42c00000 0x10000>, 
 			      <0xf8008000 &ps7_afi_0 0xf8008000 0x1000>, 
 			      <0xf8009000 &ps7_afi_1 0xf8009000 0x1000>, 
 			      <0xf800a000 &ps7_afi_2 0xf800a000 0x1000>, 

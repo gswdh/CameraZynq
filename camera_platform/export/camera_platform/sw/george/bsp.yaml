@@ -1,6 +1,6 @@
-sdt: hw_artifacts/ps7_cortexa9_1_baremetal.dts
+sdt: hw_artifacts/ps7_cortexa9_0_baremetal.dts
 family: Zynq
-path: /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_1/george/bsp
+path: /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/george/bsp
 os: standalone
 os_info:
   standalone:
@@ -15,6 +15,7 @@ os_config:
       default: ps7_uart_0
       options:
       - None
+      - axi_uartlite_0
       - ps7_uart_0
       - ps7_coresight_comp_0
       description: stdin peripheral
@@ -26,14 +27,15 @@ os_config:
       default: ps7_uart_0
       options:
       - None
+      - axi_uartlite_0
       - ps7_uart_0
       - ps7_coresight_comp_0
       description: stdout peripheral
 toolchain_file: cortexa9_toolchain.cmake
 specs_file: Xilinx.spec
-proc: ps7_cortexa9_1
+proc: ps7_cortexa9_0
 proc_config:
-  ps7_cortexa9_1:
+  ps7_cortexa9_0:
     proc_archiver:
       name: proc_archiver
       permission: readonly
@@ -74,7 +76,7 @@ proc_config:
       default: ' -g -Wall -Wextra -fno-tree-loop-distribute-patterns'
       options: []
       description: Extra Compiler Flags
-template: zynq_fsbl
+template: peripheral_tests
 compiler_flags: ''
 include_folder: include
 lib_folder: lib
@@ -84,6 +86,10 @@ drv_info:
     driver: gpio
     ip_name: axi_gpio
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/gpio_v4_10
+  axi_uartlite_0:
+    driver: uartlite
+    ip_name: axi_uartlite
+    path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/uartlite_v3_9
   ps7_afi_0: None
   ps7_afi_1: None
   ps7_afi_2: None
@@ -154,12 +160,6 @@ drv_info:
 lib_info:
   xiltimer:
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/lib/sw_services/xiltimer_v1_3
-  xilffs:
-    path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/lib/sw_services/xilffs_v5_1
-    examples:
-      xilffs_polled_example.c: []
-  xilrsa:
-    path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/lib/sw_services/xilrsa_v1_7
 lib_config:
   xiltimer:
     XILTIMER_en_interval_timer:
@@ -194,139 +194,3 @@ lib_config:
       - ps7_ttc_0
       - ps7_scutimer_0
       description: This parameter is used to select specific timer for tick functionality
-  xilffs:
-    XILFFS_enable_exfat:
-      name: XILFFS_enable_exfat
-      permission: read_write
-      type: boolean
-      value: 'false'
-      default: 'false'
-      options:
-      - 'true'
-      - 'false'
-      description: 0:Disable exFAT, 1:Enable exFAT(Also Enables LFN)
-    XILFFS_enable_multi_partition:
-      name: XILFFS_enable_multi_partition
-      permission: read_write
-      type: boolean
-      value: 'false'
-      default: 'false'
-      options:
-      - 'true'
-      - 'false'
-      description: 0:Single partition, 1:Enable multiple partition
-    XILFFS_fs_interface:
-      name: XILFFS_fs_interface
-      permission: read_write
-      type: integer
-      value: '1'
-      default: '1'
-      options:
-      - '1'
-      - '2'
-      description: Enables file system with selected interface. Enter 1 for SD. Enter
-        2 for RAM
-    XILFFS_num_logical_vol:
-      name: XILFFS_num_logical_vol
-      permission: read_write
-      type: integer
-      value: '2'
-      default: '2'
-      options: []
-      description: Number of volumes (logical drives, from 1 to 10) to be used.
-    XILFFS_ramfs_size:
-      name: XILFFS_ramfs_size
-      permission: read_write
-      type: integer
-      value: '3145728'
-      default: '3145728'
-      options: []
-      description: RAM FS size
-    XILFFS_ramfs_start_addr:
-      name: XILFFS_ramfs_start_addr
-      permission: read_write
-      type: string
-      value: ''
-      default: ''
-      options: []
-      description: RAM FS start address
-    XILFFS_read_only:
-      name: XILFFS_read_only
-      permission: read_write
-      type: boolean
-      value: 'false'
-      default: 'false'
-      options:
-      - 'true'
-      - 'false'
-      description: Enables the file system in Read_Only mode if true. ZynqMP fsbl
-        will set this to true
-    XILFFS_set_fs_rpath:
-      name: XILFFS_set_fs_rpath
-      permission: read_write
-      type: integer
-      value: '0'
-      default: '0'
-      options:
-      - '0'
-      - '1'
-      - '2'
-      description: Configures relative path feature (valid values 0 to 2).
-    XILFFS_use_chmod:
-      name: XILFFS_use_chmod
-      permission: read_write
-      type: boolean
-      value: 'false'
-      default: 'false'
-      options:
-      - 'true'
-      - 'false'
-      description: Enables use of CHMOD functionality for changing attributes (valid
-        only with read_only set to false)
-    XILFFS_use_lfn:
-      name: XILFFS_use_lfn
-      permission: read_write
-      type: integer
-      value: '0'
-      default: '0'
-      options:
-      - '0'
-      - '1'
-      - '2'
-      - '3'
-      description: 'Enables the Long File Name(LFN) support if non-zero. Disabled
-        by default: 0, LFN with static working buffer: 1, Dynamic working buffer:
-        2 (on stack) or 3 (on heap)'
-    XILFFS_use_mkfs:
-      name: XILFFS_use_mkfs
-      permission: read_write
-      type: boolean
-      value: 'true'
-      default: 'true'
-      options:
-      - 'true'
-      - 'false'
-      description: Disable(0) or Enable(1) f_mkfs function. ZynqMP fsbl will set this
-        to false
-    XILFFS_use_strfunc:
-      name: XILFFS_use_strfunc
-      permission: read_write
-      type: integer
-      value: '0'
-      default: '0'
-      options:
-      - '0'
-      - '1'
-      - '2'
-      description: Enables the string functions (valid values 0 to 2).
-    XILFFS_word_access:
-      name: XILFFS_word_access
-      permission: read_write
-      type: boolean
-      value: 'true'
-      default: 'true'
-      options:
-      - 'true'
-      - 'false'
-      description: Enables word access for misaligned memory access platform
-  xilrsa: {}

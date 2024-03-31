@@ -466,6 +466,14 @@ drv_info:
       xgpio_example.c: []
       xgpio_low_level_example.c: []
       xgpio_tapp_example.c: []
+  axi_uartlite_0:
+    driver: uartlite
+    ip_name: axi_uartlite
+    path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/uartlite_v3_9
+    examples:
+      xuartlite_low_level_example.c: []
+      xuartlite_polled_example.c: []
+      xuartlite_selftest_example.c: []
   ps7_afi_0: None
   ps7_afi_1: None
   ps7_afi_2: None

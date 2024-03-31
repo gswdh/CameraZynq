@@ -106,6 +106,7 @@ libsrc/all: libsrc/scutimer/src/all
 libsrc/all: libsrc/scuwdt/src/all
 libsrc/all: libsrc/sdps/src/all
 libsrc/all: libsrc/ttcps/src/all
+libsrc/all: libsrc/uartlite/src/all
 libsrc/all: libsrc/uartps/src/all
 libsrc/all: libsrc/usbps/src/all
 libsrc/all: libsrc/xadcps/src/all
@@ -124,6 +125,7 @@ libsrc/preinstall: libsrc/scutimer/src/preinstall
 libsrc/preinstall: libsrc/scuwdt/src/preinstall
 libsrc/preinstall: libsrc/sdps/src/preinstall
 libsrc/preinstall: libsrc/ttcps/src/preinstall
+libsrc/preinstall: libsrc/uartlite/src/preinstall
 libsrc/preinstall: libsrc/uartps/src/preinstall
 libsrc/preinstall: libsrc/usbps/src/preinstall
 libsrc/preinstall: libsrc/xadcps/src/preinstall
@@ -143,6 +145,7 @@ libsrc/clean: libsrc/scutimer/src/clean
 libsrc/clean: libsrc/scuwdt/src/clean
 libsrc/clean: libsrc/sdps/src/clean
 libsrc/clean: libsrc/ttcps/src/clean
+libsrc/clean: libsrc/uartlite/src/clean
 libsrc/clean: libsrc/uartps/src/clean
 libsrc/clean: libsrc/usbps/src/clean
 libsrc/clean: libsrc/xadcps/src/clean
@@ -457,6 +460,21 @@ libsrc/ttcps/src/clean: libsrc/ttcps/src/CMakeFiles/ttcps.dir/clean
 .PHONY : libsrc/ttcps/src/clean
 
 #=============================================================================
+# Directory level rules for directory libsrc/uartlite/src
+
+# Recursive "all" directory target.
+libsrc/uartlite/src/all: libsrc/uartlite/src/CMakeFiles/uartlite.dir/all
+.PHONY : libsrc/uartlite/src/all
+
+# Recursive "preinstall" directory target.
+libsrc/uartlite/src/preinstall:
+.PHONY : libsrc/uartlite/src/preinstall
+
+# Recursive "clean" directory target.
+libsrc/uartlite/src/clean: libsrc/uartlite/src/CMakeFiles/uartlite.dir/clean
+.PHONY : libsrc/uartlite/src/clean
+
+#=============================================================================
 # Directory level rules for directory libsrc/uartps/src
 
 # Recursive "all" directory target.
@@ -628,6 +646,7 @@ libsrc/CMakeFiles/combined.dir/all: libsrc/scutimer/src/CMakeFiles/scutimer.dir/
 libsrc/CMakeFiles/combined.dir/all: libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/sdps/src/CMakeFiles/sdps.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/ttcps/src/CMakeFiles/ttcps.dir/all
+libsrc/CMakeFiles/combined.dir/all: libsrc/uartlite/src/CMakeFiles/uartlite.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/uartps/src/CMakeFiles/uartps.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/usbps/src/CMakeFiles/usbps.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/xadcps/src/CMakeFiles/xadcps.dir/all
@@ -638,7 +657,7 @@ libsrc/CMakeFiles/combined.dir/all: libsrc/xadcps/src/CMakeFiles/xadcps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/CMakeFiles/combined.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 61
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 64
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/CMakeFiles/combined.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/CMakeFiles/combined.dir/rule
@@ -737,12 +756,12 @@ libsrc/dmaps/src/CMakeFiles/dmaps.dir/clean:
 libsrc/emacps/src/CMakeFiles/emacps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/emacps/src/CMakeFiles/emacps.dir/build.make libsrc/emacps/src/CMakeFiles/emacps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/emacps/src/CMakeFiles/emacps.dir/build.make libsrc/emacps/src/CMakeFiles/emacps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=11,12,13,14,15,16 "Built target emacps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=11,12,13,14,15 "Built target emacps"
 .PHONY : libsrc/emacps/src/CMakeFiles/emacps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/emacps/src/CMakeFiles/emacps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/emacps/src/CMakeFiles/emacps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/emacps/src/CMakeFiles/emacps.dir/rule
@@ -763,7 +782,7 @@ libsrc/emacps/src/CMakeFiles/emacps.dir/clean:
 libsrc/gpio/src/CMakeFiles/gpio.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/gpio/src/CMakeFiles/gpio.dir/build.make libsrc/gpio/src/CMakeFiles/gpio.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/gpio/src/CMakeFiles/gpio.dir/build.make libsrc/gpio/src/CMakeFiles/gpio.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=17,18,19,20,21 "Built target gpio"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=16,17,18,19,20 "Built target gpio"
 .PHONY : libsrc/gpio/src/CMakeFiles/gpio.dir/all
 
 # Build rule for subdir invocation for target.
@@ -789,12 +808,12 @@ libsrc/gpio/src/CMakeFiles/gpio.dir/clean:
 libsrc/qspips/src/CMakeFiles/qspips.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/qspips/src/CMakeFiles/qspips.dir/build.make libsrc/qspips/src/CMakeFiles/qspips.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/qspips/src/CMakeFiles/qspips.dir/build.make libsrc/qspips/src/CMakeFiles/qspips.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=22,23,24,25,26 "Built target qspips"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=21,22,23,24 "Built target qspips"
 .PHONY : libsrc/qspips/src/CMakeFiles/qspips.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/qspips/src/CMakeFiles/qspips.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/qspips/src/CMakeFiles/qspips.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/qspips/src/CMakeFiles/qspips.dir/rule
@@ -815,12 +834,12 @@ libsrc/qspips/src/CMakeFiles/qspips.dir/clean:
 libsrc/scugic/src/CMakeFiles/scugic.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/scugic/src/CMakeFiles/scugic.dir/build.make libsrc/scugic/src/CMakeFiles/scugic.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/scugic/src/CMakeFiles/scugic.dir/build.make libsrc/scugic/src/CMakeFiles/scugic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=27,28,29,30 "Built target scugic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=25,26,27,28,29 "Built target scugic"
 .PHONY : libsrc/scugic/src/CMakeFiles/scugic.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/scugic/src/CMakeFiles/scugic.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/scugic/src/CMakeFiles/scugic.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/scugic/src/CMakeFiles/scugic.dir/rule
@@ -841,12 +860,12 @@ libsrc/scugic/src/CMakeFiles/scugic.dir/clean:
 libsrc/scutimer/src/CMakeFiles/scutimer.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/scutimer/src/CMakeFiles/scutimer.dir/build.make libsrc/scutimer/src/CMakeFiles/scutimer.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/scutimer/src/CMakeFiles/scutimer.dir/build.make libsrc/scutimer/src/CMakeFiles/scutimer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=31,32,33,34 "Built target scutimer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=30,31,32 "Built target scutimer"
 .PHONY : libsrc/scutimer/src/CMakeFiles/scutimer.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/scutimer/src/CMakeFiles/scutimer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/scutimer/src/CMakeFiles/scutimer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/scutimer/src/CMakeFiles/scutimer.dir/rule
@@ -867,7 +886,7 @@ libsrc/scutimer/src/CMakeFiles/scutimer.dir/clean:
 libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/build.make libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/build.make libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=35,36,37,38 "Built target scuwdt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=33,34,35,36 "Built target scuwdt"
 .PHONY : libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -893,7 +912,7 @@ libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/clean:
 libsrc/sdps/src/CMakeFiles/sdps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/sdps/src/CMakeFiles/sdps.dir/build.make libsrc/sdps/src/CMakeFiles/sdps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/sdps/src/CMakeFiles/sdps.dir/build.make libsrc/sdps/src/CMakeFiles/sdps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=39,40,41,42 "Built target sdps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=37,38,39,40 "Built target sdps"
 .PHONY : libsrc/sdps/src/CMakeFiles/sdps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -919,12 +938,12 @@ libsrc/sdps/src/CMakeFiles/sdps.dir/clean:
 libsrc/ttcps/src/CMakeFiles/ttcps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/ttcps/src/CMakeFiles/ttcps.dir/build.make libsrc/ttcps/src/CMakeFiles/ttcps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/ttcps/src/CMakeFiles/ttcps.dir/build.make libsrc/ttcps/src/CMakeFiles/ttcps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=43,44,45,46,47 "Built target ttcps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=41,42,43,44 "Built target ttcps"
 .PHONY : libsrc/ttcps/src/CMakeFiles/ttcps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/ttcps/src/CMakeFiles/ttcps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/ttcps/src/CMakeFiles/ttcps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/ttcps/src/CMakeFiles/ttcps.dir/rule
@@ -939,13 +958,39 @@ libsrc/ttcps/src/CMakeFiles/ttcps.dir/clean:
 .PHONY : libsrc/ttcps/src/CMakeFiles/ttcps.dir/clean
 
 #=============================================================================
+# Target rules for target libsrc/uartlite/src/CMakeFiles/uartlite.dir
+
+# All Build rule for target.
+libsrc/uartlite/src/CMakeFiles/uartlite.dir/all:
+	$(MAKE) $(MAKESILENT) -f libsrc/uartlite/src/CMakeFiles/uartlite.dir/build.make libsrc/uartlite/src/CMakeFiles/uartlite.dir/depend
+	$(MAKE) $(MAKESILENT) -f libsrc/uartlite/src/CMakeFiles/uartlite.dir/build.make libsrc/uartlite/src/CMakeFiles/uartlite.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=45,46,47,48,49,50 "Built target uartlite"
+.PHONY : libsrc/uartlite/src/CMakeFiles/uartlite.dir/all
+
+# Build rule for subdir invocation for target.
+libsrc/uartlite/src/CMakeFiles/uartlite.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/uartlite/src/CMakeFiles/uartlite.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
+.PHONY : libsrc/uartlite/src/CMakeFiles/uartlite.dir/rule
+
+# Convenience name for target.
+uartlite: libsrc/uartlite/src/CMakeFiles/uartlite.dir/rule
+.PHONY : uartlite
+
+# clean rule for target.
+libsrc/uartlite/src/CMakeFiles/uartlite.dir/clean:
+	$(MAKE) $(MAKESILENT) -f libsrc/uartlite/src/CMakeFiles/uartlite.dir/build.make libsrc/uartlite/src/CMakeFiles/uartlite.dir/clean
+.PHONY : libsrc/uartlite/src/CMakeFiles/uartlite.dir/clean
+
+#=============================================================================
 # Target rules for target libsrc/uartps/src/CMakeFiles/uartps.dir
 
 # All Build rule for target.
 libsrc/uartps/src/CMakeFiles/uartps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/uartps/src/CMakeFiles/uartps.dir/build.make libsrc/uartps/src/CMakeFiles/uartps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/uartps/src/CMakeFiles/uartps.dir/build.make libsrc/uartps/src/CMakeFiles/uartps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=48,49,50,51,52 "Built target uartps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=51,52,53,54,55 "Built target uartps"
 .PHONY : libsrc/uartps/src/CMakeFiles/uartps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -971,7 +1016,7 @@ libsrc/uartps/src/CMakeFiles/uartps.dir/clean:
 libsrc/usbps/src/CMakeFiles/usbps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/usbps/src/CMakeFiles/usbps.dir/build.make libsrc/usbps/src/CMakeFiles/usbps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/usbps/src/CMakeFiles/usbps.dir/build.make libsrc/usbps/src/CMakeFiles/usbps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=53,54,55,56,57 "Built target usbps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=56,57,58,59,60 "Built target usbps"
 .PHONY : libsrc/usbps/src/CMakeFiles/usbps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -997,7 +1042,7 @@ libsrc/usbps/src/CMakeFiles/usbps.dir/clean:
 libsrc/xadcps/src/CMakeFiles/xadcps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/xadcps/src/CMakeFiles/xadcps.dir/build.make libsrc/xadcps/src/CMakeFiles/xadcps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/xadcps/src/CMakeFiles/xadcps.dir/build.make libsrc/xadcps/src/CMakeFiles/xadcps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=58,59,60,61 "Built target xadcps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=61,62,63,64 "Built target xadcps"
 .PHONY : libsrc/xadcps/src/CMakeFiles/xadcps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1023,12 +1068,12 @@ libsrc/xadcps/src/CMakeFiles/xadcps.dir/clean:
 libsrc/standalone/src/CMakeFiles/xilstandalone.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/standalone/src/CMakeFiles/xilstandalone.dir/build.make libsrc/standalone/src/CMakeFiles/xilstandalone.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/standalone/src/CMakeFiles/xilstandalone.dir/build.make libsrc/standalone/src/CMakeFiles/xilstandalone.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97 "Built target xilstandalone"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97 "Built target xilstandalone"
 .PHONY : libsrc/standalone/src/CMakeFiles/xilstandalone.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/standalone/src/CMakeFiles/xilstandalone.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 30
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/standalone/src/CMakeFiles/xilstandalone.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/standalone/src/CMakeFiles/xilstandalone.dir/rule
@@ -1075,12 +1120,12 @@ libsrc/xiltimer/src/CMakeFiles/xiltimer.dir/clean:
 libsrc/xilffs/src/CMakeFiles/xilffs.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/xilffs/src/CMakeFiles/xilffs.dir/build.make libsrc/xilffs/src/CMakeFiles/xilffs.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/xilffs/src/CMakeFiles/xilffs.dir/build.make libsrc/xilffs/src/CMakeFiles/xilffs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=62,63,64,65 "Built target xilffs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=65,66,67 "Built target xilffs"
 .PHONY : libsrc/xilffs/src/CMakeFiles/xilffs.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/xilffs/src/CMakeFiles/xilffs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/xilffs/src/CMakeFiles/xilffs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/xilffs/src/CMakeFiles/xilffs.dir/rule

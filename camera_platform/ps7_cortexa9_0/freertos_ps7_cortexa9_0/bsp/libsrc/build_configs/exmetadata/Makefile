@@ -133,6 +133,19 @@ gpio_example/fast:
 .PHONY : gpio_example/fast
 
 #=============================================================================
+# Target rules for targets named uartlite_example
+
+# Build rule for target.
+uartlite_example: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uartlite_example
+.PHONY : uartlite_example
+
+# fast build rule for target.
+uartlite_example/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uartlite_example.dir/build.make CMakeFiles/uartlite_example.dir/build
+.PHONY : uartlite_example/fast
+
+#=============================================================================
 # Target rules for targets named coresightps_dcc_example
 
 # Build rule for target.
@@ -320,6 +333,7 @@ help:
 	@echo "... scuwdt_example"
 	@echo "... sdps_example"
 	@echo "... ttcps_example"
+	@echo "... uartlite_example"
 	@echo "... uartps_example"
 	@echo "... usbps_example"
 	@echo "... xadcps_example"

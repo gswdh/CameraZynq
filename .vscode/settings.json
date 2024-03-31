@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "xil_printf.h": "c",
+        "xparameters.h": "c"
+    }
+}

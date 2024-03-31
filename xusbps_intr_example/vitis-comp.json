@@ -1,0 +1,18 @@
+{
+  "name": "xusbps_intr_example",
+  "type": "HOST",
+  "platform": "/home/test/Projects/CameraZynq/camera_platform/export/camera_platform/camera_platform.xpfm",
+  "domain": "freertos_ps7_cortexa9_0",
+  "cpuInstance": "ps7_cortexa9_0",
+  "cpuType": "cortex-a9",
+  "os": "freertos",
+  "configuration": {
+    "componentType": "HOST",
+    "hostToolchainConfigurations": []
+  },
+  "domainRealName": "freertos_ps7_cortexa9_0",
+  "applicationFlow": "EMBEDDED",
+  "previousBuildStatusMap": {
+    "hw": "NEW"
+  }
+}

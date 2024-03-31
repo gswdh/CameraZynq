@@ -118,6 +118,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/gpio_example.dir/DependInfo.cmake"
+  "CMakeFiles/uartlite_example.dir/DependInfo.cmake"
   "CMakeFiles/coresightps_dcc_example.dir/DependInfo.cmake"
   "CMakeFiles/devcfg_example.dir/DependInfo.cmake"
   "CMakeFiles/dmaps_example.dir/DependInfo.cmake"

@@ -2,14 +2,27 @@
 
 #include "xparameters.h"
 #include "xgpio.h"
+#include "xil_printf.h"
 
 /* The Instance of the GPIO Driver */
-XGpio fpga_gpio;
+static XGpio fpga_gpio = {0};
 
 void gpio_init()
 {
-    XGpio_Initialize(&fpga_gpio, XPAR_XGPIO_0_BASEADDR);
-    XGpio_SetDataDirection(&fpga_gpio, 1, 0x00000000);
+	/*
+	 * Initialize the GPIO driver so that it's ready to use,
+	 * specify the device ID that is generated in xparameters.h
+	 */
+	XGpio_Config * CfgPtr = XGpio_LookupConfig(XPAR_XGPIO_0_BASEADDR);
+    if(XGpio_Initialize(&fpga_gpio, XPAR_XGPIO_0_BASEADDR) != XST_SUCCESS)
+    {
+        xil_printf("GPIO init fail.\r\n");
+        return;
+    }
+
+	XGpio_SetDataDirection(&fpga_gpio, 1, 0x0);
+
+	XGpio_DiscreteWrite(&fpga_gpio, 1, 0x0);
 }
 
 void gpio_write(gpio_pin_t pin, bool level)

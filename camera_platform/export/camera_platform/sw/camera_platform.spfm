@@ -12,7 +12,7 @@
             <sdx:processorGroup sdx:cpuInstance="ps7_cortexa9_0" sdx:cpuType="cortex-a9" sdx:displayName="freertos_ps7_cortexa9_0" sdx:name="freertos_ps7_cortexa9_0">
                 <sdx:os sdx:bspConfig="freertos_ps7_cortexa9_0" sdx:displayName="freertos_ps7_cortexa9_0" sdx:name="freertos"/>
             </sdx:processorGroup>
-            <sdx:processorGroup sdx:cpuInstance="ps7_cortexa9_1" sdx:cpuType="cortex-a9" sdx:displayName="george" sdx:name="george">
+            <sdx:processorGroup sdx:cpuInstance="ps7_cortexa9_0" sdx:cpuType="cortex-a9" sdx:displayName="george" sdx:name="george">
                 <sdx:os sdx:bspConfig="george" sdx:displayName="george" sdx:name="standalone"/>
             </sdx:processorGroup>
         </sdx:configuration>

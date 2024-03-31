@@ -94,6 +94,13 @@
 /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/ttcps/src/CMakeFiles/install.dir
 /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/ttcps/src/CMakeFiles/install/local.dir
 /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/ttcps/src/CMakeFiles/install/strip.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/CMakeFiles/uartlite.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/CMakeFiles/edit_cache.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/CMakeFiles/rebuild_cache.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/CMakeFiles/list_install_components.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/CMakeFiles/install.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/CMakeFiles/install/local.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/CMakeFiles/install/strip.dir
 /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartps/src/CMakeFiles/uartps.dir
 /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartps/src/CMakeFiles/edit_cache.dir
 /home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/uartps/src/CMakeFiles/rebuild_cache.dir

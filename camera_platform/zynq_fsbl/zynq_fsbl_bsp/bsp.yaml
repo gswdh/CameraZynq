@@ -15,6 +15,7 @@ os_config:
       default: ps7_uart_0
       options:
       - None
+      - axi_uartlite_0
       - ps7_uart_0
       - ps7_coresight_comp_0
       description: stdin peripheral
@@ -26,6 +27,7 @@ os_config:
       default: ps7_uart_0
       options:
       - None
+      - axi_uartlite_0
       - ps7_uart_0
       - ps7_coresight_comp_0
       description: stdout peripheral
@@ -84,6 +86,10 @@ drv_info:
     driver: gpio
     ip_name: axi_gpio
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/gpio_v4_10
+  axi_uartlite_0:
+    driver: uartlite
+    ip_name: axi_uartlite
+    path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/uartlite_v3_9
   ps7_afi_0: None
   ps7_afi_1: None
   ps7_afi_2: None

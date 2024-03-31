@@ -321,6 +321,19 @@ ttcps/fast:
 .PHONY : ttcps/fast
 
 #=============================================================================
+# Target rules for targets named uartlite
+
+# Build rule for target.
+uartlite: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uartlite
+.PHONY : uartlite
+
+# fast build rule for target.
+uartlite/fast:
+	$(MAKE) $(MAKESILENT) -f libsrc/uartlite/src/CMakeFiles/uartlite.dir/build.make libsrc/uartlite/src/CMakeFiles/uartlite.dir/build
+.PHONY : uartlite/fast
+
+#=============================================================================
 # Target rules for targets named uartps
 
 # Build rule for target.
@@ -422,6 +435,7 @@ help:
 	@echo "... scuwdt"
 	@echo "... sdps"
 	@echo "... ttcps"
+	@echo "... uartlite"
 	@echo "... uartps"
 	@echo "... usbps"
 	@echo "... xadcps"
