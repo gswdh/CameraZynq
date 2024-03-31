@@ -230,6 +230,19 @@ emacps/fast:
 .PHONY : emacps/fast
 
 #=============================================================================
+# Target rules for targets named gpio
+
+# Build rule for target.
+gpio: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gpio
+.PHONY : gpio
+
+# fast build rule for target.
+gpio/fast:
+	$(MAKE) $(MAKESILENT) -f libsrc/gpio/src/CMakeFiles/gpio.dir/build.make libsrc/gpio/src/CMakeFiles/gpio.dir/build
+.PHONY : gpio/fast
+
+#=============================================================================
 # Target rules for targets named qspips
 
 # Build rule for target.
@@ -429,6 +442,7 @@ help:
 	@echo "... dmaps"
 	@echo "... emacps"
 	@echo "... freertos"
+	@echo "... gpio"
 	@echo "... lwip213"
 	@echo "... qspips"
 	@echo "... scugic"

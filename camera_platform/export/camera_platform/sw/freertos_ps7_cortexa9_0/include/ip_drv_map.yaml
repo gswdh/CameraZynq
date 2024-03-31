@@ -1,3 +1,6 @@
+axi_gpio_0:
+- axi_gpio
+- gpio
 ps7_afi_0:
 - ps7_afi
 - None

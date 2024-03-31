@@ -73,6 +73,24 @@
 #define XPAR_XEMACPS_0_INTERRUPT_PARENT 0xf8f01000
 #define XPAR_XEMACPS_0_REF_CLK 0x0
 
+#define XPAR_XGPIO_NUM_INSTANCES 1
+
+/* Definitions for peripheral AXI_GPIO_0 */
+#define XPAR_AXI_GPIO_0_COMPATIBLE xlnx,axi-gpio-2.0
+#define XPAR_AXI_GPIO_0_BASEADDR 0x41200000
+#define XPAR_AXI_GPIO_0_HIGHADDR 0x4120ffff
+#define XPAR_AXI_GPIO_0_INTERRUPT_PRESENT 0x0
+#define XPAR_AXI_GPIO_0_IS_DUAL 0x0
+#define XPAR_AXI_GPIO_0_GPIO_WIDTH 0x3
+
+/* Canonical definitions for peripheral AXI_GPIO_0 */
+#define XPAR_XGPIO_0_BASEADDR 0x41200000
+#define XPAR_XGPIO_0_HIGHADDR 0x4120ffff
+#define XPAR_XGPIO_0_COMPATIBLE xlnx,axi-gpio-2.0
+#define XPAR_XGPIO_0_GPIO_WIDTH 0x3
+#define XPAR_XGPIO_0_INTERRUPT_PRESENT 0x0
+#define XPAR_XGPIO_0_IS_DUAL 0x0
+
 #define XPAR_XQSPIPS_NUM_INSTANCES 1
 
 /* Definitions for peripheral QSPI */

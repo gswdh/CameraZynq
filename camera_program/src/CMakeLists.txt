@@ -21,6 +21,19 @@ collect(PROJECT_LIB_DEPS xiltimer;xilffs;lwip213)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 collect(PROJECT_LIB_DEPS gcc)
 collect(PROJECT_LIB_DEPS c)
 collector_list (_deps PROJECT_LIB_DEPS)
@@ -30,7 +43,8 @@ if(CMAKE_EXPORT_COMPILE_COMMANDS)
     set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
     set(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES})
 endif()
-collect (PROJECT_LIB_SOURCES main.c)
+collect (PROJECT_LIB_SOURCES setup/gpio.c)
+collect (PROJECT_LIB_SOURCES setup/main.c)
 collector_list (_sources PROJECT_LIB_SOURCES)
 linker_gen("${CMAKE_CURRENT_SOURCE_DIR}/linker_files/")
 string(APPEND CMAKE_C_FLAGS ${USER_COMPILE_OPTIONS})
