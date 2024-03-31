@@ -21,7 +21,7 @@
 				"resetSystem": true,
 				"programDevice": true,
 				"resetAPU": false,
-				"bitstreamFile": "${workspaceFolder}/camera_program/_ide/bitstream/top_wrapper.bit",
+				"bitstreamFile": "${workspaceFolder}/camera_platform/hw/sdt/top_wrapper.bit",
 				"zynqInitialization": {
 					"isFsbl": false,
 					"usingFSBL": {

@@ -18,18 +18,19 @@ static void timer_heartbeat_cb(TimerHandle_t pxTimer)
 {
 	(void)pxTimer;
 	xil_printf("Camera heartbeat. Tick = %ums.\r\n", xTaskGetTickCount());
-	gpio_set(FPGA_LED_0);
-	vTaskDelay(10 / portTICK_PERIOD_MS);
-	gpio_reset(FPGA_LED_0);
 
-	// char *msg = "somedata\n";
-	// uart_tx((uint8_t *)msg, (uint32_t)strlen(msg));
+	// Flash the LED
+	gpio_toggle(FPGA_LED_0);
+
+	// Send some dummy data to the PMC
+	char *msg = "somedata\n";
+	uart_tx((uint8_t *)msg, (uint32_t)strlen(msg));
 }
 
 int main(void)
 {
 	gpio_init();
-	// uart_init();
+	uart_init();
 
 	usb_init();
 
