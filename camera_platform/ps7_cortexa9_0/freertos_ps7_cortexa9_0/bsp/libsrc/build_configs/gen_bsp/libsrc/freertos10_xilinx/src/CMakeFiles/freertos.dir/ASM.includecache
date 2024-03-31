@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/freertos10_xilinx/src/Source/portable/GCC/ARM_CA9/portASM.S
+
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/freertos10_xilinx/src/Source/portable/GCC/ARM_CA9/port_asm_vectors.S
+xil_errata.h
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/freertos10_xilinx/src/Source/portable/GCC/ARM_CA9/xil_errata.h
+
+include/xil_errata.h
+

@@ -1,0 +1,3 @@
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/build/CMakeFiles/fsbl.elf.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/build/CMakeFiles/edit_cache.dir
+/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/build/CMakeFiles/rebuild_cache.dir
