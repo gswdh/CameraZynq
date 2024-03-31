@@ -12,6 +12,7 @@
 /* Peripheral drivers */
 #include "gpio.h"
 #include "uart.h"
+#include "usb.h"
 
 static void timer_heartbeat_cb(TimerHandle_t pxTimer)
 {
@@ -21,14 +22,16 @@ static void timer_heartbeat_cb(TimerHandle_t pxTimer)
 	// vTaskDelay(10 / portTICK_PERIOD_MS);
 	// gpio_reset(FPGA_LED_0);
 
-	char *msg = "somedata\n";
-	uart_tx((uint8_t *)msg, (uint32_t)strlen(msg));
+	// char *msg = "somedata\n";
+	// uart_tx((uint8_t *)msg, (uint32_t)strlen(msg));
 }
 
 int main(void)
 {
 	// gpio_init();
 	// uart_init();
+
+	usb_init();
 
 	TimerHandle_t timer_heartbeat = xTimerCreate((const char *)"Heartbeat Timer",
 												 pdMS_TO_TICKS(1000),

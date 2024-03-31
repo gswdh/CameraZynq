@@ -50,6 +50,15 @@ collect(PROJECT_LIB_DEPS xiltimer;xilffs;lwip213)
 
 
 
+
+
+
+
+
+
+
+
+
 collect(PROJECT_LIB_DEPS gcc)
 collect(PROJECT_LIB_DEPS c)
 collector_list (_deps PROJECT_LIB_DEPS)
@@ -61,6 +70,7 @@ if(CMAKE_EXPORT_COMPILE_COMMANDS)
 endif()
 collect (PROJECT_LIB_SOURCES setup/gpio.c)
 collect (PROJECT_LIB_SOURCES setup/uart.c)
+collect (PROJECT_LIB_SOURCES setup/usb.c)
 collect (PROJECT_LIB_SOURCES setup/main.c)
 collector_list (_sources PROJECT_LIB_SOURCES)
 linker_gen("${CMAKE_CURRENT_SOURCE_DIR}/linker_files/")

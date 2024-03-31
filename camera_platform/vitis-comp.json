@@ -16,7 +16,7 @@
       "ps7_cortexa9_1": "ps7_cortexa9"
     },
     "supportedFamily": "zynq",
-    "outOfSync": true,
+    "outOfSync": false,
     "componentType": "PLATFORM",
     "domains": [
       {
