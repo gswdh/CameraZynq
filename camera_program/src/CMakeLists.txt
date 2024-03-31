@@ -17,19 +17,6 @@ collect(PROJECT_LIB_DEPS xiltimer;xilffs;lwip213)
 
 
 
-collect(PROJECT_LIB_DEPS gcc)
-collect(PROJECT_LIB_DEPS c)
-collector_list (_deps PROJECT_LIB_DEPS)
-list (APPEND _deps ${USER_LINK_LIBRARIES})
-
-
-
-
-
-
-
-
-
 
 
 
