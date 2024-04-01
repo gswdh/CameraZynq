@@ -870,6 +870,15 @@ sdps_SOURCE_DIR:STATIC=/home/test/Projects/CameraZynq/camera_platform/ps7_cortex
 //Enable fixed link for GEM SGMII at 1Gbps
 sgmii_fixed_link:STRING=0
 
+//Value Computed by CMake
+spi_BINARY_DIR:STATIC=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src
+
+//Value Computed by CMake
+spi_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+spi_SOURCE_DIR:STATIC=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/spi/src
+
 //stdin peripheral
 standalone_stdin:STRING=ps7_uart_0
 
@@ -1062,7 +1071,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=42
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=43
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1148,7 +1157,7 @@ lwip213_temac_phy_link_speed-STRINGS:INTERNAL=CONFIG_LINKSPEED10;CONFIG_LINKSPEE
 //STRINGS property for variable: sgmii_fixed_link
 sgmii_fixed_link-STRINGS:INTERNAL=0;1
 //STRINGS property for variable: standalone_stdin
-standalone_stdin-STRINGS:INTERNAL=None;axi_uartlite_0;ps7_uart_0;ps7_coresight_comp_0
+standalone_stdin-STRINGS:INTERNAL=None;axi_uartlite_0;axi_uartlite_1;ps7_uart_0;ps7_coresight_comp_0
 //STRINGS property for variable: standalone_stdout
-standalone_stdout-STRINGS:INTERNAL=None;axi_uartlite_0;ps7_uart_0;ps7_coresight_comp_0
+standalone_stdout-STRINGS:INTERNAL=None;axi_uartlite_0;axi_uartlite_1;ps7_uart_0;ps7_coresight_comp_0
 

@@ -460,6 +460,15 @@ sdps_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 sdps_SOURCE_DIR:STATIC=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/sdps/src
 
+//Value Computed by CMake
+spi_BINARY_DIR:STATIC=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src
+
+//Value Computed by CMake
+spi_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+spi_SOURCE_DIR:STATIC=/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/spi/src
+
 //stdin peripheral
 standalone_stdin:STRING=ps7_uart_0
 
@@ -661,7 +670,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=33
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=34
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -717,7 +726,7 @@ XILTIMER_sleep_timer-STRINGS:INTERNAL=Default;ps7_ttc_0;ps7_scutimer_0
 //STRINGS property for variable: XILTIMER_tick_timer
 XILTIMER_tick_timer-STRINGS:INTERNAL=None;ps7_ttc_0;ps7_scutimer_0
 //STRINGS property for variable: standalone_stdin
-standalone_stdin-STRINGS:INTERNAL=None;axi_uartlite_0;ps7_uart_0;ps7_coresight_comp_0
+standalone_stdin-STRINGS:INTERNAL=None;axi_uartlite_0;axi_uartlite_1;ps7_uart_0;ps7_coresight_comp_0
 //STRINGS property for variable: standalone_stdout
-standalone_stdout-STRINGS:INTERNAL=None;axi_uartlite_0;ps7_uart_0;ps7_coresight_comp_0
+standalone_stdout-STRINGS:INTERNAL=None;axi_uartlite_0;axi_uartlite_1;ps7_uart_0;ps7_coresight_comp_0
 

@@ -1,0 +1,3 @@
+[submodule "CameraFPGA"]
+	path = CameraFPGA
+	url = git@github.com:gswdh/CameraFPGA.git

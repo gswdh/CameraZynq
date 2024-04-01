@@ -1,0 +1,2 @@
+arm-none-eabi-ar qc libspi.a CMakeFiles/spi.dir/xspi.c.obj CMakeFiles/spi.dir/xspi_g.c.obj CMakeFiles/spi.dir/xspi_options.c.obj CMakeFiles/spi.dir/xspi_selftest.c.obj CMakeFiles/spi.dir/xspi_sinit.c.obj CMakeFiles/spi.dir/xspi_stats.c.obj
+/home/test/Xilinx/Vitis/2023.2/gnu/aarch32/lin/gcc-arm-none-eabi/bin/arm-none-eabi-ranlib libspi.a

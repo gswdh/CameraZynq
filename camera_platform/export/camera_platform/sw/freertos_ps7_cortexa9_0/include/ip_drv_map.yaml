@@ -1,7 +1,16 @@
 axi_gpio_0:
 - axi_gpio
 - gpio
+axi_quad_spi_0:
+- axi_quad_spi
+- spi
+axi_quad_spi_1:
+- axi_quad_spi
+- spi
 axi_uartlite_0:
+- axi_uartlite
+- uartlite
+axi_uartlite_1:
 - axi_uartlite
 - uartlite
 ps7_afi_0:

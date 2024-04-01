@@ -2,6 +2,6 @@
 the_ROM_image:
 {
 	[bootloader]/home/test/Projects/CameraZynq/camera_platform/export/camera_platform/sw/boot/fsbl.elf
-	/home/test/Projects/CameraZynq/camera_program/_ide/bitstream/top_wrapper.bit
+	/home/test/Projects/CameraZynq/camera_platform/hw/sdt/top_wrapper.bit
 	/home/test/Projects/CameraZynq/camera_program/build/camera_program.elf
 }

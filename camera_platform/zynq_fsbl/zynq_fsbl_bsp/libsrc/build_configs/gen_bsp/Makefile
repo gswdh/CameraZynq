@@ -308,6 +308,19 @@ sdps/fast:
 .PHONY : sdps/fast
 
 #=============================================================================
+# Target rules for targets named spi
+
+# Build rule for target.
+spi: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spi
+.PHONY : spi
+
+# fast build rule for target.
+spi/fast:
+	$(MAKE) $(MAKESILENT) -f libsrc/spi/src/CMakeFiles/spi.dir/build.make libsrc/spi/src/CMakeFiles/spi.dir/build
+.PHONY : spi/fast
+
+#=============================================================================
 # Target rules for targets named ttcps
 
 # Build rule for target.
@@ -434,6 +447,7 @@ help:
 	@echo "... scutimer"
 	@echo "... scuwdt"
 	@echo "... sdps"
+	@echo "... spi"
 	@echo "... ttcps"
 	@echo "... uartlite"
 	@echo "... uartps"

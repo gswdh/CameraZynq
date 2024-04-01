@@ -87,6 +87,13 @@
 /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/sdps/src/CMakeFiles/install.dir
 /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/sdps/src/CMakeFiles/install/local.dir
 /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/sdps/src/CMakeFiles/install/strip.dir
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src/CMakeFiles/spi.dir
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src/CMakeFiles/edit_cache.dir
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src/CMakeFiles/rebuild_cache.dir
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src/CMakeFiles/list_install_components.dir
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src/CMakeFiles/install.dir
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src/CMakeFiles/install/local.dir
+/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/spi/src/CMakeFiles/install/strip.dir
 /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/ttcps/src/CMakeFiles/ttcps.dir
 /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/ttcps/src/CMakeFiles/edit_cache.dir
 /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/ttcps/src/CMakeFiles/rebuild_cache.dir
