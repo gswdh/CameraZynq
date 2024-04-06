@@ -1304,7 +1304,7 @@ lib_config:
       name: lwip213_temac_phy_link_speed
       permission: read_write
       type: string
-      value: CONFIG_LINKSPEED1000
+      value: CONFIG_LINKSPEED_AUTODETECT
       default: CONFIG_LINKSPEED_AUTODETECT
       options:
       - CONFIG_LINKSPEED10

@@ -73,17 +73,16 @@ int lwip_runtime_debug = 0;
 
 u32_t phyaddrforemac;
 
-void
-lwip_raw_init()
+void lwip_raw_init()
 {
-	ip_init();	/* Doesn't do much, it should be called to handle future changes. */
+	ip_init(); /* Doesn't do much, it should be called to handle future changes. */
 #if LWIP_UDP
-	udp_init();	/* Clears the UDP PCB list. */
+	udp_init(); /* Clears the UDP PCB list. */
 #endif
 #if LWIP_TCP
-	tcp_init();	/* Clears the TCP PCB list and clears some internal TCP timers. */
-			/* Note: you must call tcp_fasttmr() and tcp_slowtmr() at the */
-			/* predefined regular intervals after this initialization. */
+	tcp_init(); /* Clears the TCP PCB list and clears some internal TCP timers. */
+				/* Note: you must call tcp_fasttmr() and tcp_slowtmr() at the */
+				/* predefined regular intervals after this initialization. */
 #endif
 }
 
@@ -93,9 +92,11 @@ find_mac_type(unsigned base)
 	int i;
 
 #ifdef SDT
-	for (i = 0; xtopology[i].emac_baseaddr != NULL; i++) {
+	for (i = 0; xtopology[i].emac_baseaddr != NULL; i++)
+	{
 #else
-	for (i = 0; i < xtopology_n_emacs; i++) {
+	for (i = 0; i < xtopology_n_emacs; i++)
+	{
 #endif
 		if (xtopology[i].emac_baseaddr == base)
 			return xtopology[i].emac_type;
@@ -104,14 +105,15 @@ find_mac_type(unsigned base)
 	return xemac_type_unknown;
 }
 
-int
-xtopology_find_index(unsigned base)
+int xtopology_find_index(unsigned base)
 {
 	int i;
 #ifdef SDT
-	for (i = 0; xtopology[i].emac_baseaddr != NULL; i++) {
+	for (i = 0; xtopology[i].emac_baseaddr != NULL; i++)
+	{
 #else
-	for (i = 0; i < xtopology_n_emacs; i++) {
+	for (i = 0; i < xtopology_n_emacs; i++)
+	{
 #endif
 		if (xtopology[i].emac_baseaddr == base)
 			return i;
@@ -128,12 +130,12 @@ xtopology_find_index(unsigned base)
  */
 struct netif *
 xemac_add(struct netif *netif,
-	ip_addr_t *ipaddr, ip_addr_t *netmask, ip_addr_t *gw,
-	unsigned char *mac_ethernet_address,
-	UINTPTR mac_baseaddr)
+		  ip_addr_t *ipaddr, ip_addr_t *netmask, ip_addr_t *gw,
+		  unsigned char *mac_ethernet_address,
+		  UINTPTR mac_baseaddr)
 {
 	int i;
-	struct netif * nif = NULL;
+	struct netif *nif = NULL;
 
 	/* set mac address */
 	netif->hwaddr_len = 6;
@@ -141,44 +143,45 @@ xemac_add(struct netif *netif,
 		netif->hwaddr[i] = mac_ethernet_address[i];
 
 	/* initialize based on MAC type */
-		switch (find_mac_type(mac_baseaddr)) {
-			case xemac_type_xps_emaclite:
+	switch (find_mac_type(mac_baseaddr))
+	{
+	case xemac_type_xps_emaclite:
 #ifdef XLWIP_CONFIG_INCLUDE_EMACLITE
-				nif = netif_add(netif, ipaddr, netmask, gw,
-					(void*)(UINTPTR)mac_baseaddr,
-					xemacliteif_init,
+		nif = netif_add(netif, ipaddr, netmask, gw,
+						(void *)(UINTPTR)mac_baseaddr,
+						xemacliteif_init,
 #if NO_SYS
-					ethernet_input
+						ethernet_input
 #else
-					tcpip_input
+						tcpip_input
 #endif
-					);
+		);
 #else
-				nif = NULL;
+		nif = NULL;
 #endif
-				break;
+		break;
 
-			case xemac_type_axi_ethernet:
+	case xemac_type_axi_ethernet:
 #ifdef XLWIP_CONFIG_INCLUDE_AXI_ETHERNET
-					nif = netif_add(netif, ipaddr, netmask, gw,
-					(void*)(UINTPTR)mac_baseaddr,
-					xaxiemacif_init,
+		nif = netif_add(netif, ipaddr, netmask, gw,
+						(void *)(UINTPTR)mac_baseaddr,
+						xaxiemacif_init,
 #if NO_SYS
-					ethernet_input
+						ethernet_input
 #else
-					tcpip_input
+						tcpip_input
 #endif
-					);
+		);
 #else
-				nif = NULL;
+		nif = NULL;
 #endif
-				break;
+		break;
 
-#if defined (__arm__) || defined (__aarch64__)
-			case xemac_type_emacps:
+#if defined(__arm__) || defined(__aarch64__)
+	case xemac_type_emacps:
 #ifdef XLWIP_CONFIG_INCLUDE_GEM
-                nif = netif_add(netif, ipaddr, netmask, gw,
-						(void*)(UINTPTR)mac_baseaddr,
+		nif = netif_add(netif, ipaddr, netmask, gw,
+						(void *)(UINTPTR)mac_baseaddr,
 						xemacpsif_init,
 #if NO_SYS
 						ethernet_input
@@ -186,20 +189,20 @@ xemac_add(struct netif *netif,
 						tcpip_input
 #endif
 
-						);
+		);
 #endif
-				break;
+		break;
 #endif
-			default:
-				xil_printf("unable to determine type of EMAC with baseaddress 0x%08x\r\n",
-						mac_baseaddr);
+	default:
+		xil_printf("unable to determine type of EMAC with baseaddress 0x%08x\r\n",
+				   mac_baseaddr);
 	}
 
-	#ifdef OS_IS_FREERTOS
-		/* Start thread to detect link periodically for Hot Plug autodetect */
-		sys_thread_new("link_detect_thread", link_detect_thread, netif,
-				THREAD_STACKSIZE, tskIDLE_PRIORITY);
-	#endif
+#ifdef OS_IS_FREERTOS
+	/* Start thread to detect link periodically for Hot Plug autodetect */
+	sys_thread_new("link_detect_thread", link_detect_thread, netif,
+				   THREAD_STACKSIZE, tskIDLE_PRIORITY);
+#endif
 
 	return nif;
 }
@@ -210,11 +213,11 @@ xemac_add(struct netif *netif,
  * This thread waits until a packet is received (sem_rx_data_available),
  * and then calls xemacif_input which processes 1 packet at a time.
  */
-void
-xemacif_input_thread(struct netif *netif)
+void xemacif_input_thread(struct netif *netif)
 {
 	struct xemac_s *emac = (struct xemac_s *)netif->state;
-	while (1) {
+	while (1)
+	{
 		/* sleep until there are packets to process
 		 * This semaphore is set by the packet receive interrupt
 		 * routine.
@@ -227,47 +230,51 @@ xemacif_input_thread(struct netif *netif)
 }
 #endif
 
-int
-xemacif_input(struct netif *netif)
+int xemacif_input(struct netif *netif)
 {
 	struct xemac_s *emac = (struct xemac_s *)netif->state;
 
 	int n_packets = 0;
 
-	switch (emac->type) {
-		case xemac_type_xps_emaclite:
+	switch (emac->type)
+	{
+	case xemac_type_xps_emaclite:
 #ifdef XLWIP_CONFIG_INCLUDE_EMACLITE
-			n_packets = xemacliteif_input(netif);
-			break;
+		n_packets = xemacliteif_input(netif);
+		break;
 #else
-			xil_printf("incorrect configuration: xps_ethernetlite drivers not present?");
-			while(1);
-			return 0;
+		xil_printf("incorrect configuration: xps_ethernetlite drivers not present?");
+		while (1)
+			;
+		return 0;
 #endif
-		case xemac_type_axi_ethernet:
+	case xemac_type_axi_ethernet:
 #ifdef XLWIP_CONFIG_INCLUDE_AXI_ETHERNET
-			n_packets = xaxiemacif_input(netif);
-			break;
+		n_packets = xaxiemacif_input(netif);
+		break;
 #else
-			xil_printf("incorrect configuration: axi_ethernet drivers not present?");
-			while(1);
-			return 0;
+		xil_printf("incorrect configuration: axi_ethernet drivers not present?");
+		while (1)
+			;
+		return 0;
 #endif
-#if defined (__arm__) || defined (__aarch64__)
-		case xemac_type_emacps:
+#if defined(__arm__) || defined(__aarch64__)
+	case xemac_type_emacps:
 #ifdef XLWIP_CONFIG_INCLUDE_GEM
-			n_packets = xemacpsif_input(netif);
-			break;
+		n_packets = xemacpsif_input(netif);
+		break;
 #else
-			xil_printf("incorrect configuration: ps7_ethernet drivers not present?\r\n");
-			while(1);
-			return 0;
+		xil_printf("incorrect configuration: ps7_ethernet drivers not present?\r\n");
+		while (1)
+			;
+		return 0;
 #endif
 #endif
-		default:
-			xil_printf("incorrect configuration: unknown temac type");
-			while(1);
-			return 0;
+	default:
+		xil_printf("incorrect configuration: unknown temac type");
+		while (1)
+			;
+		return 0;
 	}
 
 	return n_packets;
@@ -295,7 +302,7 @@ void emacps_link_status(struct netif *netif, xemacpsif_s *xemacs, XEmacPs *xemac
 	u16_t status;
 
 	if ((xemacp->IsReady != (u32)XIL_COMPONENT_IS_READY) ||
-			(xemacs->eth_link_status == ETH_LINK_UNDEFINED))
+		(xemacs->eth_link_status == ETH_LINK_UNDEFINED))
 		return;
 #ifndef SGMII_FIXED_LINK
 	/* Read Phy Status register twice to get the confirmation of the current
@@ -320,26 +327,28 @@ void emacps_link_status(struct netif *netif, xemacpsif_s *xemacs, XEmacPs *xemac
 	if ((xemacs->eth_link_status == ETH_LINK_UP) && (!phy_link_status))
 		xemacs->eth_link_status = ETH_LINK_DOWN;
 
-	switch (xemacs->eth_link_status) {
-		case ETH_LINK_UNDEFINED:
-		case ETH_LINK_UP:
-			return;
-		case ETH_LINK_DOWN:
-			netif_set_link_down(netif);
-			xemacs->eth_link_status = ETH_LINK_NEGOTIATING;
-			xil_printf("Ethernet Link down\r\n");
-			break;
-		case ETH_LINK_NEGOTIATING:
-			if (phy_link_status && phy_autoneg_status) {
+	switch (xemacs->eth_link_status)
+	{
+	case ETH_LINK_UNDEFINED:
+	case ETH_LINK_UP:
+		return;
+	case ETH_LINK_DOWN:
+		netif_set_link_down(netif);
+		xemacs->eth_link_status = ETH_LINK_NEGOTIATING;
+		xil_printf("Ethernet Link down\r\n");
+		break;
+	case ETH_LINK_NEGOTIATING:
+		if (phy_link_status && phy_autoneg_status)
+		{
 
-				link_speed = phy_setup_emacps(xemacp,
-						phyaddrforemac);
-				XEmacPs_SetOperatingSpeed(xemacp, link_speed);
-				netif_set_link_up(netif);
-				xemacs->eth_link_status = ETH_LINK_UP;
-				xil_printf("Ethernet Link up\r\n");
-			}
-			break;
+			link_speed = phy_setup_emacps(xemacp,
+										  phyaddrforemac);
+			XEmacPs_SetOperatingSpeed(xemacp, link_speed);
+			netif_set_link_up(netif);
+			xemacs->eth_link_status = ETH_LINK_UP;
+			xil_printf("Ethernet Link up\r\n");
+		}
+		break;
 	}
 	return;
 }
@@ -352,7 +361,7 @@ void axieth_link_status(struct netif *netif, xaxiemacif_s *xemacs, XAxiEthernet 
 	u16_t status;
 
 	if ((xemacp->IsReady != (u32)XIL_COMPONENT_IS_READY) ||
-			(xemacs->eth_link_status == ETH_LINK_UNDEFINED))
+		(xemacs->eth_link_status == ETH_LINK_UNDEFINED))
 		return;
 #ifndef SGMII_FIXED_LINK
 	/* Read Phy Status register twice to get the confirmation of the current
@@ -376,25 +385,27 @@ void axieth_link_status(struct netif *netif, xaxiemacif_s *xemacs, XAxiEthernet 
 	if ((xemacs->eth_link_status == ETH_LINK_UP) && (!phy_link_status))
 		xemacs->eth_link_status = ETH_LINK_DOWN;
 
-	switch (xemacs->eth_link_status) {
-		case ETH_LINK_UNDEFINED:
-		case ETH_LINK_UP:
-			return;
-		case ETH_LINK_DOWN:
-			netif_set_link_down(netif);
-			xemacs->eth_link_status = ETH_LINK_NEGOTIATING;
-			xil_printf("Ethernet Link down\r\n");
-			break;
-		case ETH_LINK_NEGOTIATING:
-			if (phy_link_status && phy_autoneg_status) {
+	switch (xemacs->eth_link_status)
+	{
+	case ETH_LINK_UNDEFINED:
+	case ETH_LINK_UP:
+		return;
+	case ETH_LINK_DOWN:
+		netif_set_link_down(netif);
+		xemacs->eth_link_status = ETH_LINK_NEGOTIATING;
+		xil_printf("Ethernet Link down\r\n");
+		break;
+	case ETH_LINK_NEGOTIATING:
+		if (phy_link_status && phy_autoneg_status)
+		{
 
-				link_speed = phy_setup_axiemac(xemacp);
-				XAxiEthernet_SetOperatingSpeed(xemacp,link_speed);
-				netif_set_link_up(netif);
-				xemacs->eth_link_status = ETH_LINK_UP;
-				xil_printf("Ethernet Link up\r\n");
-			}
-			break;
+			link_speed = phy_setup_axiemac(xemacp);
+			XAxiEthernet_SetOperatingSpeed(xemacp, link_speed);
+			netif_set_link_up(netif);
+			xemacs->eth_link_status = ETH_LINK_UP;
+			xil_printf("Ethernet Link up\r\n");
+		}
+		break;
 	}
 	return;
 }
@@ -406,7 +417,7 @@ void emaclite_link_status(struct netif *netif, xemacliteif_s *xemacs, XEmacLite 
 	u16_t status;
 
 	if ((xemacp->IsReady != (u32)XIL_COMPONENT_IS_READY) ||
-			(xemacs->eth_link_status == ETH_LINK_UNDEFINED))
+		(xemacs->eth_link_status == ETH_LINK_UNDEFINED))
 		return;
 #ifndef SGMII_FIXED_LINK
 	/* Read Phy Status register twice to get the confirmation of the current
@@ -430,22 +441,24 @@ void emaclite_link_status(struct netif *netif, xemacliteif_s *xemacs, XEmacLite 
 	if ((xemacs->eth_link_status == ETH_LINK_UP) && (!phy_link_status))
 		xemacs->eth_link_status = ETH_LINK_DOWN;
 
-	switch (xemacs->eth_link_status) {
-		case ETH_LINK_UNDEFINED:
-		case ETH_LINK_UP:
-			return;
-		case ETH_LINK_DOWN:
-			netif_set_link_down(netif);
-			xemacs->eth_link_status = ETH_LINK_NEGOTIATING;
-			xil_printf("Ethernet Link down\r\n");
-			break;
-		case ETH_LINK_NEGOTIATING:
-			if (phy_link_status && phy_autoneg_status) {
-				netif_set_link_up(netif);
-				xemacs->eth_link_status = ETH_LINK_UP;
-				xil_printf("Ethernet Link up\r\n");
-			}
-			break;
+	switch (xemacs->eth_link_status)
+	{
+	case ETH_LINK_UNDEFINED:
+	case ETH_LINK_UP:
+		return;
+	case ETH_LINK_DOWN:
+		netif_set_link_down(netif);
+		xemacs->eth_link_status = ETH_LINK_NEGOTIATING;
+		xil_printf("Ethernet Link down\r\n");
+		break;
+	case ETH_LINK_NEGOTIATING:
+		if (phy_link_status && phy_autoneg_status)
+		{
+			netif_set_link_up(netif);
+			xemacs->eth_link_status = ETH_LINK_UP;
+			xil_printf("Ethernet Link up\r\n");
+		}
+		break;
 	}
 	return;
 }
@@ -468,36 +481,39 @@ void eth_link_detect(struct netif *netif)
 	XEmacLite *xemaclitep = xemaclite->instance;
 #endif
 
-	switch (xemac->type) {
-		case xemac_type_emacps:
+	switch (xemac->type)
+	{
+	case xemac_type_emacps:
 #if defined(XLWIP_CONFIG_INCLUDE_GEM)
-	emacps_link_status(netif, xemacps, xemacpsp);
+		emacps_link_status(netif, xemacps, xemacpsp);
 #endif
-			break;
-		case xemac_type_xps_emaclite:
+		break;
+	case xemac_type_xps_emaclite:
 #if defined(XLWIP_CONFIG_INCLUDE_EMACLITE)
-	emaclite_link_status(netif, xemaclite, xemaclitep);
+		emaclite_link_status(netif, xemaclite, xemaclitep);
 #endif
-			break;
-		case xemac_type_axi_ethernet:
+		break;
+	case xemac_type_axi_ethernet:
 #ifdef XLWIP_CONFIG_INCLUDE_AXI_ETHERNET
-	axieth_link_status(netif, xaxiemac, xaxiemacp);
+		axieth_link_status(netif, xaxiemac, xaxiemacp);
 #endif
-			break;
+		break;
 	}
 }
 
 #if !NO_SYS
 void link_detect_thread(void *p)
 {
-	struct netif *netif = (struct netif *) p;
+	struct netif *netif = (struct netif *)p;
 
-	while (1) {
+	while (1)
+	{
 		/* Call eth_link_detect() every second to detect Ethernet link
 		 * change.
 		 */
 		eth_link_detect(netif);
 		vTaskDelay(LINK_DETECT_THREAD_INTERVAL / portTICK_RATE_MS);
+		xil_printf("Link detect\n");
 	}
 }
 #endif

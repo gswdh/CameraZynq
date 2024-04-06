@@ -1182,7 +1182,7 @@
                 axi_uartlite_0: axi_uartlite@42c00000 {
                         compatible = "xlnx,axi-uartlite-2.0", "xlnx,xps-uartlite-1.00.a";
                         xlnx,uartlite-board-interface = "Custom";
-                        xlnx,s-axi-aclk-freq-hz-d = <0x32>;
+                        xlnx,s-axi-aclk-freq-hz-d = <0x64>;
                         xlnx,rable = <0x0>;
                         xlnx,ip-name = "axi_uartlite";
                         reg = <0x42c00000 0x10000>;
@@ -1203,7 +1203,7 @@
                 axi_uartlite_1: axi_uartlite@42c10000 {
                         compatible = "xlnx,axi-uartlite-2.0", "xlnx,xps-uartlite-1.00.a";
                         xlnx,uartlite-board-interface = "Custom";
-                        xlnx,s-axi-aclk-freq-hz-d = <0x32>;
+                        xlnx,s-axi-aclk-freq-hz-d = <0x64>;
                         xlnx,rable = <0x0>;
                         xlnx,ip-name = "axi_uartlite";
                         reg = <0x42c10000 0x10000>;

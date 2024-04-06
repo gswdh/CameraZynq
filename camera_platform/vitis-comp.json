@@ -3,7 +3,7 @@
   "type": "PLATFORM",
   "configuration": {
     "description": "",
-    "xsa": "/home/test/Projects/CameraZynq/camera_program/src/submodules/CameraFPGA/top_wrapper.xsa",
+    "xsa": "/home/test/Projects/CameraZynq/CameraFPGA/top_wrapper.xsa",
     "xsaPathInPlatform": "camera_platform/hw/top_wrapper.xsa",
     "emulationXsa": "",
     "emulationXsaPathInPlatform": "",

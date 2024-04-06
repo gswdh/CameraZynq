@@ -776,7 +776,7 @@ lwip213_tcpip_mbox_size:STRING=200
 lwip213_temac_emac_number:STRING=0
 
 //link speed as negotiated by the PHY
-lwip213_temac_phy_link_speed:STRING=CONFIG_LINKSPEED1000
+lwip213_temac_phy_link_speed:STRING=CONFIG_LINKSPEED_AUTODETECT
 
 //Offload TCP and IP Receive checksum calculation (hardware support
 // required)
