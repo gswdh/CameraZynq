@@ -25,7 +25,8 @@ set(USER_UNDEFINED_SYMBOLS
 # Example 3: Adding ${CMAKE_SOURCE_DIR}/data/include to add data/include from this project.
 
 set(USER_INCLUDE_DIRECTORIES
-
+    run/
+    setup/
 )
 
 # -----------------------------------------

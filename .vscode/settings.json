@@ -3,6 +3,10 @@
         "xil_printf.h": "c",
         "xparameters.h": "c",
         "xscugic.h": "c",
-        "xil_cache.h": "c"
+        "xil_cache.h": "c",
+        "stdint.h": "c",
+        "shutter_btn.h": "c",
+        "freertos.h": "c",
+        "timers.h": "c"
     }
 }

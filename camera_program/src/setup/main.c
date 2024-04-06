@@ -13,23 +13,27 @@
 #include "gpio.h"
 #include "uart.h"
 #include "usb.h"
+#include "spi.h"
 
-#include "xemacps.h"
+/* Program tasks */
+#include "shutter_button.h"
 
-static void to_binary16(uint16_t number, char *output)
-{
-	int j = 0; // Output array index
-	for (int i = 15; i >= 0; i--)
-	{
-		uint16_t bit = (number >> i) & 1;
-		output[j++] = bit + '0'; // Convert bit to character and store in output
-		if (i % 4 == 0 && i != 0)
-		{ // Add a space after every 4 bits, except at the end
-			output[j++] = ' ';
-		}
-	}
-	output[j] = '\0'; // Null terminator
-}
+// #include "xemacps.h"
+
+// static void to_binary16(uint16_t number, char *output)
+// {
+// 	int j = 0; // Output array index
+// 	for (int i = 15; i >= 0; i--)
+// 	{
+// 		uint16_t bit = (number >> i) & 1;
+// 		output[j++] = bit + '0'; // Convert bit to character and store in output
+// 		if (i % 4 == 0 && i != 0)
+// 		{ // Add a space after every 4 bits, except at the end
+// 			output[j++] = ' ';
+// 		}
+// 	}
+// 	output[j] = '\0'; // Null terminator
+// }
 
 static void timer_heartbeat_cb(TimerHandle_t pxTimer)
 {
@@ -47,8 +51,9 @@ int main(void)
 {
 	gpio_init();
 	uart_init();
+	spi_init();
 
-	usb_init();
+	// usb_init();
 
 	TimerHandle_t timer_heartbeat = xTimerCreate((const char *)"Heartbeat Timer",
 												 pdMS_TO_TICKS(1000),
@@ -73,6 +78,9 @@ int main(void)
 	// }
 
 	// xil_printf("\r\n\r\n");
+
+	/* Start program tasks */
+	shutter_button_start();
 
 	/* Start the tasks and timer running. */
 	vTaskStartScheduler();
