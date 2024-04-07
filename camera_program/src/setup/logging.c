@@ -4,7 +4,7 @@
 
 void log_send_data(const char *msg, uint32_t msg_len)
 {
-    xil_printf("%.*s\n", msg_len, msg);
+    xil_printf("%s", msg);
 }
 
 uint32_t log_get_time()

@@ -56,3 +56,5 @@ dkms.conf
 logs/
 .lock
 .peers.ini
+**/.cache/
+**/*.idx

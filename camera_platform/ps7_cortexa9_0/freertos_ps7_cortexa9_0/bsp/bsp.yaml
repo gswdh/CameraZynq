@@ -184,7 +184,7 @@ os_config:
       name: freertos_timer_task_stack_depth
       permission: read_write
       type: string
-      value: configMINIMAL_STACK_SIZE
+      value: '65536'
       default: configMINIMAL_STACK_SIZE
       options: []
       description: The size of the stack allocated to the timer service/daemon task.
@@ -192,7 +192,7 @@ os_config:
       name: freertos_total_heap_size
       permission: read_write
       type: integer
-      value: '65536'
+      value: '67108864'
       default: '65536'
       options: []
       description: Sets the amount of RAM reserved for use by FreeRTOS - used when

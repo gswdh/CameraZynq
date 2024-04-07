@@ -34,7 +34,7 @@
 #define	configMAX_API_CALL_INTERRUPT_PRIORITY	18
 #define	configMAX_PRIORITIES			(8)
 #define	configMINIMAL_STACK_SIZE		((unsigned short) 200)
-#define	configTOTAL_HEAP_SIZE			((size_t)65536)
+#define	configTOTAL_HEAP_SIZE			((size_t)67108864)
 #define	configMAX_TASK_NAME_LEN			10
 #define	configQUEUE_REGISTRY_SIZE		10
 #define	configCHECK_FOR_STACK_OVERFLOW		2
@@ -42,7 +42,7 @@
 #define	configUSE_TASK_FPU_SUPPORT		0x1
 #define	configTIMER_TASK_PRIORITY		(configMAX_PRIORITIES-1)
 #define	configTIMER_QUEUE_LENGTH		10
-#define	configTIMER_TASK_STACK_DEPTH		((configMINIMAL_STACK_SIZE * 2))
+#define	configTIMER_TASK_STACK_DEPTH		((65536 * 2))
 #define	configGENERATE_RUN_TIME_STATS		0x0
 #define	configMAX_CO_ROUTINE_PRIORITIES		2
 #define	configTIMER_BASEADDR			0xf8001000
