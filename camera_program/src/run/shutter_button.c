@@ -9,13 +9,18 @@
 #include "queue.h"
 #include "timers.h"
 
+/* System tools */
 #include "log.h"
+#include "cpubsub.h"
+#include "messages.h"
 
+/* Perphs */
 #include "spi.h"
 
 #define LOG_TAG "S_BUTTON"
 
-bool shutter_button_pressed = false;
+static bool shutter_button_pressed = false;
+static MSGButtonPress_t packet = {0};
 
 static uint16_t shutter_button_value()
 {
@@ -31,7 +36,10 @@ static void shutter_button_task(void)
     {
         if (!shutter_button_pressed)
         {
-            log_info(LOG_TAG, "Shutter Button Pressed!\n");
+            /* Tell the system about this button press */
+            packet.button = 6;
+            packet.type = 1;
+            cps_publish(&packet);
         }
 
         shutter_button_pressed = true;
@@ -45,6 +53,9 @@ static void shutter_button_task(void)
 
 void shutter_button_start()
 {
+    /* Init */
+    packet.mid = MSGButtonPress_MID;
+
     // Maybe some calibration...
 
     // Start the task

@@ -18,6 +18,7 @@
 #include "log.h"
 
 /* Program tasks */
+#include "system.h"
 #include "shutter_button.h"
 #include "heartbeat.h"
 #include "buttons.h"
@@ -36,6 +37,9 @@ int main(void)
 	shutter_button_start();
 	buttons_start();
 	display_start();
+
+	/* The main event */
+	system_start();
 
 	/* Start the tasks and timer running. */
 	vTaskStartScheduler();

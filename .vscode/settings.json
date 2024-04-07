@@ -11,6 +11,7 @@
         "shutter_button.h": "c",
         "gpio.h": "c",
         "stdbool.h": "c",
-        "spi.h": "c"
+        "spi.h": "c",
+        "system.h": "c"
     }
 }

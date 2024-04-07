@@ -10,19 +10,23 @@
 #include "timers.h"
 
 #include "log.h"
+#include "cpubsub.h"
+#include "messages.h"
 
 #include "gpio.h"
 
 #define LOG_TAG "BUTTONS"
 
-const gpio_pin_t buttons_to_check[] = {
+static const gpio_pin_t buttons_to_check[] = {
     BTN_BTMLEFT,
     BTN_BTMRIGHT,
     BTN_THUMB,
     BTN_TOPLEFT,
     BTN_TOPRIGHT};
 
-bool button_states[N_BUTTONS] = {0};
+static bool button_states[N_BUTTONS] = {0};
+
+static MSGButtonPress_t packet = {0};
 
 static void buttons_tasks()
 {
@@ -37,6 +41,11 @@ static void buttons_tasks()
             // Do something with this information
             log_info(LOG_TAG, "Button %u %s edge\n", i, button_state ? "rising" : "falling");
 
+            /* Tell the system about this button press */
+            packet.button = i;
+            packet.type = button_state;
+            cps_publish(&packet);
+
             // Update the states
             button_states[i] = button_state;
         }
@@ -45,7 +54,10 @@ static void buttons_tasks()
 
 void buttons_start()
 {
-    // Start the task
+    /* Init */
+    packet.mid = MSGButtonPress_MID;
+
+    /* Timer... */
     TimerHandle_t timer = xTimerCreate((const char *)"Buttons Timer",
                                        pdMS_TO_TICKS(100),
                                        pdTRUE,
