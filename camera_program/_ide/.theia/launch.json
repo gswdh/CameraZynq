@@ -20,7 +20,7 @@
 			"targetSetup": {
 				"resetSystem": true,
 				"programDevice": true,
-				"resetAPU": false,
+				"resetAPU": true,
 				"bitstreamFile": "${workspaceFolder}/camera_platform/hw/sdt/top_wrapper.bit",
 				"zynqInitialization": {
 					"isFsbl": false,

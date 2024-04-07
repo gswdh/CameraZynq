@@ -28,6 +28,8 @@ set(USER_INCLUDE_DIRECTORIES
     run/
     setup/
     /home/test/Projects/embedlib/ssd1309z/
+    /home/test/Projects/embedlib/log/
+    /home/test/Projects/cJSON/
 )
 
 # -----------------------------------------
@@ -161,3 +163,8 @@ set(USER_LINK_OPTIONS
 
 find_package(common)
 collect (PROJECT_LIB_SOURCES /home/test/Projects/embedlib/ssd1309z/ssd1309z.c)
+collect (PROJECT_LIB_SOURCES /home/test/Projects/embedlib/log/log.c)
+collect (PROJECT_LIB_SOURCES /home/test/Projects/cJSON/cJSON.c)
+
+
+

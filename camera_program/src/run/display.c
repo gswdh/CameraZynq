@@ -9,12 +9,14 @@
 #include "queue.h"
 #include "timers.h"
 
-#include "xil_printf.h"
+#include "log.h"
 
 #include "spi.h"
 #include "gpio.h"
 
 #include "ssd1309z.h"
+
+#define LOG_TAG "DISPLAY"
 
 void ssd_spi_write(uint8_t *data, uint32_t len)
 {
@@ -61,7 +63,8 @@ static void display_task(void *params)
         {
             disp_update = false;
 
-            xil_printf("Updating Display\r\n");
+            log_info(LOG_TAG, "Updating display\n");
+
             ssd_update_display(display_data);
         }
 

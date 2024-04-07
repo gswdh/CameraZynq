@@ -9,9 +9,11 @@
 #include "queue.h"
 #include "timers.h"
 
-#include "xil_printf.h"
+#include "log.h"
 
 #include "gpio.h"
+
+#define LOG_TAG "BUTTONS"
 
 const gpio_pin_t buttons_to_check[] = {
     BTN_BTMLEFT,
@@ -33,7 +35,7 @@ static void buttons_tasks()
         if (button_state != button_states[i])
         {
             // Do something with this information
-            xil_printf("Button %u %s edge\r\n", i, button_state ? "rising" : "falling");
+            log_info(LOG_TAG, "Button %u %s edge\n", i, button_state ? "rising" : "falling");
 
             // Update the states
             button_states[i] = button_state;

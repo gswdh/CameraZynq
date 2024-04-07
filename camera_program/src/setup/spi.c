@@ -3,8 +3,6 @@
 #include "xparameters.h"
 #include "xspi.h"
 
-#include "xil_printf.h"
-
 static XSpi spi_0 = {0};
 static XSpi spi_1 = {0};
 

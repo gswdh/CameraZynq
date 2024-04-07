@@ -9,7 +9,7 @@
 #include "queue.h"
 #include "timers.h"
 
-#include "xil_printf.h"
+#include "log.h"
 
 #include "gpio.h"
 

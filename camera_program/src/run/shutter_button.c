@@ -9,9 +9,11 @@
 #include "queue.h"
 #include "timers.h"
 
-#include "xil_printf.h"
+#include "log.h"
 
 #include "spi.h"
+
+#define LOG_TAG "S_BUTTON"
 
 bool shutter_button_pressed = false;
 
@@ -29,7 +31,7 @@ static void shutter_button_task(void)
     {
         if (!shutter_button_pressed)
         {
-            xil_printf("Shutter Button Pressed!\r\n");
+            log_info(LOG_TAG, "Shutter Button Pressed!\n");
         }
 
         shutter_button_pressed = true;

@@ -1,5 +1,4 @@
 /* Xilinx includes. */
-#include "xil_printf.h"
 #include "xparameters.h"
 #include "xil_io.h"
 
@@ -14,6 +13,9 @@
 #include "uart.h"
 #include "usb.h"
 #include "spi.h"
+
+/* External libs */
+#include "log.h"
 
 /* Program tasks */
 #include "shutter_button.h"

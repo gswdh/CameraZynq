@@ -2,7 +2,10 @@
 
 #include "xparameters.h"
 #include "xgpio.h"
-#include "xil_printf.h"
+
+#include "log.h"
+
+#define LOG_TAG "GPIO"
 
 /* The Instance of the GPIO Driver */
 static XGpio fpga_gpio = {0};
@@ -16,7 +19,7 @@ void gpio_init()
     XGpio_Config *CfgPtr = XGpio_LookupConfig(XPAR_XGPIO_0_BASEADDR);
     if (XGpio_Initialize(&fpga_gpio, XPAR_XGPIO_0_BASEADDR) != XST_SUCCESS)
     {
-        xil_printf("GPIO init fail.\r\n");
+        log_info(LOG_TAG, "Init fail.\n");
         return;
     }
 

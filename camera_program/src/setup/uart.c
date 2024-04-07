@@ -14,7 +14,7 @@ void uart_init()
     status = XUartLite_SelfTest(&fpga_uart);
     if (status != XST_SUCCESS)
     {
-        return XST_FAILURE;
+        return;
     }
 }
 
