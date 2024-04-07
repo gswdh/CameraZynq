@@ -30,7 +30,7 @@
 #define	configUSE_TIMERS			  1
 #define	FREERTOS_TIMER_TICK_TRACE		 0
 
-#define	configTICK_RATE_HZ			(1000)
+#define	configTICK_RATE_HZ			(100)
 #define	configMAX_API_CALL_INTERRUPT_PRIORITY	18
 #define	configMAX_PRIORITIES			(8)
 #define	configMINIMAL_STACK_SIZE		((unsigned short) 200)

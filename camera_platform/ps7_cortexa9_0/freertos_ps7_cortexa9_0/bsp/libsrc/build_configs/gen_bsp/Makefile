@@ -424,32 +424,6 @@ freertos/fast:
 	$(MAKE) $(MAKESILENT) -f libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/build.make libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/build
 .PHONY : freertos/fast
 
-#=============================================================================
-# Target rules for targets named xilffs
-
-# Build rule for target.
-xilffs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xilffs
-.PHONY : xilffs
-
-# fast build rule for target.
-xilffs/fast:
-	$(MAKE) $(MAKESILENT) -f libsrc/xilffs/src/CMakeFiles/xilffs.dir/build.make libsrc/xilffs/src/CMakeFiles/xilffs.dir/build
-.PHONY : xilffs/fast
-
-#=============================================================================
-# Target rules for targets named lwip213
-
-# Build rule for target.
-lwip213: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lwip213
-.PHONY : lwip213
-
-# fast build rule for target.
-lwip213/fast:
-	$(MAKE) $(MAKESILENT) -f libsrc/lwip213/src/CMakeFiles/lwip213.dir/build.make libsrc/lwip213/src/CMakeFiles/lwip213.dir/build
-.PHONY : lwip213/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -469,7 +443,6 @@ help:
 	@echo "... emacps"
 	@echo "... freertos"
 	@echo "... gpio"
-	@echo "... lwip213"
 	@echo "... qspips"
 	@echo "... scugic"
 	@echo "... scutimer"
@@ -481,7 +454,6 @@ help:
 	@echo "... uartps"
 	@echo "... usbps"
 	@echo "... xadcps"
-	@echo "... xilffs"
 	@echo "... xilstandalone"
 	@echo "... xiltimer"
 .PHONY : help
