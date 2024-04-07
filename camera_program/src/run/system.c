@@ -41,7 +41,7 @@ static void system_task()
 
 void system_start()
 {
-    cps_subscribe(MSGButtonPress_MID, MSGButtonPress_MID_LEN, &pipe);
+    cps_subscribe(MSGButtonPress_MID, MSGButtonPress_LEN, &pipe);
 
     xTaskCreate(system_task, "System Task", 4096, NULL, tskIDLE_PRIORITY, NULL);
 }
