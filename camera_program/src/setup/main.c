@@ -18,9 +18,11 @@
 /* Program tasks */
 #include "shutter_button.h"
 #include "heartbeat.h"
+#include "buttons.h"
 
 int main(void)
 {
+	/* Init the peripherals */
 	gpio_init();
 	uart_init();
 	spi_init();
@@ -31,6 +33,9 @@ int main(void)
 
 	/* Start program tasks */
 	shutter_button_start();
+
+	/* Buttons */
+	buttons_start();
 
 	/* Start the tasks and timer running. */
 	vTaskStartScheduler();

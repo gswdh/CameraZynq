@@ -9,6 +9,7 @@
         "freertos.h": "c",
         "timers.h": "c",
         "shutter_button.h": "c",
-        "gpio.h": "c"
+        "gpio.h": "c",
+        "stdbool.h": "c"
     }
 }
