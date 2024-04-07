@@ -19,6 +19,7 @@
 #include "shutter_button.h"
 #include "heartbeat.h"
 #include "buttons.h"
+#include "display.h"
 
 int main(void)
 {
@@ -28,14 +29,11 @@ int main(void)
 	spi_init();
 	// usb_init();
 
-	/* Simple blink to show we're alive */
-	heartbeat_start();
-
 	/* Start program tasks */
+	heartbeat_start();
 	shutter_button_start();
-
-	/* Buttons */
 	buttons_start();
+	display_start();
 
 	/* Start the tasks and timer running. */
 	vTaskStartScheduler();

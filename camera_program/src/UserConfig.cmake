@@ -27,6 +27,7 @@ set(USER_UNDEFINED_SYMBOLS
 set(USER_INCLUDE_DIRECTORIES
     run/
     setup/
+    /home/test/Projects/embedlib/ssd1309z/
 )
 
 # -----------------------------------------
@@ -113,6 +114,7 @@ set(USER_LINK_LIBRARIES
 # Example 1: Adding /proj/compression/lib will pass -L/proj/compression/lib to the linker.
 # Example adding Adding ../../common/lib will consider the path as relative to this directory. and will pass the path to -L option.
 set(USER_LINK_DIRECTORIES
+    
 )
 
 # -----------------------------------------
@@ -156,3 +158,6 @@ set(USER_LINK_OPTIONS
     " ${USER_LINKER_OMIT_ALL_SYMBOL_INFO}"
     " ${USER_LINK_OTHER_FLAGS}"
 )
+
+find_package(common)
+collect (PROJECT_LIB_SOURCES /home/test/Projects/embedlib/ssd1309z/ssd1309z.c)
