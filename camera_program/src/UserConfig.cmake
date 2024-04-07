@@ -30,6 +30,8 @@ set(USER_INCLUDE_DIRECTORIES
     /home/test/Projects/embedlib/ssd1309z/
     /home/test/Projects/embedlib/log/
     /home/test/Projects/cJSON/
+    /home/test/Projects/CameraMessages/
+    /home/test/Projects/CameraMessages/cpubsub/
 )
 
 # -----------------------------------------
@@ -165,6 +167,9 @@ find_package(common)
 collect (PROJECT_LIB_SOURCES /home/test/Projects/embedlib/ssd1309z/ssd1309z.c)
 collect (PROJECT_LIB_SOURCES /home/test/Projects/embedlib/log/log.c)
 collect (PROJECT_LIB_SOURCES /home/test/Projects/cJSON/cJSON.c)
+collect (PROJECT_LIB_SOURCES /home/test/Projects/CameraMessages/cpubsub/cpubsub.c)
+
+
 
 
 

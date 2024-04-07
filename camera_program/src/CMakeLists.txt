@@ -20,6 +20,9 @@ collect(PROJECT_LIB_DEPS xiltimer)
 
 
 
+
+
+
 collect(PROJECT_LIB_DEPS gcc)
 collect(PROJECT_LIB_DEPS c)
 collector_list (_deps PROJECT_LIB_DEPS)
@@ -29,9 +32,11 @@ if(CMAKE_EXPORT_COMPILE_COMMANDS)
     set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
     set(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES})
 endif()
+collect (PROJECT_LIB_SOURCES setup/messages.c)
 collect (PROJECT_LIB_SOURCES setup/gpio.c)
 collect (PROJECT_LIB_SOURCES setup/uart.c)
 collect (PROJECT_LIB_SOURCES setup/usb.c)
+collect (PROJECT_LIB_SOURCES setup/pipe_interface_freertos.c)
 collect (PROJECT_LIB_SOURCES setup/main.c)
 collect (PROJECT_LIB_SOURCES setup/spi.c)
 collect (PROJECT_LIB_SOURCES setup/logging.c)
