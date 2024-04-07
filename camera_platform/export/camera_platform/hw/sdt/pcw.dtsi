@@ -231,10 +231,20 @@
 		status = "okay";
 		xlnx,interconnect-s-axi-masters = "ps7_cortexa9_0.M_AXI_DP , & , ps7_cortexa9_1.M_AXI_DP";
 		xlnx,ip-name = "ps7_sdio";
-		xlnx,sdio-clk-freq-hz = <100000000>;
-		xlnx,has-wp = <0>;
-		xlnx,has-cd = <0>;
+		xlnx,sdio-clk-freq-hz = <125000000>;
+		xlnx,has-wp = <1>;
+		xlnx,has-cd = <1>;
 		xlnx,name = "ps7_sd_1";
+	};
+	&i2c0 {
+		xlnx,rable = <0>;
+		xlnx,has-interrupt = <0>;
+		status = "okay";
+		xlnx,clock-freq = <127777779>;
+		xlnx,interconnect-s-axi-masters = "ps7_cortexa9_0.M_AXI_DP , & , ps7_cortexa9_1.M_AXI_DP";
+		xlnx,i2c-clk-freq-hz = <127777779>;
+		xlnx,ip-name = "ps7_i2c";
+		xlnx,name = "ps7_i2c_0";
 	};
 	&ttc0 {
 		xlnx,ttc-clk2-clksrc = <0>;

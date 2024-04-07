@@ -9,8 +9,8 @@ XUartLite_Config XUartLite_ConfigTable[] __attribute__ ((section (".drvcfg_sec")
 		0x0, /* xlnx,use-parity */
 		0x0, /* xlnx,odd-parity */
 		0x8, /* xlnx,data-bits */
-		0xffff, /* interrupts */
-		0xffff /* interrupt-parent */
+		0x101d, /* interrupts */
+		0xf8f01000 /* interrupt-parent */
 	},
 	{
 		"xlnx,axi-uartlite-2.0", /* compatible */
@@ -19,8 +19,8 @@ XUartLite_Config XUartLite_ConfigTable[] __attribute__ ((section (".drvcfg_sec")
 		0x0, /* xlnx,use-parity */
 		0x0, /* xlnx,odd-parity */
 		0x8, /* xlnx,data-bits */
-		0xffff, /* interrupts */
-		0xffff /* interrupt-parent */
+		0x101e, /* interrupts */
+		0xf8f01000 /* interrupt-parent */
 	},
 	 {
 		 NULL

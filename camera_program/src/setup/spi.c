@@ -40,7 +40,7 @@ void spi_0_tx(uint8_t *data, uint32_t len)
 
 void spi_1_transfer(uint8_t *tx_data, uint8_t *rx_data, uint32_t len)
 {
-    XSpi_Transfer(&spi_1, tx_data, rx_data, len);
+   // XSpi_Transfer(&spi_1, tx_data, rx_data, len);
 }
 
 void spi_1_rx(uint8_t *data, uint32_t len)

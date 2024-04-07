@@ -5,9 +5,9 @@ XSdPs_Config XSdPs_ConfigTable[] __attribute__ ((section (".drvcfg_sec"))) = {
 	{
 		"arasan,sdhci-8.9a", /* compatible */
 		0xe0101000, /* reg */
-		0x5f5e100, /* xlnx,sdio-clk-freq-hz */
-		0x0, /* xlnx,has-cd */
-		0x0, /* xlnx,has-wp */
+		0x7735940, /* xlnx,sdio-clk-freq-hz */
+		0x1, /* xlnx,has-cd */
+		0x1, /* xlnx,has-wp */
 		0x0, /* xlnx,bus-width */
 		0x0, /* xlnx,mio-bank */
 		0x0, /* xlnx,has-emio */

@@ -243,6 +243,19 @@ gpio/fast:
 .PHONY : gpio/fast
 
 #=============================================================================
+# Target rules for targets named iicps
+
+# Build rule for target.
+iicps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 iicps
+.PHONY : iicps
+
+# fast build rule for target.
+iicps/fast:
+	$(MAKE) $(MAKESILENT) -f libsrc/iicps/src/CMakeFiles/iicps.dir/build.make libsrc/iicps/src/CMakeFiles/iicps.dir/build
+.PHONY : iicps/fast
+
+#=============================================================================
 # Target rules for targets named qspips
 
 # Build rule for target.
@@ -443,6 +456,7 @@ help:
 	@echo "... emacps"
 	@echo "... freertos"
 	@echo "... gpio"
+	@echo "... iicps"
 	@echo "... qspips"
 	@echo "... scugic"
 	@echo "... scutimer"

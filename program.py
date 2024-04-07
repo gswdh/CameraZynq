@@ -5,6 +5,10 @@ session.connect(url="TCP:127.0.0.1:3121")
 # Add the ARM core to the jtag connection
 #jtag = session.jtag_target(filter='name==arm_dap')
 
+# Load the FPGA bitstream
+session.targets("--set", filter="name =~ *xc7*")
+session.fpga(file="camera_platform/hw/sdt/top_wrapper.bit")
+
 # Download FSBL to A9 #0, block untill FSBL completes
 a9_0 = session.targets("--set", filter="name =~ *MPCore #0*")
 session.rst(type='cores')
