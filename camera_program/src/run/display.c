@@ -20,7 +20,10 @@
 
 void ssd_spi_write(uint8_t *data, uint32_t len)
 {
-    spi_1_tx(data, len);
+    for (uint32_t i = 0; i < len; i++)
+    {
+        spi_1_tx(&data[i], 1);
+    }
 }
 
 void ssd_set_dc(bool en)
@@ -30,8 +33,7 @@ void ssd_set_dc(bool en)
 
 void ssd_set_cs(bool en)
 {
-    (void)en;
-    return;
+    gpio_write(DSP_SPI_NCS, en);
 }
 
 void ssd_set_rst(bool en)
@@ -46,12 +48,12 @@ void ssd_pwr_cont(bool en)
 
 void ssd_delay_ms(uint32_t time_ms)
 {
-    // vTaskDelay(pdMS_TO_TICKS(time_ms));
+    vTaskDelay(pdMS_TO_TICKS(time_ms));
 }
 
 volatile bool disp_update = false;
 
-static uint8_t display_data[SSD_DISP_BUFFER_LEN] = {0};
+static uint8_t display_data[SSD_DISP_BUFFER_LEN] = {100};
 
 static void display_task(void *params)
 {
@@ -67,8 +69,6 @@ static void display_task(void *params)
 
             ssd_update_display(display_data);
         }
-
-        vTaskDelay(pdMS_TO_TICKS(10));
     }
 
     vTaskDelete(NULL);
@@ -83,5 +83,5 @@ void display_start()
     disp_update = true;
 
     /* Start the task */
-    xTaskCreate(display_task, "Display Task", 1024, NULL, tskIDLE_PRIORITY, NULL);
+    xTaskCreate(display_task, "Display Task", 4096, NULL, tskIDLE_PRIORITY, NULL);
 }

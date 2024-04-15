@@ -24,13 +24,15 @@
 #include "buttons.h"
 #include "display.h"
 
-int main(void)
+static void init(void *params)
 {
+	(void *)params;
+
 	/* Init the peripherals */
 	gpio_init();
 	uart_init();
 	spi_init();
-	// usb_init();
+	usb_init();
 
 	/* Start program tasks */
 	heartbeat_start();
@@ -40,6 +42,13 @@ int main(void)
 
 	/* The main event */
 	system_start();
+
+	vTaskDelete(NULL);
+}
+
+int main(void)
+{
+	xTaskCreate(init, "Init task", 1024, NULL, tskIDLE_PRIORITY, NULL);
 
 	/* Start the tasks and timer running. */
 	vTaskStartScheduler();

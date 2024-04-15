@@ -1055,7 +1055,7 @@
                         xlnx,gpio-board-interface = "Custom";
                         compatible = "xlnx,axi-gpio-2.0", "xlnx,xps-gpio-1.00.a";
                         xlnx,all-outputs = <0x1>;
-                        xlnx,gpio-width = <0x12>;
+                        xlnx,gpio-width = <0x17>;
                         xlnx,rable = <0x0>;
                         xlnx,dout-default = <0x0>;
                         xlnx,is-dual = <0x1>;
@@ -1069,7 +1069,7 @@
                         xlnx,gpio2-board-interface = "Custom";
                         xlnx,edk-iptype = "PERIPHERAL";
                         xlnx,dout-default-2 = <0x0>;
-                        xlnx,gpio2-width = <0x7>;
+                        xlnx,gpio2-width = <0x8>;
                         status = "okay";
                         clock-names = "s_axi_aclk";
                         xlnx,tri-default = <0xffffffff>;

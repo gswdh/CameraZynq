@@ -22,6 +22,11 @@ typedef enum
   PWR_VDISP_EN = 15,
   SEN_SYS_NRESET = 16,
   TMP_THERM = 17,
+  DSP_SPI_NCS = 18,
+  BADC_SPI_NCS = 19,
+  SEN_SPI_NCS = 20,
+  SEN_SPI_CLK = 21,
+  SEN_SPI_MOSI = 22,
 
   /* Inputs */
   BTN_BTMLEFT = 32,
@@ -30,7 +35,8 @@ typedef enum
   BTN_TOPLEFT = 35,
   BTN_TOPRIGHT = 36,
   PMC_PSS_FLAG = 37,
-  TMP_ALERT = 38
+  TMP_ALERT = 38,
+  SEN_SPI_MISO = 39,
 } gpio_pin_t;
 
 void gpio_init();

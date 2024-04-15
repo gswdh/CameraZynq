@@ -10,6 +10,8 @@
 #include "cpubsub.h"
 #include "messages.h"
 
+#include "gmax0505.h"
+
 #define LOG_TAG "SYSTEM"
 
 /* Make a new pipe */
@@ -32,6 +34,14 @@ static void system_task()
 
             log_info(LOG_TAG, "Message with id = 0x%X rxd at %u.\n", packet->mid, xTaskGetTickCount());
             log_info(LOG_TAG, "button = %u, type = %u\n", packet->button, packet->type);
+
+            volatile uint8_t data[256] = {0};
+            gmax_spi_read(0x00, data, 256);
+
+            for (uint32_t i = 0; i < 256; i++)
+            {
+                log_info(LOG_TAG, "%u,%u\n", i, data[i]);
+            }
         }
     }
 
@@ -41,6 +51,8 @@ static void system_task()
 
 void system_start()
 {
+    gmax_init();
+
     cps_subscribe(MSGButtonPress_MID, MSGButtonPress_LEN, &pipe);
 
     xTaskCreate(system_task, "System Task", 4096, NULL, tskIDLE_PRIORITY, NULL);

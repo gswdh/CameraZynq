@@ -16,6 +16,7 @@
 
 /* Perphs */
 #include "spi.h"
+#include "gpio.h"
 
 #define LOG_TAG "S_BUTTON"
 
@@ -25,7 +26,9 @@ static MSGButtonPress_t packet = {0};
 static uint16_t shutter_button_value()
 {
     uint8_t data[2] = {0};
+    gpio_write(BADC_SPI_NCS, false);
     spi_0_rx(data, 2);
+    gpio_write(BADC_SPI_NCS, true);
     return ((data[0] << 8) + data[1]) >> 2;
 }
 
