@@ -80,11 +80,6 @@
 			xlnx,Axi4-address = <0>;
 			xlnx,sub-family = "zynq";
 		};
-		misc_clk_0: misc_clk_0 {
-			compatible = "fixed-clock";
-			clock-frequency = <10000000>;
-			#clock-cells = <0>;
-		};
 		axi_quad_spi_1: axi_quad_spi@41e10000 {
 			xlnx,lsb-stup = <0>;
 			num-cs = <0x1>;
@@ -118,7 +113,7 @@
 			xlnx,shared-startup = <0>;
 			xlnx,new-seq-en = <1>;
 			xlnx,qspi-board-interface = "Custom";
-			clocks = <&misc_clk_1>, <&clkc 15>;
+			clocks = <&misc_clk_0>, <&clkc 15>;
 			xlnx,edk-iptype = "PERIPHERAL";
 			xlnx,fifo-depth = <0>;
 			clock-names = "ext_spi_clk" , "s_axi_aclk";
@@ -136,9 +131,9 @@
 			xlnx,Axi4-address = <0>;
 			xlnx,sub-family = "zynq";
 		};
-		misc_clk_1: misc_clk_1 {
+		misc_clk_0: misc_clk_0 {
 			compatible = "fixed-clock";
-			clock-frequency = <20000000>;
+			clock-frequency = <10000000>;
 			#clock-cells = <0>;
 		};
 		axi_uartlite_0: axi_uartlite@42c00000 {

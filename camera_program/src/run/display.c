@@ -68,6 +68,8 @@ static void display_task(void *params)
             log_info(LOG_TAG, "Updating display\n");
 
             ssd_update_display(display_data);
+
+            ssd_delay_ms(100);
         }
     }
 
@@ -78,6 +80,8 @@ void display_start()
 {
     /* Init the display HW */
     ssd_init();
+
+    memset(display_data, 100, SSD_DISP_BUFFER_LEN);
 
     /* Update the display once, to blank */
     disp_update = true;
