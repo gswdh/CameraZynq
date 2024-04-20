@@ -100,3 +100,6 @@ ps7_usb_1:
 ps7_xadc_0:
 - ps7_xadc
 - xadcps
+sensor_bd_0_axi_gpio_0:
+- axi_gpio
+- gpio

@@ -23,11 +23,10 @@
 #include "heartbeat.h"
 #include "buttons.h"
 #include "display.h"
+#include "sensor.h"
 
-static void init(void *params)
+static void init(void)
 {
-	(void *)params;
-
 	/* Init the peripherals */
 	gpio_init();
 	uart_init();
@@ -39,6 +38,7 @@ static void init(void *params)
 	shutter_button_start();
 	buttons_start();
 	display_start();
+	sensor_start();
 
 	/* The main event */
 	system_start();

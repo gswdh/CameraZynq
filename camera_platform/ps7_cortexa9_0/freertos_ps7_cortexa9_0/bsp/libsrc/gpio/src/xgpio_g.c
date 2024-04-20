@@ -9,7 +9,16 @@ XGpio_Config XGpio_ConfigTable[] __attribute__ ((section (".drvcfg_sec"))) = {
 		0x1, /* xlnx,is-dual */
 		0xffff, /* interrupts */
 		0xffff, /* interrupt-parent */
-		0x17 /* xlnx,gpio-width */
+		0x19 /* xlnx,gpio-width */
+	},
+	{
+		"xlnx,axi-gpio-2.0", /* compatible */
+		0x41210000, /* reg */
+		0x0, /* xlnx,interrupt-present */
+		0x1, /* xlnx,is-dual */
+		0xffff, /* interrupts */
+		0xffff, /* interrupt-parent */
+		0xd /* xlnx,gpio-width */
 	},
 	 {
 		 NULL

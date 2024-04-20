@@ -16,8 +16,8 @@ void gpio_init()
      * Initialize the GPIO driver so that it's ready to use,
      * specify the device ID that is generated in xparameters.h
      */
-    XGpio_Config *CfgPtr = XGpio_LookupConfig(XPAR_XGPIO_0_BASEADDR);
-    if (XGpio_Initialize(&fpga_gpio, XPAR_XGPIO_0_BASEADDR) != XST_SUCCESS)
+    XGpio_Config *CfgPtr = XGpio_LookupConfig(XPAR_AXI_GPIO_0_BASEADDR);
+    if (XGpio_Initialize(&fpga_gpio, XPAR_AXI_GPIO_0_BASEADDR) != XST_SUCCESS)
     {
         log_info(LOG_TAG, "Init fail.\n");
         return;

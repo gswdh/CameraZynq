@@ -27,6 +27,8 @@ typedef enum
   SEN_SPI_NCS = 20,
   SEN_SPI_CLK = 21,
   SEN_SPI_MOSI = 22,
+  SEN_TEXP0 = 23,
+  SEN_TEXP1 = 24,
 
   /* Inputs */
   BTN_BTMLEFT = 32,
@@ -37,6 +39,8 @@ typedef enum
   PMC_PSS_FLAG = 37,
   TMP_ALERT = 38,
   SEN_SPI_MISO = 39,
+  SEN_TDIG0 = 40,
+  SEN_TDIG1 = 41,
 } gpio_pin_t;
 
 void gpio_init();
