@@ -11,7 +11,7 @@
 
 #define LOG_TAG "GMAX"
 
-#define GMAX_10BITS
+#define GMAX_12BITS
 
 /* The Instance of the GPIO Driver */
 static XGpio gmax_gpio = {0};
@@ -62,7 +62,7 @@ static uint8_t read_data_byte()
 static void gmax_gpio_init()
 {
     /*
-     * Initialize the GPIO driver so that it's ready to use,
+     * Initialize the GPIO driver so that it's ready to use,§
      * specify the device ID that is generated in xparameters.h
      */
     XGpio_Config *cfg_ptr = XGpio_LookupConfig(XPAR_SENSOR_BD_0_AXI_GPIO_0_BASEADDR);
@@ -195,7 +195,7 @@ void gmax_init()
 {
     /* Setup the FPGA HW */
     gmax_gpio_init();
-    gmax_set_training_word(gmax_training_word());
+    gmax_set_training_word(0x0761);
 
     /* That */
     gmax_power_on();
@@ -226,6 +226,9 @@ void gmax_init()
         gmax_delay_ms(10);
     }
 
-    /* Successful */
-    gmax_delay_ms(1);
+    /* Disable the FPGA syncing otherwise image data will trigger the sync module */
+    gmax_sync(false);
+
+    /* Let's turn an LED on in celebration */
+    gpio_set(FPGA_LED_1);
 }
