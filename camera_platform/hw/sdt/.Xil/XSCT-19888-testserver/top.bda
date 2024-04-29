@@ -175,7 +175,7 @@
         ],
         "vertices": {
             "V0": {
-                "VM": "/sensor_bd_0",
+                "VM": "/sensor_0",
                 "VT": "BC"
             },
             "V1": {
@@ -189,7 +189,7 @@
             },
             "V3": {
                 "VH": "5",
-                "VM": "sensor_bd_inst_0",
+                "VM": "sensor_inst_0",
                 "VT": "VR"
             },
             "V4": {
@@ -205,7 +205,7 @@
                 "MX": "/processing_system7_0",
                 "MI": "M_AXI_GP0",
                 "MV": "xilinx.com:ip:processing_system7:5.5",
-                "SX": "/sensor_bd_0",
+                "SX": "/sensor_0",
                 "SI": "S_AXI_0"
             },
             "V6": {
@@ -237,7 +237,7 @@
                 "MI": "M_AXI_GP0",
                 "MS": "SEG_axi_gpio_0_Reg_1",
                 "MV": "xilinx.com:ip:processing_system7:5.5",
-                "SX": "/sensor_bd_0/axi_gpio_0",
+                "SX": "/sensor_0/axi_gpio_0",
                 "SI": "S_AXI",
                 "SS": "Reg",
                 "SV": "xilinx.com:ip:axi_gpio:2.0",

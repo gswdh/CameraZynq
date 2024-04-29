@@ -60,7 +60,7 @@
                  <0xe0003000 &usb1 0xe0003000 0x1000>,
                  <0xf8007100 &adc 0xf8007100 0x21>,
                  <0x41200000 &axi_gpio_0 0x41200000 0x10000>,
-                 <0x41210000 &sensor_bd_0_axi_gpio_0 0x41210000 0x10000>,
+                 <0x41210000 &sensor_0_axi_gpio_0 0x41210000 0x10000>,
                  <0x41e00000 &axi_quad_spi_0 0x41e00000 0x10000>,
                  <0x41e10000 &axi_quad_spi_1 0x41e10000 0x10000>,
                  <0x42c00000 &axi_uartlite_0 0x42c00000 0x10000>,
@@ -1242,7 +1242,7 @@
                         phandle = <0x27>;
                 };
 
-                sensor_bd_0_axi_gpio_0: axi_gpio@41210000 {
+                sensor_0_axi_gpio_0: axi_gpio@41210000 {
                         xlnx,gpio-board-interface = "Custom";
                         compatible = "xlnx,axi-gpio-2.0", "xlnx,xps-gpio-1.00.a";
                         xlnx,all-outputs = <0x1>;
@@ -1264,7 +1264,7 @@
                         status = "okay";
                         clock-names = "s_axi_aclk";
                         xlnx,tri-default = <0xffffffff>;
-                        xlnx,name = "sensor_bd_0_axi_gpio_0";
+                        xlnx,name = "sensor_0_axi_gpio_0";
                         xlnx,all-inputs = <0x0>;
                         phandle = <0x23>;
                 };
@@ -1385,7 +1385,7 @@
                 misc_clk_0 = "/amba_pl/misc_clk_0";
                 axi_uartlite_0 = "/amba_pl/axi_uartlite@42c00000";
                 axi_uartlite_1 = "/amba_pl/axi_uartlite@42c10000";
-                sensor_bd_0_axi_gpio_0 = "/amba_pl/axi_gpio@41210000";
+                sensor_0_axi_gpio_0 = "/amba_pl/axi_gpio@41210000";
                 ps7_ddr_0_memory = "/memory@00100000";
                 ps7_ram_0_memory = "/memory@0";
                 ps7_ram_1_memory = "/memory@ffff0000";

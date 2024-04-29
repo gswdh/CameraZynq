@@ -549,7 +549,7 @@ drv_info:
     driver: xadcps
     ip_name: ps7_xadc
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/xadcps_v2_7
-  sensor_bd_0_axi_gpio_0:
+  sensor_0_axi_gpio_0:
     driver: gpio
     ip_name: axi_gpio
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/gpio_v4_10

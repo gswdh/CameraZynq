@@ -180,7 +180,7 @@
 			xlnx,data-bits = <8>;
 			xlnx,parity = "No_Parity";
 		};
-		sensor_bd_0_axi_gpio_0: axi_gpio@41210000 {
+		sensor_0_axi_gpio_0: axi_gpio@41210000 {
 			xlnx,gpio-board-interface = "Custom";
 			compatible = "xlnx,axi-gpio-2.0" , "xlnx,xps-gpio-1.00.a";
 			xlnx,all-outputs = <1>;
@@ -202,7 +202,7 @@
 			status = "okay";
 			clock-names = "s_axi_aclk";
 			xlnx,tri-default = <0xFFFFFFFF>;
-			xlnx,name = "sensor_bd_0_axi_gpio_0";
+			xlnx,name = "sensor_0_axi_gpio_0";
 			xlnx,all-inputs = <0>;
 		};
 	};
