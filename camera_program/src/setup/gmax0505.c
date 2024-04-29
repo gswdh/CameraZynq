@@ -195,7 +195,7 @@ void gmax_init()
 {
     /* Setup the FPGA HW */
     gmax_gpio_init();
-    gmax_set_training_word(0x0761);
+    gmax_set_training_word(gmax_training_word());
 
     /* That */
     gmax_power_on();
