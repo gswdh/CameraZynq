@@ -11,6 +11,7 @@
 #include "messages.h"
 
 #include "gmax0505.h"
+#include "gpio.h"
 
 #define LOG_TAG "SYSTEM"
 
@@ -35,13 +36,9 @@ static void system_task()
             log_info(LOG_TAG, "Message with id = 0x%X rxd at %u.\n", packet->mid, xTaskGetTickCount());
             log_info(LOG_TAG, "button = %u, type = %u\n", packet->button, packet->type);
 
-            volatile uint8_t data[256] = {0};
-            gmax_spi_read(0x00, data, 256);
-
-            for (uint32_t i = 0; i < 256; i++)
-            {
-                log_info(LOG_TAG, "%u,%u\n", i, data[i]);
-            }
+            gpio_set(SEN_TEXP0);
+            vTaskDelay(pdMS_TO_TICKS(1000));
+            gpio_reset(SEN_TEXP0);
         }
     }
 
