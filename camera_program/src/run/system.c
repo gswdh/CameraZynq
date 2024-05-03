@@ -37,7 +37,7 @@ static void system_task()
             log_info(LOG_TAG, "button = %u, type = %u\n", packet->button, packet->type);
 
             gpio_set(SEN_TEXP0);
-            vTaskDelay(pdMS_TO_TICKS(1000));
+            vTaskDelay(pdMS_TO_TICKS(10));
             gpio_reset(SEN_TEXP0);
         }
     }

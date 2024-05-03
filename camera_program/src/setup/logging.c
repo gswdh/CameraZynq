@@ -1,6 +1,9 @@
-#include "xil_printf.h"
-
 #include "log.h"
+
+/* FreeRTOS includes. */
+#include "FreeRTOS.h"
+
+#include "xil_printf.h"
 
 void log_send_data(const char *msg, uint32_t msg_len)
 {
@@ -9,5 +12,5 @@ void log_send_data(const char *msg, uint32_t msg_len)
 
 uint32_t log_get_time()
 {
-    return 0;
+    return (uint32_t)xTaskGetTickCount();
 }

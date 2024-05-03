@@ -91,6 +91,7 @@ clean: libsrc/freertos10_xilinx/src/clean
 
 # Recursive "all" directory target.
 libsrc/all: libsrc/CMakeFiles/combined.dir/all
+libsrc/all: libsrc/axivdma/src/all
 libsrc/all: libsrc/common/src/all
 libsrc/all: libsrc/coresightps_dcc/src/all
 libsrc/all: libsrc/devcfg/src/all
@@ -112,6 +113,7 @@ libsrc/all: libsrc/xadcps/src/all
 .PHONY : libsrc/all
 
 # Recursive "preinstall" directory target.
+libsrc/preinstall: libsrc/axivdma/src/preinstall
 libsrc/preinstall: libsrc/common/src/preinstall
 libsrc/preinstall: libsrc/coresightps_dcc/src/preinstall
 libsrc/preinstall: libsrc/devcfg/src/preinstall
@@ -134,6 +136,7 @@ libsrc/preinstall: libsrc/xadcps/src/preinstall
 
 # Recursive "clean" directory target.
 libsrc/clean: libsrc/CMakeFiles/combined.dir/clean
+libsrc/clean: libsrc/axivdma/src/clean
 libsrc/clean: libsrc/common/src/clean
 libsrc/clean: libsrc/coresightps_dcc/src/clean
 libsrc/clean: libsrc/devcfg/src/clean
@@ -153,6 +156,21 @@ libsrc/clean: libsrc/uartps/src/clean
 libsrc/clean: libsrc/usbps/src/clean
 libsrc/clean: libsrc/xadcps/src/clean
 .PHONY : libsrc/clean
+
+#=============================================================================
+# Directory level rules for directory libsrc/axivdma/src
+
+# Recursive "all" directory target.
+libsrc/axivdma/src/all: libsrc/axivdma/src/CMakeFiles/axivdma.dir/all
+.PHONY : libsrc/axivdma/src/all
+
+# Recursive "preinstall" directory target.
+libsrc/axivdma/src/preinstall:
+.PHONY : libsrc/axivdma/src/preinstall
+
+# Recursive "clean" directory target.
+libsrc/axivdma/src/clean: libsrc/axivdma/src/CMakeFiles/axivdma.dir/clean
+.PHONY : libsrc/axivdma/src/clean
 
 #=============================================================================
 # Directory level rules for directory libsrc/common/src
@@ -734,6 +752,7 @@ libsrc/xiltimer/src/core/ttcps/clean:
 # Target rules for target libsrc/CMakeFiles/combined.dir
 
 # All Build rule for target.
+libsrc/CMakeFiles/combined.dir/all: libsrc/axivdma/src/CMakeFiles/axivdma.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/devcfg/src/CMakeFiles/devcfg.dir/all
 libsrc/CMakeFiles/combined.dir/all: libsrc/dmaps/src/CMakeFiles/dmaps.dir/all
@@ -758,7 +777,7 @@ libsrc/CMakeFiles/combined.dir/all: libsrc/xadcps/src/CMakeFiles/xadcps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/CMakeFiles/combined.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 65
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 66
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/CMakeFiles/combined.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/CMakeFiles/combined.dir/rule
@@ -773,13 +792,39 @@ libsrc/CMakeFiles/combined.dir/clean:
 .PHONY : libsrc/CMakeFiles/combined.dir/clean
 
 #=============================================================================
+# Target rules for target libsrc/axivdma/src/CMakeFiles/axivdma.dir
+
+# All Build rule for target.
+libsrc/axivdma/src/CMakeFiles/axivdma.dir/all:
+	$(MAKE) $(MAKESILENT) -f libsrc/axivdma/src/CMakeFiles/axivdma.dir/build.make libsrc/axivdma/src/CMakeFiles/axivdma.dir/depend
+	$(MAKE) $(MAKESILENT) -f libsrc/axivdma/src/CMakeFiles/axivdma.dir/build.make libsrc/axivdma/src/CMakeFiles/axivdma.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=1,2,3 "Built target axivdma"
+.PHONY : libsrc/axivdma/src/CMakeFiles/axivdma.dir/all
+
+# Build rule for subdir invocation for target.
+libsrc/axivdma/src/CMakeFiles/axivdma.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/axivdma/src/CMakeFiles/axivdma.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
+.PHONY : libsrc/axivdma/src/CMakeFiles/axivdma.dir/rule
+
+# Convenience name for target.
+axivdma: libsrc/axivdma/src/CMakeFiles/axivdma.dir/rule
+.PHONY : axivdma
+
+# clean rule for target.
+libsrc/axivdma/src/CMakeFiles/axivdma.dir/clean:
+	$(MAKE) $(MAKESILENT) -f libsrc/axivdma/src/CMakeFiles/axivdma.dir/build.make libsrc/axivdma/src/CMakeFiles/axivdma.dir/clean
+.PHONY : libsrc/axivdma/src/CMakeFiles/axivdma.dir/clean
+
+#=============================================================================
 # Target rules for target libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir
 
 # All Build rule for target.
 libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/build.make libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/build.make libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=1 "Built target coresightps_dcc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=4 "Built target coresightps_dcc"
 .PHONY : libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/all
 
 # Build rule for subdir invocation for target.
@@ -805,7 +850,7 @@ libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/clean:
 libsrc/devcfg/src/CMakeFiles/devcfg.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/devcfg/src/CMakeFiles/devcfg.dir/build.make libsrc/devcfg/src/CMakeFiles/devcfg.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/devcfg/src/CMakeFiles/devcfg.dir/build.make libsrc/devcfg/src/CMakeFiles/devcfg.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=2,3,4,5 "Built target devcfg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=5,6,7,8 "Built target devcfg"
 .PHONY : libsrc/devcfg/src/CMakeFiles/devcfg.dir/all
 
 # Build rule for subdir invocation for target.
@@ -831,12 +876,12 @@ libsrc/devcfg/src/CMakeFiles/devcfg.dir/clean:
 libsrc/dmaps/src/CMakeFiles/dmaps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/dmaps/src/CMakeFiles/dmaps.dir/build.make libsrc/dmaps/src/CMakeFiles/dmaps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/dmaps/src/CMakeFiles/dmaps.dir/build.make libsrc/dmaps/src/CMakeFiles/dmaps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=6,7,8 "Built target dmaps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=9,10,11,12 "Built target dmaps"
 .PHONY : libsrc/dmaps/src/CMakeFiles/dmaps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/dmaps/src/CMakeFiles/dmaps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/dmaps/src/CMakeFiles/dmaps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/dmaps/src/CMakeFiles/dmaps.dir/rule
@@ -857,12 +902,12 @@ libsrc/dmaps/src/CMakeFiles/dmaps.dir/clean:
 libsrc/emacps/src/CMakeFiles/emacps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/emacps/src/CMakeFiles/emacps.dir/build.make libsrc/emacps/src/CMakeFiles/emacps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/emacps/src/CMakeFiles/emacps.dir/build.make libsrc/emacps/src/CMakeFiles/emacps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=9,10,11,12,13 "Built target emacps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=13,14,15,16 "Built target emacps"
 .PHONY : libsrc/emacps/src/CMakeFiles/emacps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/emacps/src/CMakeFiles/emacps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/emacps/src/CMakeFiles/emacps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/emacps/src/CMakeFiles/emacps.dir/rule
@@ -883,7 +928,7 @@ libsrc/emacps/src/CMakeFiles/emacps.dir/clean:
 libsrc/gpio/src/CMakeFiles/gpio.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/gpio/src/CMakeFiles/gpio.dir/build.make libsrc/gpio/src/CMakeFiles/gpio.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/gpio/src/CMakeFiles/gpio.dir/build.make libsrc/gpio/src/CMakeFiles/gpio.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=21,22,23,24 "Built target gpio"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=24,25,26,27 "Built target gpio"
 .PHONY : libsrc/gpio/src/CMakeFiles/gpio.dir/all
 
 # Build rule for subdir invocation for target.
@@ -909,7 +954,7 @@ libsrc/gpio/src/CMakeFiles/gpio.dir/clean:
 libsrc/iicps/src/CMakeFiles/iicps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/iicps/src/CMakeFiles/iicps.dir/build.make libsrc/iicps/src/CMakeFiles/iicps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/iicps/src/CMakeFiles/iicps.dir/build.make libsrc/iicps/src/CMakeFiles/iicps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=25,26,27,28,29,30 "Built target iicps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=28,29,30,31,32,33 "Built target iicps"
 .PHONY : libsrc/iicps/src/CMakeFiles/iicps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -935,7 +980,7 @@ libsrc/iicps/src/CMakeFiles/iicps.dir/clean:
 libsrc/qspips/src/CMakeFiles/qspips.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/qspips/src/CMakeFiles/qspips.dir/build.make libsrc/qspips/src/CMakeFiles/qspips.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/qspips/src/CMakeFiles/qspips.dir/build.make libsrc/qspips/src/CMakeFiles/qspips.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=31,32,33,34 "Built target qspips"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=34,35,36,37 "Built target qspips"
 .PHONY : libsrc/qspips/src/CMakeFiles/qspips.dir/all
 
 # Build rule for subdir invocation for target.
@@ -961,7 +1006,7 @@ libsrc/qspips/src/CMakeFiles/qspips.dir/clean:
 libsrc/scugic/src/CMakeFiles/scugic.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/scugic/src/CMakeFiles/scugic.dir/build.make libsrc/scugic/src/CMakeFiles/scugic.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/scugic/src/CMakeFiles/scugic.dir/build.make libsrc/scugic/src/CMakeFiles/scugic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=35,36,37,38 "Built target scugic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=38,39,40,41 "Built target scugic"
 .PHONY : libsrc/scugic/src/CMakeFiles/scugic.dir/all
 
 # Build rule for subdir invocation for target.
@@ -987,12 +1032,12 @@ libsrc/scugic/src/CMakeFiles/scugic.dir/clean:
 libsrc/scutimer/src/CMakeFiles/scutimer.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/scutimer/src/CMakeFiles/scutimer.dir/build.make libsrc/scutimer/src/CMakeFiles/scutimer.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/scutimer/src/CMakeFiles/scutimer.dir/build.make libsrc/scutimer/src/CMakeFiles/scutimer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=39,40,41 "Built target scutimer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=42,43 "Built target scutimer"
 .PHONY : libsrc/scutimer/src/CMakeFiles/scutimer.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/scutimer/src/CMakeFiles/scutimer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/scutimer/src/CMakeFiles/scutimer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/scutimer/src/CMakeFiles/scutimer.dir/rule
@@ -1013,7 +1058,7 @@ libsrc/scutimer/src/CMakeFiles/scutimer.dir/clean:
 libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/build.make libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/build.make libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=42,43,44 "Built target scuwdt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=44,45,46 "Built target scuwdt"
 .PHONY : libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1039,7 +1084,7 @@ libsrc/scuwdt/src/CMakeFiles/scuwdt.dir/clean:
 libsrc/sdps/src/CMakeFiles/sdps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/sdps/src/CMakeFiles/sdps.dir/build.make libsrc/sdps/src/CMakeFiles/sdps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/sdps/src/CMakeFiles/sdps.dir/build.make libsrc/sdps/src/CMakeFiles/sdps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=45,46,47,48 "Built target sdps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=47,48,49,50 "Built target sdps"
 .PHONY : libsrc/sdps/src/CMakeFiles/sdps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1065,7 +1110,7 @@ libsrc/sdps/src/CMakeFiles/sdps.dir/clean:
 libsrc/spi/src/CMakeFiles/spi.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/spi/src/CMakeFiles/spi.dir/build.make libsrc/spi/src/CMakeFiles/spi.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/spi/src/CMakeFiles/spi.dir/build.make libsrc/spi/src/CMakeFiles/spi.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=49,50,51,52 "Built target spi"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=51,52,53,54 "Built target spi"
 .PHONY : libsrc/spi/src/CMakeFiles/spi.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1091,12 +1136,12 @@ libsrc/spi/src/CMakeFiles/spi.dir/clean:
 libsrc/ttcps/src/CMakeFiles/ttcps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/ttcps/src/CMakeFiles/ttcps.dir/build.make libsrc/ttcps/src/CMakeFiles/ttcps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/ttcps/src/CMakeFiles/ttcps.dir/build.make libsrc/ttcps/src/CMakeFiles/ttcps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=53,54,55,56 "Built target ttcps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=55,56,57 "Built target ttcps"
 .PHONY : libsrc/ttcps/src/CMakeFiles/ttcps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/ttcps/src/CMakeFiles/ttcps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/ttcps/src/CMakeFiles/ttcps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/ttcps/src/CMakeFiles/ttcps.dir/rule
@@ -1117,12 +1162,12 @@ libsrc/ttcps/src/CMakeFiles/ttcps.dir/clean:
 libsrc/uartlite/src/CMakeFiles/uartlite.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/uartlite/src/CMakeFiles/uartlite.dir/build.make libsrc/uartlite/src/CMakeFiles/uartlite.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/uartlite/src/CMakeFiles/uartlite.dir/build.make libsrc/uartlite/src/CMakeFiles/uartlite.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=57,58,59,60 "Built target uartlite"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=58,59,60,61,62 "Built target uartlite"
 .PHONY : libsrc/uartlite/src/CMakeFiles/uartlite.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/uartlite/src/CMakeFiles/uartlite.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/uartlite/src/CMakeFiles/uartlite.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/uartlite/src/CMakeFiles/uartlite.dir/rule
@@ -1143,12 +1188,12 @@ libsrc/uartlite/src/CMakeFiles/uartlite.dir/clean:
 libsrc/uartps/src/CMakeFiles/uartps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/uartps/src/CMakeFiles/uartps.dir/build.make libsrc/uartps/src/CMakeFiles/uartps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/uartps/src/CMakeFiles/uartps.dir/build.make libsrc/uartps/src/CMakeFiles/uartps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=61,62,63,64,65 "Built target uartps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=63,64,65,66 "Built target uartps"
 .PHONY : libsrc/uartps/src/CMakeFiles/uartps.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/uartps/src/CMakeFiles/uartps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/uartps/src/CMakeFiles/uartps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/uartps/src/CMakeFiles/uartps.dir/rule
@@ -1169,7 +1214,7 @@ libsrc/uartps/src/CMakeFiles/uartps.dir/clean:
 libsrc/usbps/src/CMakeFiles/usbps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/usbps/src/CMakeFiles/usbps.dir/build.make libsrc/usbps/src/CMakeFiles/usbps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/usbps/src/CMakeFiles/usbps.dir/build.make libsrc/usbps/src/CMakeFiles/usbps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=66,67,68,69 "Built target usbps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=67,68,69,70 "Built target usbps"
 .PHONY : libsrc/usbps/src/CMakeFiles/usbps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1195,7 +1240,7 @@ libsrc/usbps/src/CMakeFiles/usbps.dir/clean:
 libsrc/xadcps/src/CMakeFiles/xadcps.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/xadcps/src/CMakeFiles/xadcps.dir/build.make libsrc/xadcps/src/CMakeFiles/xadcps.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/xadcps/src/CMakeFiles/xadcps.dir/build.make libsrc/xadcps/src/CMakeFiles/xadcps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=70,71,72 "Built target xadcps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=71,72,73 "Built target xadcps"
 .PHONY : libsrc/xadcps/src/CMakeFiles/xadcps.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1221,12 +1266,12 @@ libsrc/xadcps/src/CMakeFiles/xadcps.dir/clean:
 libsrc/standalone/src/CMakeFiles/xilstandalone.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/standalone/src/CMakeFiles/xilstandalone.dir/build.make libsrc/standalone/src/CMakeFiles/xilstandalone.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/standalone/src/CMakeFiles/xilstandalone.dir/build.make libsrc/standalone/src/CMakeFiles/xilstandalone.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97 "Built target xilstandalone"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97 "Built target xilstandalone"
 .PHONY : libsrc/standalone/src/CMakeFiles/xilstandalone.dir/all
 
 # Build rule for subdir invocation for target.
 libsrc/standalone/src/CMakeFiles/xilstandalone.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 24
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libsrc/standalone/src/CMakeFiles/xilstandalone.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles 0
 .PHONY : libsrc/standalone/src/CMakeFiles/xilstandalone.dir/rule
@@ -1273,7 +1318,7 @@ libsrc/xiltimer/src/CMakeFiles/xiltimer.dir/clean:
 libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/all:
 	$(MAKE) $(MAKESILENT) -f libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/build.make libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/depend
 	$(MAKE) $(MAKESILENT) -f libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/build.make libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=14,15,16,17,18,19,20 "Built target freertos"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/CMakeFiles --progress-num=17,18,19,20,21,22,23 "Built target freertos"
 .PHONY : libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/all
 
 # Build rule for subdir invocation for target.

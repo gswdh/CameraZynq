@@ -1,0 +1,2 @@
+arm-none-eabi-ar qc libaxivdma.a CMakeFiles/axivdma.dir/xaxivdma.c.obj CMakeFiles/axivdma.dir/xaxivdma_channel.c.obj CMakeFiles/axivdma.dir/xaxivdma_g.c.obj CMakeFiles/axivdma.dir/xaxivdma_intr.c.obj CMakeFiles/axivdma.dir/xaxivdma_selftest.c.obj CMakeFiles/axivdma.dir/xaxivdma_sinit.c.obj
+/home/test/Xilinx/Vitis/2023.2/gnu/aarch32/lin/gcc-arm-none-eabi/bin/arm-none-eabi-ranlib libaxivdma.a

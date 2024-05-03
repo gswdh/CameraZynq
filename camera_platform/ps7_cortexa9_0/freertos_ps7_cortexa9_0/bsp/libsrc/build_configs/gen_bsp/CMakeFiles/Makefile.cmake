@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/cortexa9_toolchain.cmake"
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/CMakeLists.txt"
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/DRVLISTConfig.cmake"
+  "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/axivdma/src/CMakeLists.txt"
   "CMakeCache.txt"
   "CMakeFiles/3.24.2/CMakeASMCompiler.cmake"
   "CMakeFiles/3.24.2/CMakeCCompiler.cmake"
@@ -92,6 +93,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CopyOfCMakeCache.txt"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "libsrc/axivdma/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/common/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/coresightps_dcc/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/devcfg/src/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -137,6 +139,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "libsrc/CMakeFiles/combined.dir/DependInfo.cmake"
+  "libsrc/axivdma/src/CMakeFiles/axivdma.dir/DependInfo.cmake"
   "libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/DependInfo.cmake"
   "libsrc/devcfg/src/CMakeFiles/devcfg.dir/DependInfo.cmake"
   "libsrc/dmaps/src/CMakeFiles/dmaps.dir/DependInfo.cmake"

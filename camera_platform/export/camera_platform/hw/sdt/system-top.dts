@@ -21,16 +21,16 @@
 		reg = <0xffff0000 0xfe00>;
 	};
 	chosen {
-		stdout-path = "serial0:110n8";
+		stdout-path = "serial0:115200n8";
 	};
 	aliases {
 		serial0 = &uart0;
 		spi0 = &qspi;
-		serial1 = &axi_uartlite_0;
-		spi1 = &axi_quad_spi_0;
-		serial2 = &axi_uartlite_1;
+		serial1 = &peripherals_0_axi_uartlite_0;
+		spi1 = &peripherals_0_axi_quad_spi_0;
+		serial2 = &peripherals_0_axi_uartlite_1;
+		spi2 = &peripherals_0_axi_quad_spi_1;
 		i2c0 = &i2c0;
-		spi2 = &axi_quad_spi_1;
 		serial3 = &coresight;
 		ethernet0 = &gem1;
 	};
@@ -69,12 +69,14 @@
 			      <0xe0000000 &uart0 0xe0000000 0x1000>, 
 			      <0xe0003000 &usb1 0xe0003000 0x1000>, 
 			      <0xf8007100 &adc 0xf8007100 0x21>, 
-			      <0x41200000 &axi_gpio_0 0x41200000 0x10000>, 
+			      <0x41200000 &peripherals_0_axi_gpio_0 0x41200000 0x10000>, 
 			      <0x41210000 &sensor_0_axi_gpio_0 0x41210000 0x10000>, 
-			      <0x41e00000 &axi_quad_spi_0 0x41e00000 0x10000>, 
-			      <0x41e10000 &axi_quad_spi_1 0x41e10000 0x10000>, 
-			      <0x42c00000 &axi_uartlite_0 0x42c00000 0x10000>, 
-			      <0x42c10000 &axi_uartlite_1 0x42c10000 0x10000>;
+			      <0x41e00000 &peripherals_0_axi_quad_spi_0 0x41e00000 0x10000>, 
+			      <0x41e10000 &peripherals_0_axi_quad_spi_1 0x41e10000 0x10000>, 
+			      <0x42c00000 &peripherals_0_axi_uartlite_0 0x42c00000 0x10000>, 
+			      <0x42c10000 &peripherals_0_axi_uartlite_1 0x42c10000 0x10000>, 
+			      <0x43000000 &evf_0_axi_vdma_0 0x43000000 0x10000>, 
+			      <0x43c00000 &evf_0_mipi_dsi_tx_subsystem_0 0x43c00000 0x10000>;
 		#ranges-address-cells = <0x1>;
 		#ranges-size-cells = <0x1>;
 	};

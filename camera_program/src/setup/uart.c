@@ -9,7 +9,7 @@ static XUartLite fpga_uart = {0};
 
 void uart_init()
 {
-    int status = XUartLite_Initialize(&fpga_uart, XPAR_XUARTLITE_0_BASEADDR);
+    int status = XUartLite_Initialize(&fpga_uart, XPAR_PERIPHERALS_0_AXI_UARTLITE_0_BASEADDR);
 
     status = XUartLite_SelfTest(&fpga_uart);
     if (status != XST_SUCCESS)

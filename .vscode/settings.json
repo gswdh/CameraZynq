@@ -17,6 +17,7 @@
         "string": "c",
         "string_view": "c",
         "display.h": "c",
-        "gmax0505.h": "c"
+        "gmax0505.h": "c",
+        "task.h": "c"
     }
 }

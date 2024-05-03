@@ -178,6 +178,19 @@ combined/fast:
 .PHONY : combined/fast
 
 #=============================================================================
+# Target rules for targets named axivdma
+
+# Build rule for target.
+axivdma: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 axivdma
+.PHONY : axivdma
+
+# fast build rule for target.
+axivdma/fast:
+	$(MAKE) $(MAKESILENT) -f libsrc/axivdma/src/CMakeFiles/axivdma.dir/build.make libsrc/axivdma/src/CMakeFiles/axivdma.dir/build
+.PHONY : axivdma/fast
+
+#=============================================================================
 # Target rules for targets named coresightps_dcc
 
 # Build rule for target.
@@ -450,6 +463,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... combined"
+	@echo "... axivdma"
 	@echo "... coresightps_dcc"
 	@echo "... devcfg"
 	@echo "... dmaps"

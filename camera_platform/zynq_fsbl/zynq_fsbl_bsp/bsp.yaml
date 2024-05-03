@@ -15,8 +15,8 @@ os_config:
       default: ps7_uart_0
       options:
       - None
-      - axi_uartlite_0
-      - axi_uartlite_1
+      - peripherals_0_axi_uartlite_0
+      - peripherals_0_axi_uartlite_1
       - ps7_uart_0
       - ps7_coresight_comp_0
       description: stdin peripheral
@@ -28,8 +28,8 @@ os_config:
       default: ps7_uart_0
       options:
       - None
-      - axi_uartlite_0
-      - axi_uartlite_1
+      - peripherals_0_axi_uartlite_0
+      - peripherals_0_axi_uartlite_1
       - ps7_uart_0
       - ps7_coresight_comp_0
       description: stdout peripheral
@@ -84,23 +84,28 @@ include_folder: include
 lib_folder: lib
 libsrc_folder: libsrc
 drv_info:
-  axi_gpio_0:
+  evf_0_axi_vdma_0:
+    driver: axivdma
+    ip_name: axi_vdma
+    path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/axivdma_v6_14
+  evf_0_mipi_dsi_tx_subsystem_0: None
+  peripherals_0_axi_gpio_0:
     driver: gpio
     ip_name: axi_gpio
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/gpio_v4_10
-  axi_quad_spi_0:
+  peripherals_0_axi_quad_spi_0:
     driver: spi
     ip_name: axi_quad_spi
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/spi_v4_11
-  axi_quad_spi_1:
+  peripherals_0_axi_quad_spi_1:
     driver: spi
     ip_name: axi_quad_spi
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/spi_v4_11
-  axi_uartlite_0:
+  peripherals_0_axi_uartlite_0:
     driver: uartlite
     ip_name: axi_uartlite
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/uartlite_v3_9
-  axi_uartlite_1:
+  peripherals_0_axi_uartlite_1:
     driver: uartlite
     ip_name: axi_uartlite
     path: /home/test/Xilinx/Vitis/2023.2/data/embeddedsw/XilinxProcessorIPLib/drivers/uartlite_v3_9

@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/cortexa9_toolchain.cmake"
   "/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/CMakeLists.txt"
   "/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/DRVLISTConfig.cmake"
+  "/home/test/Projects/CameraZynq/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/axivdma/src/CMakeLists.txt"
   "CMakeFiles/3.24.2/CMakeASMCompiler.cmake"
   "CMakeFiles/3.24.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.24.2/CMakeCXXCompiler.cmake"
@@ -86,6 +87,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "libsrc/axivdma/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/common/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/coresightps_dcc/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/devcfg/src/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -127,6 +129,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "libsrc/CMakeFiles/combined.dir/DependInfo.cmake"
+  "libsrc/axivdma/src/CMakeFiles/axivdma.dir/DependInfo.cmake"
   "libsrc/coresightps_dcc/src/CMakeFiles/coresightps_dcc.dir/DependInfo.cmake"
   "libsrc/devcfg/src/CMakeFiles/devcfg.dir/DependInfo.cmake"
   "libsrc/dmaps/src/CMakeFiles/dmaps.dir/DependInfo.cmake"

@@ -23,7 +23,7 @@ void heartbeat_start()
 {
     // Start the task
     TimerHandle_t timer = xTimerCreate((const char *)"Heartbeat Timer",
-                                       pdMS_TO_TICKS(1000),
+                                       pdMS_TO_TICKS(200),
                                        pdTRUE,
                                        NULL,
                                        heartbeat_task);

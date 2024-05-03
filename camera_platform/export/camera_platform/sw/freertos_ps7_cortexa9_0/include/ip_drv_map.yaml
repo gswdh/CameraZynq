@@ -1,16 +1,22 @@
-axi_gpio_0:
+evf_0_axi_vdma_0:
+- axi_vdma
+- axivdma
+evf_0_mipi_dsi_tx_subsystem_0:
+- mipi_dsi_tx_subsystem
+- None
+peripherals_0_axi_gpio_0:
 - axi_gpio
 - gpio
-axi_quad_spi_0:
+peripherals_0_axi_quad_spi_0:
 - axi_quad_spi
 - spi
-axi_quad_spi_1:
+peripherals_0_axi_quad_spi_1:
 - axi_quad_spi
 - spi
-axi_uartlite_0:
+peripherals_0_axi_uartlite_0:
 - axi_uartlite
 - uartlite
-axi_uartlite_1:
+peripherals_0_axi_uartlite_1:
 - axi_uartlite
 - uartlite
 ps7_afi_0:
