@@ -18,6 +18,8 @@
         "string_view": "c",
         "display.h": "c",
         "gmax0505.h": "c",
-        "task.h": "c"
+        "task.h": "c",
+        "xiicps.h": "c",
+        "stdio.h": "c"
     }
 }

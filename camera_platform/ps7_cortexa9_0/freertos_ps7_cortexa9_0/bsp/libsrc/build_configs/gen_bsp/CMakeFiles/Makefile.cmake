@@ -59,6 +59,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/uartps/src/CMakeLists.txt"
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/usbps/src/CMakeLists.txt"
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xadcps/src/CMakeLists.txt"
+  "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xilffs/src/CMakeLists.txt"
+  "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xilffs/src/include/CMakeLists.txt"
+  "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xilffs/src/xilffs.cmake"
+  "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xilffs/src/xilffs_config.h.in"
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xiltimer/src/CMakeLists.txt"
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xiltimer/src/XiltimerExample.cmake"
   "/home/test/Projects/CameraZynq/camera_platform/ps7_cortexa9_0/freertos_ps7_cortexa9_0/bsp/libsrc/xiltimer/src/core/CMakeLists.txt"
@@ -134,6 +138,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "libsrc/freertos10_xilinx/src/Source/portable/GCC/ARM_CA9/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/freertos10_xilinx/src/Source/portable/MemMang/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libsrc/freertos10_xilinx/src/Source/include/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "include/xilffs_config.h"
+  "libsrc/xilffs/src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "libsrc/xilffs/src/include/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -160,4 +167,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "libsrc/standalone/src/CMakeFiles/xilstandalone.dir/DependInfo.cmake"
   "libsrc/xiltimer/src/CMakeFiles/xiltimer.dir/DependInfo.cmake"
   "libsrc/freertos10_xilinx/src/CMakeFiles/freertos.dir/DependInfo.cmake"
+  "libsrc/xilffs/src/CMakeFiles/xilffs.dir/DependInfo.cmake"
   )

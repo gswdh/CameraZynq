@@ -16,14 +16,11 @@
 
 #include "ssd1309z.h"
 
-#define LOG_TAG "DISPLAY"
+#define LOG_TAG "DISP"
 
 void ssd_spi_write(uint8_t *data, uint32_t len)
 {
-    for (uint32_t i = 0; i < len; i++)
-    {
-        spi_1_tx(&data[i], 1);
-    }
+    spi_1_tx(data, len);
 }
 
 void ssd_set_dc(bool en)

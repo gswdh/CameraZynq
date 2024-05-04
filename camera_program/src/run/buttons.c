@@ -14,8 +14,11 @@
 #include "messages.h"
 
 #include "gpio.h"
+#include "spi.h"
 
 #define LOG_TAG "BUTTONS"
+
+#define SHUTTER_BTN_THRSH 600
 
 static const gpio_pin_t buttons_to_check[] = {
     BTN_BTMLEFT,
@@ -28,8 +31,27 @@ static bool button_states[N_BUTTONS] = {0};
 
 static MSGButtonPress_t packet = {0};
 
+static shutter_button_state_t shutter_button_state = RELEASED;
+
+static badc_spi_read(uint8_t *data, uint32_t len)
+{
+    gpio_write(BADC_SPI_NCS, false);
+    spi_0_rx(data, len);
+    gpio_write(BADC_SPI_NCS, true);
+}
+
+static shutter_button_state_t shutter_button_state()
+{
+    uint8_t data[2] = {0};
+    badc_spi_read(data, 2);
+    uint16_t value = ((data[0] << 8) + data[1]) >> 2;
+
+    return value > SHUTTER_BTN_THRSH ? FULL : RELEASED;
+}
+
 static void buttons_tasks()
 {
+    /* Check the regular push buttons */
     for (uint8_t i = 0; i < N_BUTTONS; i++)
     {
         // Read the button state
@@ -49,6 +71,21 @@ static void buttons_tasks()
             // Update the states
             button_states[i] = button_state;
         }
+    }
+
+    /* Check the shutter button */
+    shutter_button_state_t button_state = shutter_button_value();
+    if (button_state != shutter_button_state)
+    {
+        /* Update the state */
+        shutter_button_state = state;
+
+        /* Tell the system about this button press */
+        packet.button = 6;
+        packet.type = shutter_button_state;
+        cps_publish(&packet);
+
+        log_info(LOG_TAG, "Shutter button %s.\n", button_state ? "pressed" : "released");
     }
 }
 
