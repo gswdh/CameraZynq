@@ -6,7 +6,7 @@
 #include "log.h"
 
 #include <assert.h>
-#include <string.h>
+#include <stdlib.h>
 
 #define LOG_TAG "I2C"
 
@@ -27,7 +27,7 @@ void i2c_init()
 {
     int status = 0;
 
-    XIicPs_Config *i2c_config = XIicPs_LookupConfig(XPAR_IIC_0_BASEADDR);
+    XIicPs_Config *i2c_config = XIicPs_LookupConfig(XPAR_I2C0_BASEADDR);
 
     status = XIicPs_CfgInitialize(&ps_i2c, i2c_config, i2c_config->BaseAddress);
 

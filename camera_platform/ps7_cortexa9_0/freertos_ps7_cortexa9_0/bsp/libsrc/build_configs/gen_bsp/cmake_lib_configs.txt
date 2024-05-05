@@ -141,10 +141,10 @@ freertos_timer_select_counter:STRING=0x0
 freertos_timer_task_priority:STRING=configMAX_PRIORITIES-1
 
 // The size of the stack allocated to the timer service/daemon task.
-freertos_timer_task_stack_depth:STRING=65536
+freertos_timer_task_stack_depth:STRING=configMINIMAL_STACK_SIZE
 
 // Sets the amount of RAM reserved for use by FreeRTOS - used when tasks, queues, semaphores and event groups are created.
-freertos_total_heap_size:STRING=67108864
+freertos_total_heap_size:STRING=65536
 
 // Set to true to include counting semaphore functionality, or false to exclude recursive mutex functionality.
 freertos_use_counting_semaphores:BOOL=ON

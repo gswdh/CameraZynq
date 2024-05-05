@@ -13,32 +13,19 @@
 #include "uart.h"
 #include "usb.h"
 #include "spi.h"
+#include "i2c.h"
 
 /* External libs */
 #include "log.h"
 
-/* Program tasks */
-#include "system.h"
-#include "shutter_button.h"
-#include "heartbeat.h"
-#include "buttons.h"
-#include "display.h"
-#include "sensor.h"
-
-static void init(void)
+static void main_init(void)
 {
 	/* Init the peripherals */
 	gpio_init();
 	uart_init();
 	spi_init();
 	usb_init();
-
-	/* Start program tasks */
-	heartbeat_start();
-	shutter_button_start();
-	buttons_start();
-	display_start();
-	sensor_start();
+	i2c_init();
 
 	/* The main event */
 	system_start();
@@ -48,7 +35,7 @@ static void init(void)
 
 int main(void)
 {
-	xTaskCreate(init, "Init task", 1024, NULL, tskIDLE_PRIORITY, NULL);
+	xTaskCreate(main_init, "Init task", 1024, NULL, tskIDLE_PRIORITY, NULL);
 
 	/* Start the tasks and timer running. */
 	vTaskStartScheduler();

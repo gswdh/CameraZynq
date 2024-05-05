@@ -20,7 +20,10 @@
 
 void ssd_spi_write(uint8_t *data, uint32_t len)
 {
-    spi_1_tx(data, len);
+    for (uint32_t i = 0; i < len; i++)
+    {
+        spi_1_tx(data + i, 1);
+    }
 }
 
 void ssd_set_dc(bool en)
@@ -78,7 +81,7 @@ void display_start()
     /* Init the display HW */
     ssd_init();
 
-    memset(display_data, 100, SSD_DISP_BUFFER_LEN);
+    memset(display_data, 0, SSD_DISP_BUFFER_LEN);
 
     /* Update the display once, to blank */
     disp_update = true;

@@ -40,7 +40,7 @@ static badc_spi_read(uint8_t *data, uint32_t len)
     gpio_write(BADC_SPI_NCS, true);
 }
 
-static shutter_button_state_t shutter_button_state()
+static shutter_button_state_t shutter_button()
 {
     uint8_t data[2] = {0};
     badc_spi_read(data, 2);
@@ -74,11 +74,11 @@ static void buttons_tasks()
     }
 
     /* Check the shutter button */
-    shutter_button_state_t button_state = shutter_button_value();
+    shutter_button_state_t button_state = shutter_button();
     if (button_state != shutter_button_state)
     {
         /* Update the state */
-        shutter_button_state = state;
+        shutter_button_state = button_state;
 
         /* Tell the system about this button press */
         packet.button = 6;

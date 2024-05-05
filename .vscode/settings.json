@@ -20,6 +20,8 @@
         "gmax0505.h": "c",
         "task.h": "c",
         "xiicps.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "xil_io.h": "c",
+        "*.tcc": "c"
     }
 }

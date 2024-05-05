@@ -10,8 +10,12 @@
 #include "cpubsub.h"
 #include "messages.h"
 
-#include "gmax0505.h"
-#include "gpio.h"
+/* Program tasks */
+#include "system.h"
+#include "heartbeat.h"
+#include "buttons.h"
+#include "display.h"
+#include "sensor.h"
 
 #define LOG_TAG "SYSTEM"
 
@@ -35,10 +39,6 @@ static void system_task()
 
             log_info(LOG_TAG, "Message with id = 0x%X rxd at %u.\n", packet->mid, xTaskGetTickCount());
             log_info(LOG_TAG, "button = %u, type = %u\n", packet->button, packet->type);
-
-            gpio_set(SEN_TEXP0);
-            vTaskDelay(pdMS_TO_TICKS(10));
-            gpio_reset(SEN_TEXP0);
         }
     }
 
@@ -48,7 +48,15 @@ static void system_task()
 
 void system_start()
 {
+    /* Start program tasks */
+    heartbeat_start();
+    buttons_start();
+    display_start();
+    sensor_start();
+
+    /* Subscribe to the relvant message MIDs */
     cps_subscribe(MSGButtonPress_MID, MSGButtonPress_LEN, &pipe);
 
+    /* Start the system task */
     xTaskCreate(system_task, "System Task", 4096, NULL, tskIDLE_PRIORITY, NULL);
 }

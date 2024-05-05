@@ -12,7 +12,24 @@ enable_language(C ASM)
 collect(PROJECT_LIB_DEPS xilstandalone)
 collect(PROJECT_LIB_DEPS freertos)
 collect(PROJECT_LIB_DEPS xil)
-collect(PROJECT_LIB_DEPS xiltimer)
+collect(PROJECT_LIB_DEPS xiltimer;xilffs)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -225,6 +242,7 @@ if(CMAKE_EXPORT_COMPILE_COMMANDS)
     set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
     set(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES})
 endif()
+collect (PROJECT_LIB_SOURCES setup/i2c.c)
 collect (PROJECT_LIB_SOURCES setup/gpio.c)
 collect (PROJECT_LIB_SOURCES setup/uart.c)
 collect (PROJECT_LIB_SOURCES setup/usb.c)
@@ -236,7 +254,6 @@ collect (PROJECT_LIB_SOURCES setup/logging.c)
 collect (PROJECT_LIB_SOURCES run/buttons.c)
 collect (PROJECT_LIB_SOURCES run/display.c)
 collect (PROJECT_LIB_SOURCES run/sensor.c)
-collect (PROJECT_LIB_SOURCES run/shutter_button.c)
 collect (PROJECT_LIB_SOURCES run/system.c)
 collect (PROJECT_LIB_SOURCES run/heartbeat.c)
 collector_list (_sources PROJECT_LIB_SOURCES)

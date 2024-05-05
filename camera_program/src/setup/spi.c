@@ -50,5 +50,5 @@ void spi_1_rx(uint8_t *data, uint32_t len)
 
 void spi_1_tx(uint8_t *data, uint32_t len)
 {
-    spi_1_transfer(data, NULL, len);
+    spi_1_transfer(data, data, len);
 }
