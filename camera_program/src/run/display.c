@@ -14,6 +14,7 @@
 #include "spi.h"
 #include "gpio.h"
 
+#include "dmgui.h"
 #include "ssd1309z.h"
 
 #define LOG_TAG "DISP"
@@ -51,8 +52,6 @@ void ssd_delay_ms(uint32_t time_ms)
     vTaskDelay(pdMS_TO_TICKS(time_ms));
 }
 
-volatile bool disp_update = false;
-
 static uint8_t display_data[SSD_DISP_BUFFER_LEN] = {100};
 
 static void display_task(void *params)
@@ -61,16 +60,14 @@ static void display_task(void *params)
 
     while (true)
     {
-        if (disp_update)
+        if (dmgui_update_needed())
         {
-            disp_update = false;
-
-            log_info(LOG_TAG, "Updating display\n");
-
             ssd_update_display(display_data);
 
-            ssd_delay_ms(100);
+            dmgui_update_done();
         }
+
+        ssd_delay_ms(10);
     }
 
     vTaskDelete(NULL);
@@ -81,10 +78,8 @@ void display_start()
     /* Init the display HW */
     ssd_init();
 
-    memset(display_data, 0, SSD_DISP_BUFFER_LEN);
-
-    /* Update the display once, to blank */
-    disp_update = true;
+    /* Init the GUI */
+    dmgui_init(display_data);
 
     /* Start the task */
     xTaskCreate(display_task, "Display Task", 4096, NULL, tskIDLE_PRIORITY, NULL);

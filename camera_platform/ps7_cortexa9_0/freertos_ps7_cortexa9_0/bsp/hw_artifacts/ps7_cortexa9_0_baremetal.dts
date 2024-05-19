@@ -874,7 +874,7 @@
                 processing_system7_0: processing_system7@0 {
                         xlnx,pcw-act-enet0-peripheral-freqmhz = <0xa>;
                         xlnx,pcw-nor-grp-sram-cs1-io = "<Select>";
-                        xlnx,num-f2p-intr-inputs = <0x6>;
+                        xlnx,num-f2p-intr-inputs = <0x8>;
                         reg = <0x0 0x200000>;
                         xlnx,pcw-mio-18-direction = "<Select>";
                         xlnx,pcw-nand-cycles-t-ar = <0x1>;
@@ -1356,7 +1356,7 @@
                         xlnx,pcw-uiparam-ddr-dq-0-length-mm = <0x0>;
                         xlnx,pcw-mio-27-slew = "slow";
                         xlnx,pcw-smc-peripheral-freqmhz = <0x64>;
-                        xlnx,pcw-num-f2p-intr-inputs = <0x6>;
+                        xlnx,pcw-num-f2p-intr-inputs = <0x8>;
                         xlnx,pcw-wdt-wdt-io = "<Select>";
                         xlnx,pcw-uiparam-ddr-dq-0-propogation-delay = <0xa0>;
                         xlnx,pcw-mio-24-slew = "<Select>";
@@ -2211,7 +2211,7 @@
                         xlnx,gpio-board-interface = "Custom";
                         compatible = "xlnx,axi-gpio-2.0", "xlnx,xps-gpio-1.00.a";
                         xlnx,all-outputs = <0x1>;
-                        xlnx,gpio-width = <0x19>;
+                        xlnx,gpio-width = <0x17>;
                         xlnx,rable = <0x0>;
                         xlnx,dout-default = <0x0>;
                         xlnx,is-dual = <0x1>;
@@ -2225,7 +2225,7 @@
                         xlnx,gpio2-board-interface = "Custom";
                         xlnx,edk-iptype = "PERIPHERAL";
                         xlnx,dout-default-2 = <0x0>;
-                        xlnx,gpio2-width = <0xa>;
+                        xlnx,gpio2-width = <0x8>;
                         status = "okay";
                         clock-names = "s_axi_aclk";
                         xlnx,tri-default = <0xffffffff>;
@@ -2253,7 +2253,7 @@
                         compatible = "xlnx,axi-quad-spi-3.2", "xlnx,xps-spi-2.00.a";
                         xlnx,byte-level-interrupt-en = <0x0>;
                         xlnx,s-axi4-addr-width = <0x18>;
-                        xlnx,sck-ratio = <0x10>;
+                        xlnx,sck-ratio = <0x4>;
                         interrupt-parent = <&intc>;
                         xlnx,async-clk = <0x1>;
                         status = "okay";
@@ -2307,7 +2307,7 @@
                         compatible = "xlnx,axi-quad-spi-3.2", "xlnx,xps-spi-2.00.a";
                         xlnx,byte-level-interrupt-en = <0x0>;
                         xlnx,s-axi4-addr-width = <0x18>;
-                        xlnx,sck-ratio = <0x10>;
+                        xlnx,sck-ratio = <0x2>;
                         interrupt-parent = <&intc>;
                         xlnx,async-clk = <0x1>;
                         status = "okay";
@@ -2401,7 +2401,7 @@
                         xlnx,gpio-board-interface = "Custom";
                         compatible = "xlnx,axi-gpio-2.0", "xlnx,xps-gpio-1.00.a";
                         xlnx,all-outputs = <0x1>;
-                        xlnx,gpio-width = <0xd>;
+                        xlnx,gpio-width = <0xe>;
                         xlnx,rable = <0x0>;
                         xlnx,dout-default = <0x0>;
                         xlnx,is-dual = <0x1>;
@@ -2415,7 +2415,7 @@
                         xlnx,gpio2-board-interface = "Custom";
                         xlnx,edk-iptype = "PERIPHERAL";
                         xlnx,dout-default-2 = <0x0>;
-                        xlnx,gpio2-width = <0x1>;
+                        xlnx,gpio2-width = <0x3>;
                         status = "okay";
                         clock-names = "s_axi_aclk";
                         xlnx,tri-default = <0xffffffff>;

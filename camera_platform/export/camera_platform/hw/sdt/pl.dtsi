@@ -213,7 +213,7 @@
 			xlnx,gpio-board-interface = "Custom";
 			compatible = "xlnx,axi-gpio-2.0" , "xlnx,xps-gpio-1.00.a";
 			xlnx,all-outputs = <1>;
-			xlnx,gpio-width = <25>;
+			xlnx,gpio-width = <23>;
 			xlnx,rable = <0>;
 			xlnx,dout-default = <0x00000000>;
 			xlnx,is-dual = <1>;
@@ -227,7 +227,7 @@
 			xlnx,gpio2-board-interface = "Custom";
 			xlnx,edk-iptype = "PERIPHERAL";
 			xlnx,dout-default-2 = <0x00000000>;
-			xlnx,gpio2-width = <10>;
+			xlnx,gpio2-width = <8>;
 			status = "okay";
 			clock-names = "s_axi_aclk";
 			xlnx,tri-default = <0xFFFFFFFF>;
@@ -253,7 +253,7 @@
 			compatible = "xlnx,axi-quad-spi-3.2" , "xlnx,xps-spi-2.00.a";
 			xlnx,byte-level-interrupt-en = <0>;
 			xlnx,s-axi4-addr-width = <24>;
-			xlnx,sck-ratio = <16>;
+			xlnx,sck-ratio = <4>;
 			interrupt-parent = <&intc>;
 			xlnx,async-clk = <1>;
 			status = "okay";
@@ -304,7 +304,7 @@
 			compatible = "xlnx,axi-quad-spi-3.2" , "xlnx,xps-spi-2.00.a";
 			xlnx,byte-level-interrupt-en = <0>;
 			xlnx,s-axi4-addr-width = <24>;
-			xlnx,sck-ratio = <16>;
+			xlnx,sck-ratio = <2>;
 			interrupt-parent = <&intc>;
 			xlnx,async-clk = <1>;
 			status = "okay";
@@ -389,7 +389,7 @@
 			xlnx,gpio-board-interface = "Custom";
 			compatible = "xlnx,axi-gpio-2.0" , "xlnx,xps-gpio-1.00.a";
 			xlnx,all-outputs = <1>;
-			xlnx,gpio-width = <13>;
+			xlnx,gpio-width = <14>;
 			xlnx,rable = <0>;
 			xlnx,dout-default = <0x00000000>;
 			xlnx,is-dual = <1>;
@@ -403,7 +403,7 @@
 			xlnx,gpio2-board-interface = "Custom";
 			xlnx,edk-iptype = "PERIPHERAL";
 			xlnx,dout-default-2 = <0x00000000>;
-			xlnx,gpio2-width = <1>;
+			xlnx,gpio2-width = <3>;
 			status = "okay";
 			clock-names = "s_axi_aclk";
 			xlnx,tri-default = <0xFFFFFFFF>;

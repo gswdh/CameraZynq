@@ -17,6 +17,8 @@
 #include "display.h"
 #include "sensor.h"
 
+#include "dmgui.h"
+
 #define LOG_TAG "SYSTEM"
 
 /* Make a new pipe */

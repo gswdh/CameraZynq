@@ -25,7 +25,7 @@
 		processing_system7_0: processing_system7@0 {
 			xlnx,pcw-act-enet0-peripheral-freqmhz = <10>;
 			xlnx,pcw-nor-grp-sram-cs1-io = "<Select>";
-			xlnx,num-f2p-intr-inputs = <6>;
+			xlnx,num-f2p-intr-inputs = <8>;
 			reg = <0x000000 0x200000>;
 			xlnx,pcw-mio-18-direction = "<Select>";
 			xlnx,pcw-nand-cycles-t-ar = <1>;
@@ -507,7 +507,7 @@
 			xlnx,pcw-uiparam-ddr-dq-0-length-mm = <0>;
 			xlnx,pcw-mio-27-slew = "slow";
 			xlnx,pcw-smc-peripheral-freqmhz = <100>;
-			xlnx,pcw-num-f2p-intr-inputs = <6>;
+			xlnx,pcw-num-f2p-intr-inputs = <8>;
 			xlnx,pcw-wdt-wdt-io = "<Select>";
 			xlnx,pcw-uiparam-ddr-dq-0-propogation-delay = <160>;
 			xlnx,pcw-mio-24-slew = "<Select>";

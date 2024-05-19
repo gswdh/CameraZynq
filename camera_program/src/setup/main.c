@@ -15,6 +15,9 @@
 #include "spi.h"
 #include "i2c.h"
 
+/* Application includes */
+#include "system.h"
+
 /* External libs */
 #include "log.h"
 
