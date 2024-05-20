@@ -350,9 +350,9 @@
 			xlnx,rable = <0>;
 			xlnx,ip-name = "axi_uartlite";
 			reg = <0x42c00000 0x10000>;
-			xlnx,baudrate = <110>;
+			xlnx,baudrate = <115200>;
 			clocks = <&clkc 15>;
-			current-speed = <110>;
+			current-speed = <115200>;
 			xlnx,use-parity = <0>;
 			xlnx,edk-iptype = "PERIPHERAL";
 			xlnx,odd-parity = <0>;
@@ -372,9 +372,9 @@
 			xlnx,rable = <0>;
 			xlnx,ip-name = "axi_uartlite";
 			reg = <0x42c10000 0x10000>;
-			xlnx,baudrate = <110>;
+			xlnx,baudrate = <115200>;
 			clocks = <&clkc 15>;
-			current-speed = <110>;
+			current-speed = <115200>;
 			xlnx,use-parity = <0>;
 			xlnx,edk-iptype = "PERIPHERAL";
 			xlnx,odd-parity = <0>;

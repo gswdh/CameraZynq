@@ -15,6 +15,7 @@
 #include "display.h"
 #include "sensor.h"
 #include "gui.h"
+#include "pmc_router.h"
 
 #include "cpubsub.h"
 #include "messages.h"
@@ -34,7 +35,7 @@ static system_state_t system_state = {0};
 static pipe_t pipe = {0};
 static uint8_t data[1024] = {0};
 
-static void system_gui_action(uint32_t action)
+static void system_action(uint32_t action)
 {
     switch (action)
     {
@@ -86,8 +87,8 @@ static void system_task()
         {
             MSGGUIActions_t *packet = (MSGGUIActions_t *)data;
 
-            /* Handle the GUI action */
-            system_gui_action(packet->action);
+            /* Handle the action */
+            system_action(packet->action);
 
             /* Let everyone know about the new value sensor values */
             MSGSensorSettings_t sensor_settings = {0};
@@ -95,9 +96,6 @@ static void system_task()
             sensor_settings.sensitivity_iso = sensor_valid_isos[sensor_iso_ptr];
             sensor_settings.shutter_speed = sensor_valid_shutters[sensor_shutter_ptr];
             cps_publish(&sensor_settings);
-
-            log_info(LOG_TAG, "system_task sensitivity_iso = %f, shutter_speed = %f\n",
-                     sensor_settings.sensitivity_iso, sensor_settings.shutter_speed);
         }
     }
 
@@ -113,6 +111,7 @@ void system_start()
     display_start();
     sensor_start();
     gui_start();
+    pmc_comms_start();
 
     // /* Subscribe to the relvant message MIDs */
     cps_subscribe(MSGGUIActions_MID, MSGGUIActions_LEN, &pipe);

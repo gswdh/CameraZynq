@@ -23,7 +23,7 @@ void uart_tx(uint8_t *data, uint32_t len)
     XUartLite_Send(&fpga_uart, (u8 *)data, (unsigned int)len);
 }
 
-void uart_rx(uint8_t *data, uint32_t len)
+uint32_t uart_rx(uint8_t *data, uint32_t len)
 {
-    XUartLite_Recv(&fpga_uart, (u8 *)data, (unsigned int)len);
+    return (uint32_t)XUartLite_Recv(&fpga_uart, (u8 *)data, (unsigned int)len);
 }
