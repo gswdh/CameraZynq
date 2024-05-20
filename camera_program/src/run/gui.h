@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 typedef enum
 {
     GUI_ACT_UNKNOWN,
@@ -25,6 +27,8 @@ typedef struct
 
     float sensitivity_iso;
     float shutter_speed;
+
+    uint32_t tick;
 } gui_state_t;
 
 void gui_start();

@@ -127,7 +127,7 @@ static void gui_screen_home()
 {
     dmgui_fill_screen(GUI_CLR_BLACK);
     char display_text[100] = {0};
-    sprintf(display_text, "HOME");
+    sprintf(display_text, "SOKE CAMERA 1.0.0");
     dmgui_add_text(display_text, 0, 0, GUI_TXT_ALIGN_L);
 
     sprintf(display_text, "ISO %f", gui_state.sensitivity_iso);
@@ -136,8 +136,14 @@ static void gui_screen_home()
     sprintf(display_text, "SHUTTER %f", gui_state.shutter_speed);
     dmgui_add_text(display_text, 0, 2, GUI_TXT_ALIGN_L);
 
-    sprintf(display_text, "TICK %ums", xTaskGetTickCount());
+    sprintf(display_text, "BATTERY %f", 53.0);
     dmgui_add_text(display_text, 0, 3, GUI_TXT_ALIGN_L);
+
+    sprintf(display_text, "IP %u.%u.%u.%u", 192, 168, 0, 21);
+    dmgui_add_text(display_text, 0, 4, GUI_TXT_ALIGN_L);
+
+    sprintf(display_text, "TICK %ums", gui_state.tick);
+    dmgui_add_text(display_text, 0, 5, GUI_TXT_ALIGN_L);
 }
 
 static void gui_screen_iso_adj()
@@ -176,8 +182,6 @@ static void gui_draw_screen()
 
 static void gui_task(void *params)
 {
-    gui_draw_screen();
-
     while (true)
     {
         /* Wait for some data to arrive */
@@ -194,11 +198,14 @@ static void gui_task(void *params)
         if (mid == MSGSensorSettings_MID)
         {
             MSGSensorSettings_t *sensor_settings = (MSGSensorSettings_t *)data;
-
             gui_state.sensitivity_iso = sensor_settings->sensitivity_iso;
             gui_state.shutter_speed = sensor_settings->shutter_speed;
+        }
 
-            log_info(LOG_TAG, "gui_task %f, %f\n", gui_state.sensitivity_iso, gui_state.shutter_speed);
+        if (mid == MSGTick_MID)
+        {
+            MSGTick_t *tick_update = (MSGTick_t *)data;
+            gui_state.tick = tick_update->time;
         }
 
         gui_draw_screen();
@@ -215,6 +222,7 @@ void gui_start()
     /* Subscribe to the relvant message MIDs */
     cps_subscribe(MSGButtonPress_MID, MSGButtonPress_LEN, &pipe);
     cps_subscribe(MSGSensorSettings_MID, MSGSensorSettings_LEN, &pipe);
+    cps_subscribe(MSGTick_MID, MSGTick_LEN, &pipe);
 
     /* Start the task */
     xTaskCreate(gui_task, "GUI Task", 4096, NULL, tskIDLE_PRIORITY, NULL);

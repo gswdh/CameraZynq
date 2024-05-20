@@ -12,11 +12,21 @@
 #include "log.h"
 #include "dmgui.h"
 
+#include "cpubsub.h"
+#include "messages.h"
+
 #include "gpio.h"
+
+static MSGTick_t tick_msg = {0};
 
 static void heartbeat_task(TimerHandle_t pxTimer)
 {
     gpio_toggle(FPGA_LED_0);
+
+    /* Publish tick message */
+    tick_msg.mid = MSGTick_MID;
+    tick_msg.time = xTaskGetTickCount();
+    cps_publish(&tick_msg);
 }
 
 void heartbeat_start()
