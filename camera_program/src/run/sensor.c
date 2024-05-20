@@ -23,6 +23,9 @@
 
 void sensor_task()
 {
+    /* Turn on and init the sensor */
+    gmax_init();
+
     while (1)
     {
         vTaskDelay(pdMS_TO_TICKS(100));
@@ -33,9 +36,6 @@ void sensor_task()
 
 void sensor_start()
 {
-    /* Turn on and init the sensor */
-    gmax_init();
-
     /*  */
 
     xTaskCreate(sensor_task, "Sensor Task", 4096, NULL, tskIDLE_PRIORITY, NULL);

@@ -7,8 +7,6 @@
 #include "timers.h"
 
 #include "log.h"
-#include "cpubsub.h"
-#include "messages.h"
 
 /* Program tasks */
 #include "system.h"
@@ -16,13 +14,62 @@
 #include "buttons.h"
 #include "display.h"
 #include "sensor.h"
+#include "gui.h"
+
+#include "cpubsub.h"
+#include "messages.h"
 
 #include "dmgui.h"
 
 #define LOG_TAG "SYSTEM"
 
+const float sensor_valid_isos[] = {100, 200, 400, 800, 1600};
+const float sensor_valid_shutters[] = {1, 0.5, 0.25, 0.1, 0.05, 0.025};
+static uint8_t sensor_iso_ptr = 0;
+static uint8_t sensor_shutter_ptr = 0;
+
+static system_state_t system_state = {0};
+
 /* Make a new pipe */
 static pipe_t pipe = {0};
+static uint8_t data[1024] = {0};
+
+static void system_gui_action(uint32_t action)
+{
+    switch (action)
+    {
+    case GUI_ACT_INC_ISO:
+        if (sensor_iso_ptr < 4)
+        {
+            sensor_iso_ptr++;
+        }
+        break;
+
+    case GUI_ACT_DEC_ISO:
+        if (sensor_iso_ptr > 0)
+        {
+            sensor_iso_ptr--;
+        }
+        break;
+
+    case GUI_ACT_INC_SHUTTER:
+        if (sensor_shutter_ptr < 4)
+        {
+            sensor_shutter_ptr++;
+        }
+        break;
+
+    case GUI_ACT_DEC_SHUTTER:
+        if (sensor_shutter_ptr > 0)
+        {
+            sensor_shutter_ptr--;
+        }
+        break;
+
+    default:
+        break;
+    }
+}
 
 static void system_task()
 {
@@ -35,12 +82,22 @@ static void system_task()
 
         topic_t mid = cps_get_mid(data);
 
-        if (mid == MSGButtonPress_MID)
+        if (mid == MSGGUIActions_MID)
         {
-            MSGButtonPress_t *packet = (MSGButtonPress_t *)data;
+            MSGGUIActions_t *packet = (MSGGUIActions_t *)data;
 
-            log_info(LOG_TAG, "Message with id = 0x%X rxd at %u.\n", packet->mid, xTaskGetTickCount());
-            log_info(LOG_TAG, "button = %u, type = %u\n", packet->button, packet->type);
+            /* Handle the GUI action */
+            system_gui_action(packet->action);
+
+            /* Let everyone know about the new value sensor values */
+            MSGSensorSettings_t sensor_settings = {0};
+            sensor_settings.mid = MSGSensorSettings_MID;
+            sensor_settings.sensitivity_iso = sensor_valid_isos[sensor_iso_ptr];
+            sensor_settings.shutter_speed = sensor_valid_shutters[sensor_shutter_ptr];
+            cps_publish(&sensor_settings);
+
+            log_info(LOG_TAG, "system_task sensitivity_iso = %f, shutter_speed = %f\n",
+                     sensor_settings.sensitivity_iso, sensor_settings.shutter_speed);
         }
     }
 
@@ -55,9 +112,10 @@ void system_start()
     buttons_start();
     display_start();
     sensor_start();
+    gui_start();
 
-    /* Subscribe to the relvant message MIDs */
-    cps_subscribe(MSGButtonPress_MID, MSGButtonPress_LEN, &pipe);
+    // /* Subscribe to the relvant message MIDs */
+    cps_subscribe(MSGGUIActions_MID, MSGGUIActions_LEN, &pipe);
 
     /* Start the system task */
     xTaskCreate(system_task, "System Task", 4096, NULL, tskIDLE_PRIORITY, NULL);

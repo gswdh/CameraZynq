@@ -65,7 +65,7 @@ static void buttons_tasks()
 
             /* Tell the system about this button press */
             packet.button = i;
-            packet.type = button_state;
+            packet.edge = button_state;
             cps_publish(&packet);
 
             // Update the states
@@ -81,8 +81,8 @@ static void buttons_tasks()
         shutter_button_state = button_state;
 
         /* Tell the system about this button press */
-        packet.button = 6;
-        packet.type = shutter_button_state;
+        packet.button = BTN_SHTR;
+        packet.edge = shutter_button_state;
         cps_publish(&packet);
 
         log_info(LOG_TAG, "Shutter button %s.\n", button_state ? "pressed" : "released");
