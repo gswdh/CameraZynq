@@ -123,6 +123,25 @@ static void gui_buttons_handler(uint8_t button, uint8_t edge)
     gui_handle_action(action);
 }
 
+static void gui_print_shutter_speed(char *text)
+{
+    if (gui_state.shutter_speed == 0)
+    {
+        text[0] = 0;
+        return;
+    }
+
+    if (gui_state.shutter_speed < 1)
+    {
+        sprintf(text, "SHUTTER 1/%us", (uint32_t)(1 / gui_state.shutter_speed));
+    }
+
+    else
+    {
+        sprintf(text, "SHUTTER %us", (uint32_t)gui_state.shutter_speed);
+    }
+}
+
 static void gui_screen_home()
 {
     dmgui_fill_screen(GUI_CLR_BLACK);
@@ -130,13 +149,13 @@ static void gui_screen_home()
     sprintf(display_text, "SOKE CAMERA 1.0.0");
     dmgui_add_text(display_text, 0, 0, GUI_TXT_ALIGN_L);
 
-    sprintf(display_text, "ISO %f", gui_state.sensitivity_iso);
+    sprintf(display_text, "ISO %u", (uint32_t)gui_state.sensitivity_iso);
     dmgui_add_text(display_text, 0, 1, GUI_TXT_ALIGN_L);
 
-    sprintf(display_text, "SHUTTER %f", gui_state.shutter_speed);
+    gui_print_shutter_speed(display_text);
     dmgui_add_text(display_text, 0, 2, GUI_TXT_ALIGN_L);
 
-    sprintf(display_text, "BATTERY %f", 53.0);
+    sprintf(display_text, "BATTERY %.1f%%", 53.0);
     dmgui_add_text(display_text, 0, 3, GUI_TXT_ALIGN_L);
 
     sprintf(display_text, "IP %u.%u.%u.%u", 192, 168, 0, 21);
@@ -150,7 +169,7 @@ static void gui_screen_iso_adj()
 {
     dmgui_fill_screen(GUI_CLR_BLACK);
     char display_text[100] = {0};
-    sprintf(display_text, "ISO %f", gui_state.sensitivity_iso);
+    sprintf(display_text, "ISO %u", (uint32_t)gui_state.sensitivity_iso);
     dmgui_add_text(display_text, 0, 0, GUI_TXT_ALIGN_L);
 }
 
@@ -158,7 +177,7 @@ static void gui_screen_shtr_adj()
 {
     dmgui_fill_screen(GUI_CLR_BLACK);
     char display_text[100] = {0};
-    sprintf(display_text, "SHUTTER %f", gui_state.shutter_speed);
+    gui_print_shutter_speed(display_text);
     dmgui_add_text(display_text, 0, 0, GUI_TXT_ALIGN_L);
 }
 

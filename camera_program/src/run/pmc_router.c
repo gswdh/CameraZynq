@@ -21,16 +21,28 @@
 /* Make a new pipe */
 static pipe_t pipe = {0};
 static uint8_t data[1024] = {0};
+static uint32_t data_ptr = 0;
 
 static void pmc_comms_task()
 {
     while (1)
     {
-        uint32_t n_bytes = uart_rx(data, 1024);
+        uint8_t c = 0;
+        uint32_t n_bytes = uart_rx(&c, 1);
 
         if (n_bytes)
         {
-            memset(data, 0, 1024);
+            if (c == 0)
+            {
+                log_info(LOG_TAG, "Message RXd = %s\n", data);
+                memset(data, 0, 1024);
+                data_ptr = 0;
+            }
+
+            else
+            {
+                data[data_ptr++] = c;
+            }
         }
     }
 

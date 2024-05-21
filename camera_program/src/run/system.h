@@ -3,6 +3,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define SYS_ISO_DEFAULT (100)
+#define SYS_SHUTTER_DEFAULT (0.0625)
+
 typedef struct sensor_config_struct
 {
     /* Sensor meta data */
