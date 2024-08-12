@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/platform/ps7_cortexa9_0/standalone_domain/bsp/ps7_cortexa9_0/libsrc/**",
+                "${workspaceFolder}/platform/ps7_cortexa9_0/standalone_domain/bsp/ps7_cortexa9_0/include/",
+                "${workspaceFolder}/platform/ps7_cortexa9_0/standalone_domain/bsp/ps7_cortexa9_0/libsrc/iicps_v3_19/src/",
+                "~/Xilinx/Vitis/2024.1/gnu/aarch32/lin/gcc-arm-none-eabi/x86_64-oesdk-linux/usr/lib/arm-xilinx-eabi/gcc/arm-xilinx-eabi/12.2.0/include/",
+                "~/Xilinx/Vitis/2024.1/gnu/aarch32/lin/gcc-arm-none-eabi/x86_64-oesdk-linux/usr/lib/arm-xilinx-eabi/gcc/arm-xilinx-eabi/12.2.0/include-fixed/",
+                "~/Xilinx/Vitis/2024.1/gnu/aarch32/lin/gcc-arm-none-eabi/x86_64-oesdk-linux/usr/include/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
+
