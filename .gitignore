@@ -2,7 +2,6 @@
 *.d
 
 # Object files
-*.o
 *.ko
 *.obj
 *.elf
@@ -51,6 +50,13 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+.monitor_port
+.Xil
+
+*.log
+.metadata
+.analytics
+
+platform/platform/
+platform/logs/
 build/
-IDE.log
-RemoteSystemsTempFiles/

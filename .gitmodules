@@ -1,0 +1,9 @@
+[submodule "submodules/CameraMessages"]
+    path = submodules/CameraMessages
+    url = git@github.com/gswdh/CameraMessages.git
+[submodule "submodules/embedlib"]
+    path = submodules/embedlib
+    url = git@github.com/gswdh/embedlib.git
+[submodule "submodules/cJSON"]
+    path = submodules/cJSON
+    url = https://github.com/DaveGamble/cJSON.git

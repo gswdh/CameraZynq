@@ -1,7 +1,10 @@
 {
     "files.associations": {
         "xil_printf.h": "c",
-        "xparameters.h": "c"
-    }
+        "xparameters.h": "c",
+        "messages.h": "c"
+    },
     "editor.formatOnSave": true,
+    "cmake.configureOnOpen": false,
+    "makefile.configureOnOpen": false,
 }
