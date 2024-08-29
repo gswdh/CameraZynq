@@ -2,7 +2,19 @@
     "files.associations": {
         "xil_printf.h": "c",
         "xparameters.h": "c",
-        "messages.h": "c"
+        "messages.h": "c",
+        "queue.h": "c",
+        "stddef.h": "c",
+        "stdint.h": "c",
+        "log.h": "c",
+        "system.h": "c",
+        "gpio.h": "c",
+        "spi.h": "c",
+        "buttons.h": "c",
+        "stdbool.h": "c",
+        "uart.h": "c",
+        "xscugic.h": "c",
+        "task.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,

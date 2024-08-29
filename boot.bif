@@ -1,0 +1,7 @@
+// bif file example for Zynq-7000 standalone project
+the_ROM_image:
+{
+    [bootloader] platform/zynq_fsbl/fsbl.elf
+    platform/hw/camera.bit
+    build/camera.elf
+}

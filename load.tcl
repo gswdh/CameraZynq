@@ -30,37 +30,37 @@ if {[dict exists $params exit]} {
 }
 
 # Connect to the HS3 JTAG debugger
-connect
+connect -url tcp:127.0.0.1:3121
 # -url tcp:localhost:3121
 
-# Set up the device
-set device [lindex [targets] 0]
-puts "Using device: $device"
-
 # Select the Zynq PS device
-targets -set -nocase -filter {name =~ "ARM Cortex-A9 MPCore #0"}
+targets -set -nocase -filter {name =~"APU*"}
 
 # Reset the target
 rst -system
-
-# Source the ps7_init.tcl script for PS initialization
-puts "Initializing Zynq PS using ps7_init.tcl..."
-source platform/hw/ps7_init.tcl
-
-ps7_init
+after 100
 
 # Load the FPGA bitstream
 puts "Loading FPGA bitstream..."
 fpga -f platform/hw/camera.bit
 
+# Setup the HW
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/george/Projects/zynq_debug/platform/export/platform/hw/camera.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs
+configparams force-mem-access 1
+
+# Source the ps7_init.tcl script for PS initialization
+puts "Initializing Zynq PS using ps7_init.tcl..."
+targets -set -nocase -filter {name =~"APU*"}
+source /home/george/Projects/zynq_debug/test/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+
 # Load the application binary to DDR
 puts "Loading application binary..."
+targets -set -nocase -filter {name =~ "*A9*#0"}
 dow build/camera.elf
-
-# # Set the PC to the entry point of the application
-# puts "Setting PC to entry point..."
-# # This assumes the entry point is at 0x00100000, adjust as needed
-# mwr 0x00000030 0x00100000
+configparams force-mem-access 0
 
 # Run the application based on the run_target parameter
 if {$run_target == "true"} {
@@ -73,6 +73,7 @@ if {$run_target == "true"} {
 # Exit XSDB based on the exit_after parameter
 if {$exit_after == "true"} {
     puts "Exiting XSDB as per the exit_after parameter."
+    puts "Done."
     exit
 } else {
     puts "XSDB session remains open as per the exit_after parameter."

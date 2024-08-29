@@ -15,12 +15,22 @@ ASFLAGS = $(CFLAGS)  # Reuse the same flags for assembler
 # Include directories
 INCLUDES = \
 -Iplatform/ps7_cortexa9_0/freertos10_xilinx_domain/bsp/ps7_cortexa9_0/include/ \
+\
 -Iapps \
--Iapps/system/ \
+-Iapps/system \
+-Iapps/buttons \
+-Iapps/cps_network/ \
+\
 -Idrivers \
+-Idrivers/gpio \
+-Idrivers/spi \
+-Idrivers/uarts \
+\
 -Ilibs \
+\
 -Isubmodules/CameraMessages/ \
 -Isubmodules/CameraMessages/cpubsub/ \
+-Isubmodules/CameraMessages/cpubsub/base64/ \
 -Isubmodules/embedlib/log/
 
 # Source files
@@ -29,12 +39,22 @@ main.c \
 \
 apps/apps.c \
 apps/system/system.c \
+apps/buttons/buttons.c \
+apps/buttons/shutter_button.c \
+apps/cps_network/net_pub.c \
 \
-drivers/pipe_interface_freertos.c \
-drivers/logging.c \
+drivers/cps/pipe_interface_freertos.c \
+drivers/cps/cps_interface.c \
+drivers/logging/logging.c \
+drivers/gpio/gpio.c \
+drivers/spi/spi.c \
+drivers/uarts/uart.c \
 \
+submodules/CameraMessages/messages.c \
 submodules/CameraMessages/cpubsub/cpubsub.c \
+submodules/CameraMessages/cpubsub/cpubsub_network.c \
 submodules/CameraMessages/cpubsub/pipe.c \
+submodules/CameraMessages/cpubsub/base64/base64.c \
 submodules/embedlib/log/log.c \
 
 

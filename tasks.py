@@ -52,6 +52,16 @@ def build_platform(ctx):
 
 
 @task
+def update_platform_xsa(ctx, xsa_file):
+
+    print("Updating the platform with {xsa_file}")
+    ctx.run(f"$XILINX_VITIS_HOME/xsct update_platform_xsa.tcl {xsa_file}")
+
+    print("Building platform")
+    build_platform(ctx)
+
+
+@task
 def create_flash_image(ctx):
     return
 
