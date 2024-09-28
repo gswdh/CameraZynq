@@ -10,6 +10,7 @@
 #include "log.h"
 
 #include <stdbool.h>
+#include <stdio.h>
 
 #define LOG_TAG "UART"
 
@@ -101,10 +102,13 @@ uint32_t uart_receive(uart_port_t port, uint8_t *data, uint32_t len)
 
 void uart_dma_test(void)
 {
+
+    vTaskDelay(pdMS_TO_TICKS(1000));
     log_info(LOG_TAG, "starting uart_dma_test\n");
 
     uint8_t *tx_data[DMA_DATA_LEN] = {0};
     uint8_t *rx_data[DMA_DATA_LEN] = {0};
+    sprintf((char *)tx_data, "Hello world");
     Xil_DCacheFlushRange((UINTPTR)tx_data, DMA_DATA_LEN);
     Xil_DCacheFlushRange((UINTPTR)rx_data, DMA_DATA_LEN);
     int status = XST_FAILURE;
@@ -123,11 +127,15 @@ void uart_dma_test(void)
         return;
     }
 
-    vTaskDelay(pdMS_TO_TICKS(100));
+    while (true)
+    {
+        if (!(XAxiDma_Busy(&dma, XAXIDMA_DEVICE_TO_DMA)) && !(XAxiDma_Busy(&dma, XAXIDMA_DMA_TO_DEVICE)))
+        {
+            break;
+        }
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
-    bool tx_status = XAxiDma_Busy(&dma, XAXIDMA_DEVICE_TO_DMA);
-    bool rx_status = XAxiDma_Busy(&dma, XAXIDMA_DMA_TO_DEVICE);
-
-    log_info(LOG_TAG, "TX status = %u\n", tx_status);
-    log_info(LOG_TAG, "RX status = %u\n", rx_status);
+    log_info(LOG_TAG, "TXd message = %s\n", (const char *)tx_data);
+    log_info(LOG_TAG, "RXd message = %s\n", (const char *)rx_data);
 }

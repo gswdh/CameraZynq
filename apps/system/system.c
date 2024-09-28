@@ -25,6 +25,8 @@
 
 static pipe_t pipe = {0};
 
+static uint8_t *buffer = NULL;
+
 static void system_timer_cb(TimerHandle_t xTimer)
 {
     log_info(LOG_TAG, "system_timer_cb tick = %u\n", xTaskGetTickCount());
@@ -32,18 +34,28 @@ static void system_timer_cb(TimerHandle_t xTimer)
     // Toggle an LED for aliveness
     gpio_write(FPGA_LED_0, !gpio_read(FPGA_LED_0));
 
-    uint8_t *msg = (uint8_t *)malloc((size_t)pipe_item_size(&pipe));
-    cps_result_t result = cps_receive(&pipe, (void *)msg, PIPE_WAIT_POLL);
-    if (result == CPS_OK)
+    // Process messages for debugging
+    while (cps_receive(&pipe, (void *)buffer, PIPE_WAIT_POLL) == CPS_OK)
     {
-        log_info(LOG_TAG, "System power = %2.3fW\n", ((MSGPMCStatus_t *)msg)->power);
+        topic_t mid = cps_get_mid((void *)buffer);
+
+        switch (mid)
+        {
+        case MSGChargingStats_MID:
+            log_info(LOG_TAG, "Battery charging %5s\n", ((((MSGChargingStats_t *)buffer)->charging) == 1) ? "true " : "false");
+            break;
+
+        default:
+            log_warn(LOG_TAG, "Unrecognised MID (%04X)\n", mid);
+            break;
+        }
     }
-    free(msg);
 }
 
 void system_main(void *params)
 {
-    cps_subscribe(MSGPMCStatus_MID, MSGPMCStatus_LEN, &pipe);
+    cps_subscribe(MSGChargingStats_MID, MSGChargingStats_LEN, &pipe);
+    buffer = (uint8_t *)malloc(pipe_item_size(&pipe));
 
     TimerHandle_t system_timer = xTimerCreate("System Timer", pdMS_TO_TICKS(1000), true, NULL, &system_timer_cb);
     xTimerStart(system_timer, 0);
