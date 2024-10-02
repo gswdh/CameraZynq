@@ -1,5 +1,7 @@
 # Makefile for building helloworld with arm-none-eabi-gcc
 
+DEBUG = 1
+
 # Compiler and tools
 CC = arm-none-eabi-gcc
 AS = arm-none-eabi-gcc  # Use gcc for assembling as well
@@ -12,6 +14,44 @@ BUILD_DIR = build
 CFLAGS = -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -fmessage-length=0 -Werror -std=c17
 ASFLAGS = $(CFLAGS)  # Reuse the same flags for assembler
 
+# Get the current Git commit hash (short format)
+GIT_HASH := $(shell git rev-parse --short HEAD)
+
+# Get the current Git commit date and time (escape spaces)
+GIT_COMMIT_TIME := $(shell git log -1 --format=%cd --date=format:'%Y-%m-%d %H:%M:%S' | sed 's/ /_/g')
+
+# Get the most recent Git tag, or commit hash if no tag exists (with -dirty if applicable)
+GIT_TAG := $(shell git describe --tags --always --dirty)
+
+# Get the current Git branch name
+GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+
+# Check if the working directory is dirty (has uncommitted changes)
+GIT_DIRTY := $(shell test -n "$$(git status --porcelain)" && echo "dirty" || echo "clean")
+
+# Get the username (author of the build)
+USER := $(shell whoami)
+
+# Get the hostname of the machine where the build is taking place
+HOSTNAME := $(shell hostname)
+
+# Get the current build date and time
+BUILD_TIME := $(shell date '+%Y-%m-%d_%H:%M:%S')
+
+# Add the Git information as defines to CFLAGS (escape double quotes properly)
+CFLAGS += -DGIT_HASH=\"$(GIT_HASH)\"
+CFLAGS += -DGIT_COMMIT_TIME=\"$(GIT_COMMIT_TIME)\"
+CFLAGS += -DGIT_TAG=\"$(GIT_TAG)\"
+CFLAGS += -DGIT_BRANCH=\"$(GIT_BRANCH)\"
+CFLAGS += -DGIT_DIRTY=\"$(GIT_DIRTY)\"
+CFLAGS += -DUSER=\"$(USER)\"
+CFLAGS += -DHOSTNAME=\"$(HOSTNAME)\"
+CFLAGS += -DBUILD_TIME=\"$(BUILD_TIME)\"
+
+ifeq ($(DEBUG), 1)
+CFLAGS += -DDEBUG
+endif
+
 # Include directories
 INCLUDES = \
 -Iplatform/ps7_cortexa9_0/freertos10_xilinx_domain/bsp/ps7_cortexa9_0/include/ \
@@ -20,6 +60,8 @@ INCLUDES = \
 -Iapps/system \
 -Iapps/buttons \
 -Iapps/cps_network/ \
+-Iapps/disp/ \
+-Iapps/debugging/ \
 \
 -Idrivers \
 -Idrivers/gpio \
@@ -31,7 +73,10 @@ INCLUDES = \
 -Isubmodules/CameraMessages/ \
 -Isubmodules/CameraMessages/cpubsub/ \
 -Isubmodules/CameraMessages/cpubsub/base64/ \
--Isubmodules/embedlib/log/
+-Isubmodules/embedlib/log/ \
+-Isubmodules/embedlib/ssd1309z/ \
+-Isubmodules/embedlib/dmgui/ \
+
 
 # Source files
 SRC = \
@@ -42,6 +87,8 @@ apps/system/system.c \
 apps/buttons/buttons.c \
 apps/buttons/shutter_button.c \
 apps/cps_network/net_pub.c \
+apps/disp/display.c \
+apps/debugging/debugging.c \
 \
 drivers/cps/pipe_interface_freertos.c \
 drivers/cps/cps_interface.c \
@@ -49,6 +96,7 @@ drivers/logging/logging.c \
 drivers/gpio/gpio.c \
 drivers/spi/spi.c \
 drivers/uarts/uart.c \
+drivers/disp/disp_interface.c \
 \
 submodules/CameraMessages/messages.c \
 submodules/CameraMessages/cpubsub/cpubsub.c \
@@ -56,6 +104,8 @@ submodules/CameraMessages/cpubsub/cpubsub_network.c \
 submodules/CameraMessages/cpubsub/pipe.c \
 submodules/CameraMessages/cpubsub/base64/base64.c \
 submodules/embedlib/log/log.c \
+submodules/embedlib/ssd1309z/ssd1309z.c \
+submodules/embedlib/dmgui/dmgui.c \
 
 
 # Directories for prebuilt object files

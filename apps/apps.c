@@ -6,6 +6,8 @@
 #include "buttons.h"
 #include "cpubsub_network.h"
 #include "net_pub.h"
+#include "display.h"
+#include "debugging.h"
 
 // Xilinx
 
@@ -43,6 +45,16 @@ static const app_config_t app_configs[] = {
         .function = &net_pub_task,
         .name = "Network publisher from UART",
         .stack_size = 4096,
+    },
+    // {
+    //     .function = &display_start,
+    //     .name = "Display Writer",
+    //     .stack_size = 4096,
+    // },
+    {
+        .function = &dbg_start,
+        .name = "Debugging",
+        .stack_size = 256,
     },
 };
 

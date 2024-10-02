@@ -16,7 +16,8 @@
         "xscugic.h": "c",
         "task.h": "c",
         "freertos.h": "c",
-        "xaxidma.h": "c"
+        "xaxidma.h": "c",
+        "display.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,
