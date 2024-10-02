@@ -14,7 +14,9 @@
         "stdbool.h": "c",
         "uart.h": "c",
         "xscugic.h": "c",
-        "task.h": "c"
+        "task.h": "c",
+        "freertos.h": "c",
+        "xaxidma.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,

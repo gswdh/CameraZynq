@@ -18,7 +18,7 @@ void startup_thread(void *params)
 	spi_init();
 	uart_init();
 
-	uart_dma_test();
+	// uart_dma_test();
 
 	// Start all the child threads
 	apps_launcher();
