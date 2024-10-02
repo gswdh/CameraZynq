@@ -36,7 +36,7 @@ def monitor(ctx, port="", baud=115200):
     while True:
         data = ser.readline()
         if data:
-            print(data.decode(), end="", flush=True)
+            print(data.decode(errors="ignore"), end="", flush=True)
         time.sleep(0.01)
 
 
@@ -53,10 +53,7 @@ def build_platform(ctx):
 
 @task
 def update_platform_xsa(ctx, xsa_file):
-
-    print("Updating the platform with {xsa_file}")
     ctx.run(f"$XILINX_VITIS_HOME/xsct update_platform_xsa.tcl {xsa_file}")
-
     print("Building platform")
     build_platform(ctx)
 
