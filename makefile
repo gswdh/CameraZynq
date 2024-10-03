@@ -67,6 +67,7 @@ INCLUDES = \
 -Idrivers/gpio \
 -Idrivers/spi \
 -Idrivers/uarts \
+-Idrivers/gui \
 \
 -Ilibs \
 \
@@ -84,6 +85,7 @@ main.c \
 \
 apps/apps.c \
 apps/system/system.c \
+apps/system/actions.c \
 apps/buttons/buttons.c \
 apps/buttons/shutter_button.c \
 apps/cps_network/net_pub.c \
@@ -97,6 +99,7 @@ drivers/gpio/gpio.c \
 drivers/spi/spi.c \
 drivers/uarts/uart.c \
 drivers/disp/disp_interface.c \
+drivers/gui/gui.c \
 \
 submodules/CameraMessages/messages.c \
 submodules/CameraMessages/cpubsub/cpubsub.c \

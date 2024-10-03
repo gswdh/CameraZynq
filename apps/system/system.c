@@ -1,5 +1,7 @@
 #include "system.h"
 
+#include "apps_config.h"
+
 // Drivers
 #include "pipe.h"
 #include "cpubsub.h"
@@ -23,9 +25,7 @@
 
 #define LOG_TAG "SYSTEM"
 
-static pipe_t pipe = {0};
-
-static uint8_t *buffer = NULL;
+static system_t sys = {0};
 
 static void system_timer_cb(TimerHandle_t xTimer)
 {
@@ -35,11 +35,14 @@ static void system_timer_cb(TimerHandle_t xTimer)
 
 void system_main(void *params)
 {
-    cps_subscribe(MSGChargingStats_MID, MSGChargingStats_LEN, &pipe);
-    buffer = (uint8_t *)malloc(pipe_item_size(&pipe));
+    // Init the system
+    sys.imaging.iso = 100;
+    sys.imaging.speed_us = 10000;
 
-    TimerHandle_t system_timer = xTimerCreate("System Timer", pdMS_TO_TICKS(100), true, NULL, &system_timer_cb);
+    TimerHandle_t system_timer = xTimerCreate("System Timer", pdMS_TO_TICKS(SYS_TICK_BLINK_PERIOD_MS), true, NULL, &system_timer_cb);
     xTimerStart(system_timer, 0);
+
+    xTaskCreate(actions_main, "Actions Main", 1024, (void *)&sys, SYS_APP_ACTIONS_PRIORITY, NULL);
 
     vTaskDelete(NULL);
 }

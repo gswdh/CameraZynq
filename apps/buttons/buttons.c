@@ -1,7 +1,11 @@
 #include "buttons.h"
 
-#include <stdint.h>
-#include <stdbool.h>
+#include "apps_config.h"
+
+#include "log.h"
+#include "cpubsub.h"
+#include "messages.h"
+#include "gpio.h"
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
@@ -9,11 +13,8 @@
 #include "queue.h"
 #include "timers.h"
 
-#include "log.h"
-#include "cpubsub.h"
-#include "messages.h"
-
-#include "gpio.h"
+#include <stdint.h>
+#include <stdbool.h>
 
 #define LOG_TAG "BUTTONS"
 
@@ -132,7 +133,7 @@ void buttons_main()
     }
 
     // Start the task
-    TimerHandle_t timer = xTimerCreate((const char *)"Buttons Timer", pdMS_TO_TICKS(100), pdTRUE, NULL, button_state_resolver);
+    TimerHandle_t timer = xTimerCreate((const char *)"Buttons Timer", pdMS_TO_TICKS(BTN_TICK_PERIOD_MS), pdTRUE, NULL, button_state_resolver);
     xTimerStart(timer, 0);
 
     // Run off the end of our rope

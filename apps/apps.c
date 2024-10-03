@@ -1,6 +1,8 @@
 // Matching header
 #include "apps.h"
 
+#include "log.h"
+
 // App headers
 #include "system.h"
 #include "buttons.h"
@@ -18,6 +20,8 @@
 // System headers
 #include <stdint.h>
 
+#define LOG_TAG "APPS"
+
 typedef struct
 {
     TaskFunction_t function;
@@ -29,32 +33,32 @@ static const app_config_t app_configs[] = {
     {
         .function = &system_main,
         .name = "System",
-        .stack_size = 4096,
+        .stack_size = 128,
     },
     {
         .function = &buttons_main,
         .name = "Buttons",
-        .stack_size = 4096,
-    },
-    {
-        .function = &cps_network_task,
-        .name = "CPS Network",
-        .stack_size = 4096,
-    },
-    {
-        .function = &net_pub_task,
-        .name = "Network publisher from UART",
-        .stack_size = 4096,
+        .stack_size = 128,
     },
     // {
-    //     .function = &display_start,
-    //     .name = "Display Writer",
+    //     .function = &cps_network_task,
+    //     .name = "CPS Network",
+    //     .stack_size = 4096,
+    // },
+    // {
+    //     .function = &net_pub_task,
+    //     .name = "Network publisher from UART",
     //     .stack_size = 4096,
     // },
     {
+        .function = &display_start,
+        .name = "Display Writer",
+        .stack_size = 4096,
+    },
+    {
         .function = &dbg_start,
         .name = "Debugging",
-        .stack_size = 256,
+        .stack_size = 512,
     },
 };
 
@@ -62,6 +66,15 @@ void apps_launcher(void)
 {
     for (uint32_t i = 0; i < (sizeof(app_configs) / sizeof(app_configs[0])); i++)
     {
-        xTaskCreate(app_configs[i].function, app_configs[i].name, app_configs[i].stack_size, NULL, SYS_APP_PRIORITY, NULL);
+        BaseType_t result = xTaskCreate(app_configs[i].function, app_configs[i].name, app_configs[i].stack_size, NULL, SYS_APP_PRIORITY, NULL);
+        if (result == pdPASS)
+        {
+            log_info(LOG_TAG, "%s started.\n", app_configs[i].name);
+        }
+
+        else
+        {
+            log_error(LOG_TAG, "%s start failed with %d\n", app_configs[i].name, result);
+        }
     }
 }

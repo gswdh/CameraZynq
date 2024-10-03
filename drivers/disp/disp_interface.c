@@ -11,7 +11,7 @@
 
 void ssd_spi_write(uint8_t *data, uint32_t len)
 {
-    spi_dsp_tx(data, len);
+    spi_tx(SPI_PORT_0, data, len);
 }
 
 void ssd_set_dc(bool en)

@@ -1,7 +1,6 @@
 #include "display.h"
 
-#include <stdint.h>
-#include <stdbool.h>
+#include "apps_config.h"
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
@@ -17,10 +16,19 @@
 #include "ssd1309z.h"
 
 #include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
 
-#define LOG_TAG "DISP"
+#define LOG_TAG "DSP"
 
 static uint8_t *buffer = NULL;
+
+static bool run = false;
+
+static void display_timer_cb(TimerHandle_t xTimer)
+{
+    run = true;
+}
 
 static void display_task(void *params)
 {
@@ -28,14 +36,14 @@ static void display_task(void *params)
 
     while (true)
     {
-        if (true) // dmgui_update_needed())
+        if ((dmgui_update_needed() == true) && (run == true))
         {
+            run = false;
+
             ssd_update_display(buffer);
 
             dmgui_update_done();
         }
-
-        ssd_delay_ms(100);
     }
 
     vTaskDelete(NULL);
@@ -59,7 +67,11 @@ void display_start()
         dmgui_init(buffer);
 
         /* Start the task */
-        xTaskCreate(display_task, "Display Task", 1024, NULL, tskIDLE_PRIORITY, NULL);
+        xTaskCreate(display_task, "Display Task", 256, NULL, tskIDLE_PRIORITY, NULL);
+
+        // Start a timer
+        TimerHandle_t display_timer = xTimerCreate("Display Timer", pdMS_TO_TICKS(DSP_TICK_PERIOD_MS), true, NULL, &display_timer_cb);
+        xTimerStart(display_timer, 0);
     }
 
     vTaskDelete(NULL);

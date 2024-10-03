@@ -41,7 +41,7 @@ void startup_thread(void *params)
 int main()
 {
 	// Create a startup task to keep all execution in tasks
-	xTaskCreate(startup_thread, "Startup Thread", 1024, NULL, tskIDLE_PRIORITY, NULL);
+	xTaskCreate(startup_thread, "Startup Thread", 4096, NULL, tskIDLE_PRIORITY, NULL);
 
 	// Start and enter the scheduler
 	vTaskStartScheduler();
