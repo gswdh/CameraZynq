@@ -1,7 +1,6 @@
 // Matching header
 #include "apps.h"
-
-#include "log.h"
+#include "apps_config.h"
 
 // App headers
 #include "system.h"
@@ -10,6 +9,7 @@
 #include "net_pub.h"
 #include "display.h"
 #include "debugging.h"
+#include "log.h"
 
 // Xilinx
 
@@ -33,27 +33,27 @@ static const app_config_t app_configs[] = {
     {
         .function = &system_main,
         .name = "System",
-        .stack_size = 512,
+        .stack_size = SYS_APP_STACK_SIZE_B,
     },
     {
         .function = &buttons_main,
         .name = "Buttons",
-        .stack_size = 128,
+        .stack_size = BTN_APP_STACK_SIZE_B,
     },
     {
         .function = &net_pub_task,
         .name = "Network publisher from UART",
-        .stack_size = 4096,
+        .stack_size = NET_PUB_APP_STACK_SIZE_B,
     },
     {
         .function = &display_start,
         .name = "Display Writer",
-        .stack_size = 4096,
+        .stack_size = DSP_APP_STACK_SIZE_B,
     },
     {
         .function = &dbg_start,
         .name = "Debugging",
-        .stack_size = 512,
+        .stack_size = DBG_APP_STACK_SIZE_B,
     },
     // {
     //     .function = &cps_network_task,

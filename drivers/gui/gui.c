@@ -2,6 +2,9 @@
 
 #include "log.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+
 #include <stdio.h>
 
 #define LOG_TAG "GUI"
@@ -85,14 +88,60 @@ static void gui_shutter_set_screen(const uint32_t speed)
     gui_draw_text(text, 0, 0, GUI_TXT_ALIGN_L);
 }
 
-static void gui_power_info_screen(void)
+static void gui_power_info_screen(system_t *sys)
 {
     char text[64] = {0};
 
     dmgui_fill_screen(GUI_CLR_BLACK);
 
-    sprintf(text, "POWER INFO");
-    gui_draw_text(text, 0, 0, GUI_TXT_ALIGN_L);
+    // PMC
+    gui_draw_text("PMC", 0, 0, GUI_TXT_ALIGN_L);
+    sprintf(text, "%2.1fV %2.1fA %2.1fW %uC",
+            sys->power.pmc.bus_voltage,
+            sys->power.pmc.bus_current,
+            sys->power.pmc.bus_power,
+            (uint8_t)sys->power.pmc.pmc_temp);
+    gui_draw_text(text, 0, 1, GUI_TXT_ALIGN_L);
+
+    // Charger
+    gui_draw_text("Charger", 0, 2, GUI_TXT_ALIGN_L);
+
+    if (sys->power.charging.charging == 1)
+    {
+        sprintf(text, "%2.1fV %2.1fA %uC",
+                sys->power.charging.output_voltage,
+                sys->power.charging.output_current,
+                (uint8_t)sys->power.charging.chrgr_temp);
+    }
+    else
+    {
+        sprintf(text, "Not Charging");
+    }
+    gui_draw_text(text, 0, 3, GUI_TXT_ALIGN_L);
+
+    // BMS
+    gui_draw_text("BMS", 0, 4, GUI_TXT_ALIGN_L);
+    sprintf(text, "%2.1fV %2.1fA %u%% %1.1fAh",
+            sys->power.battery.voltage,
+            sys->power.battery.current,
+            (uint8_t)sys->power.battery.soc,
+            sys->power.battery.capacity);
+    gui_draw_text(text, 0, 5, GUI_TXT_ALIGN_L);
+
+    // USBPD
+    gui_draw_text("USBPD", 0, 6, GUI_TXT_ALIGN_L);
+
+    if (sys->power.usbpd.attached == 1)
+    {
+        sprintf(text, "%2.1fV %2.1fA",
+                sys->power.usbpd.bus_voltage,
+                sys->power.usbpd.bus_current);
+    }
+    else
+    {
+        sprintf(text, "Disconnected");
+    }
+    gui_draw_text(text, 0, 7, GUI_TXT_ALIGN_L);
 }
 
 static void gui_memory_info_screen(void)
@@ -103,6 +152,37 @@ static void gui_memory_info_screen(void)
 
     sprintf(text, "MEMORY INFO");
     gui_draw_text(text, 0, 0, GUI_TXT_ALIGN_L);
+
+    // TaskStatus_t *taskStatusArray;
+    // UBaseType_t totalTasks;
+    // UBaseType_t i;
+    // uint32_t totalStackUsed = 0;
+
+    // // Get the number of tasks
+    // totalTasks = uxTaskGetNumberOfTasks();
+
+    // // Allocate memory for task status array
+    // taskStatusArray = pvPortMalloc(totalTasks * sizeof(TaskStatus_t));
+
+    // if (taskStatusArray != NULL)
+    // {
+    //     // Get system state
+    //     uxTaskGetSystemState(taskStatusArray, totalTasks, NULL);
+
+    //     for (i = 0; i < totalTasks; i++)
+    //     {
+    //         xil_printf("%s - %uB\n", taskStatusArray[i].pcTaskName, taskStatusArray[i].usStackHighWaterMark);
+    //     }
+
+    //     vPortFree(taskStatusArray);
+    // }
+
+    size_t totalHeapSize = configTOTAL_HEAP_SIZE;
+    size_t freeHeapSize = xPortGetFreeHeapSize();
+    size_t usedHeapSize = totalHeapSize - freeHeapSize;
+
+    sprintf(text, "%u/%ukiB", (uint32_t)(usedHeapSize / 1024), (uint32_t)(totalHeapSize / 1024));
+    gui_draw_text(text, 0, 1, GUI_TXT_ALIGN_L);
 }
 
 void gui_refresh(system_t *sys)
@@ -119,7 +199,7 @@ void gui_refresh(system_t *sys)
         gui_shutter_set_screen(sys->imaging.speed_us);
         break;
     case SYS_GUI_POWER_INFO_SCR:
-        gui_power_info_screen();
+        gui_power_info_screen(sys);
         break;
     case SYS_GUI_MEMORY_INFO_SCR:
         gui_memory_info_screen();

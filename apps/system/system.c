@@ -42,7 +42,7 @@ void system_main(void *params)
     TimerHandle_t system_timer = xTimerCreate("System Timer", pdMS_TO_TICKS(SYS_TICK_BLINK_PERIOD_MS), true, NULL, &system_timer_cb);
     xTimerStart(system_timer, 0);
 
-    xTaskCreate(actions_main, "Actions Main", 1024, (void *)&sys, SYS_APP_ACTIONS_PRIORITY, NULL);
+    xTaskCreate(actions_main, "Actions Main", SYS_ACT_APP_STACK_SIZE_B, (void *)&sys, SYS_APP_ACTIONS_PRIORITY, NULL);
 
     vTaskDelete(NULL);
 }

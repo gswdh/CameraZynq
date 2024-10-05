@@ -18,7 +18,7 @@
 #define LOG_TAG "DBG"
 
 #ifdef DEBUG
-const topic_t dbg_subs[] = {MSGButtonPress_MID, MSGBatteryStats_MID, MSGChargingStats_MID, MSGSystemStats_MID, MSGUSBPDStats_MID, MSGPowerButton_MID};
+const topic_t dbg_subs[] = {MSGButtonPress_MID, MSGPowerButton_MID};
 
 static uint8_t *buffer = NULL;
 static pipe_t pipe = {0};
