@@ -110,7 +110,7 @@ void dbg_start(void *params)
                              (((MSGUSBPDStats_t *)buffer)->attached == 0) ? "false" : "true ");
                     break;
                 default:
-                    log_warn(LOG_TAG, "MID %u not supported in the debugging.\n", mid);
+                    log_warn(LOG_TAG, "MID %04X not supported in the debugging.\n", mid);
                     break;
                 }
             }

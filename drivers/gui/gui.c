@@ -36,7 +36,7 @@ void gui_welcome_screen(void)
     gui_draw_text(text, 0, 4, GUI_TXT_ALIGN_L);
 }
 
-void gui_home_screen(const uint32_t iso, const uint32_t speed, const uint8_t soc)
+void gui_home_screen(const uint32_t iso, const uint32_t speed, const uint8_t soc, const float consumption, const float charging)
 {
     char text[64] = {0};
 
@@ -50,4 +50,13 @@ void gui_home_screen(const uint32_t iso, const uint32_t speed, const uint8_t soc
 
     sprintf(text, "SoC %u%%", soc);
     gui_draw_text(text, 0, 2, GUI_TXT_ALIGN_L);
+
+    sprintf(text, "%2.3fW", consumption);
+    gui_draw_text(text, 0, 3, GUI_TXT_ALIGN_L);
+
+    if (charging > 0)
+    {
+        sprintf(text, "Charging @ %2.3fW", charging);
+        gui_draw_text(text, 0, 4, GUI_TXT_ALIGN_L);
+    }
 }

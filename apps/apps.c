@@ -40,16 +40,11 @@ static const app_config_t app_configs[] = {
         .name = "Buttons",
         .stack_size = 128,
     },
-    // {
-    //     .function = &cps_network_task,
-    //     .name = "CPS Network",
-    //     .stack_size = 4096,
-    // },
-    // {
-    //     .function = &net_pub_task,
-    //     .name = "Network publisher from UART",
-    //     .stack_size = 4096,
-    // },
+    {
+        .function = &net_pub_task,
+        .name = "Network publisher from UART",
+        .stack_size = 4096,
+    },
     {
         .function = &display_start,
         .name = "Display Writer",
@@ -59,6 +54,11 @@ static const app_config_t app_configs[] = {
         .function = &dbg_start,
         .name = "Debugging",
         .stack_size = 512,
+    },
+    {
+        .function = &cps_network_task,
+        .name = "CPS Network",
+        .stack_size = 1024,
     },
 };
 

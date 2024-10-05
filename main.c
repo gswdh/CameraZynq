@@ -29,8 +29,6 @@ void startup_thread(void *params)
 	log_info(LOG_TAG, "Built by %s on %s at %s\n", USER, HOSTNAME, BUILD_TIME);
 #endif
 
-	// uart_dma_test();
-
 	// Start all the child threads
 	apps_launcher();
 

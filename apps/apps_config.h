@@ -11,7 +11,7 @@
 #define DSP_TICK_PERIOD_MS (20)
 
 // Network Publisher
-#define NET_PUB_TICK_PERIOD_MS (10)
+#define NET_PUB_TICK_PERIOD_MS (100)
 #define NET_PUB_BUFF_LEN (1024)
 #define NET_PUB_UART UART_PORT_0
 

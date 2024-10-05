@@ -42,6 +42,9 @@ void actions_main(void *params)
 
     pipe_set_length(&pipe, SYS_ACTION_PIPE_LEN);
     cps_subscribe(MSGButtonPress_MID, MSGButtonPress_LEN, &pipe);
+    cps_subscribe(MSGSystemStats_MID, MSGSystemStats_LEN, &pipe);
+    cps_subscribe(MSGBatteryStats_MID, MSGBatteryStats_LEN, &pipe);
+    cps_subscribe(MSGChargingStats_MID, MSGChargingStats_LEN, &pipe);
 
     /* Assign some space for the display buffer */
     buffer = (uint8_t *)malloc((size_t)pipe_item_size(&pipe));
@@ -52,15 +55,6 @@ void actions_main(void *params)
         // Do not continue
         run = false;
     }
-
-    vTaskDelay(pdMS_TO_TICKS(1000));
-
-    gui_welcome_screen();
-
-    vTaskDelay(pdMS_TO_TICKS(500));
-
-    // Draw the first home screem
-    gui_home_screen(sys->imaging.iso, sys->imaging.speed_us, 10);
 
     TimerHandle_t timer = xTimerCreate("Actions Tick", pdMS_TO_TICKS(SYS_TICK_ACTION_PERIOD_MS), true, NULL, actions_timer_cb);
     xTimerStart(timer, 0);
@@ -74,6 +68,9 @@ void actions_main(void *params)
             // Reset the flag
             tick = false;
 
+            // Flag on whether to update the UI
+            bool update = false;
+
             // Check for messages
             while (cps_receive(&pipe, (void *)buffer, PIPE_WAIT_POLL) == CPS_OK)
             {
@@ -83,10 +80,36 @@ void actions_main(void *params)
                 {
                 case MSGButtonPress_MID:
                     break;
+                case MSGSystemStats_MID:
+                    sys->power.consumption_w = ((MSGSystemStats_t *)buffer)->bus_power;
+                    update = true;
+                    break;
+                case MSGBatteryStats_MID:
+                    sys->power.soc_p = ((MSGBatteryStats_t *)buffer)->soc;
+                    update = true;
+                    break;
+                case MSGChargingStats_MID:
+                    if (((MSGChargingStats_t *)buffer)->charging == true)
+                    {
+
+                        sys->power.charging_w = ((MSGChargingStats_t *)buffer)->output_current *
+                                                ((MSGChargingStats_t *)buffer)->output_voltage;
+                    }
+                    else
+                    {
+                        sys->power.charging_w = -1;
+                    }
+                    update = true;
+                    break;
                 default:
                     log_warn(LOG_TAG, "Unhandled MID 0x%04X\n", mid);
                     break;
                 }
+            }
+
+            if (update == true)
+            {
+                gui_home_screen(sys->imaging.iso, sys->imaging.speed_us, sys->power.soc_p, sys->power.consumption_w, sys->power.charging_w);
             }
         }
     }

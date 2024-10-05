@@ -1,36 +1,36 @@
 /******************************************************************************
-* Copyright (C) 2002 - 2022 Xilinx, Inc.  All rights reserved.
-* Copyright (C) 2022 - 2023 Advanced Micro Devices, Inc. All Rights Reserved.
-* SPDX-License-Identifier: MIT
-******************************************************************************/
+ * Copyright (C) 2002 - 2022 Xilinx, Inc.  All rights reserved.
+ * Copyright (C) 2022 - 2023 Advanced Micro Devices, Inc. All Rights Reserved.
+ * SPDX-License-Identifier: MIT
+ ******************************************************************************/
 
 /****************************************************************************/
 /**
-*
-* @file xuartlite_intr.c
-* @addtogroup uartlite Overview
-* @{
-*
-* This file contains interrupt-related functions for the UART Lite component
-* (XUartLite).
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who  Date     Changes
-* ----- ---- -------- -----------------------------------------------
-* 1.00a ecm  08/31/01 First release
-* 1.00b jhl  02/21/02 Repartitioned the driver for smaller files
-* 1.02a rpm  02/14/07 Added check for outstanding transmission before
-*			calling the send callback (avoids extraneous
-*			callback invocations)
-* 2.00a ktn  10/20/09 Updated to use HAL Processor APIs. The macros have been
-*		      renamed to remove _m from the name.
-* 3.8	gm   09/25/22 Use XUartLite_GetSR instead of accessing status register
-*                     directly.
-* </pre>
-*
-*****************************************************************************/
+ *
+ * @file xuartlite_intr.c
+ * @addtogroup uartlite Overview
+ * @{
+ *
+ * This file contains interrupt-related functions for the UART Lite component
+ * (XUartLite).
+ *
+ * <pre>
+ * MODIFICATION HISTORY:
+ *
+ * Ver   Who  Date     Changes
+ * ----- ---- -------- -----------------------------------------------
+ * 1.00a ecm  08/31/01 First release
+ * 1.00b jhl  02/21/02 Repartitioned the driver for smaller files
+ * 1.02a rpm  02/14/07 Added check for outstanding transmission before
+ *			calling the send callback (avoids extraneous
+ *			callback invocations)
+ * 2.00a ktn  10/20/09 Updated to use HAL Processor APIs. The macros have been
+ *		      renamed to remove _m from the name.
+ * 3.8	gm   09/25/22 Use XUartLite_GetSR instead of accessing status register
+ *                     directly.
+ * </pre>
+ *
+ *****************************************************************************/
 
 /***************************** Include Files ********************************/
 
@@ -55,24 +55,24 @@ typedef void (*Handler)(XUartLite *InstancePtr);
 
 /****************************************************************************/
 /**
-*
-* This function sets the handler that will be called when an event (interrupt)
-* occurs in the driver. The purpose of the handler is to allow application
-* specific processing to be performed.
-*
-* @param	InstancePtr is a pointer to the XUartLite instance.
-* @param	FuncPtr is the pointer to the callback function.
-* @param	CallBackRef is the upper layer callback reference passed back
-*		when the callback function is invoked.
-*
-* @return	None.
-*
-* @note		There is no assert on the CallBackRef since the driver doesn't
-*		know what it is (nor should it)
-*
-*****************************************************************************/
+ *
+ * This function sets the handler that will be called when an event (interrupt)
+ * occurs in the driver. The purpose of the handler is to allow application
+ * specific processing to be performed.
+ *
+ * @param	InstancePtr is a pointer to the XUartLite instance.
+ * @param	FuncPtr is the pointer to the callback function.
+ * @param	CallBackRef is the upper layer callback reference passed back
+ *		when the callback function is invoked.
+ *
+ * @return	None.
+ *
+ * @note		There is no assert on the CallBackRef since the driver doesn't
+ *		know what it is (nor should it)
+ *
+ *****************************************************************************/
 void XUartLite_SetRecvHandler(XUartLite *InstancePtr,
-				XUartLite_Handler FuncPtr, void *CallBackRef)
+							  XUartLite_Handler FuncPtr, void *CallBackRef)
 {
 	/*
 	 * Assert validates the input arguments
@@ -88,24 +88,24 @@ void XUartLite_SetRecvHandler(XUartLite *InstancePtr,
 
 /****************************************************************************/
 /**
-*
-* This function sets the handler that will be called when an event (interrupt)
-* occurs in the driver. The purpose of the handler is to allow application
-* specific processing to be performed.
-*
-* @param	InstancePtr is a pointer to the XUartLite instance .
-* @param	FuncPtr is the pointer to the callback function.
-* @param	CallBackRef is the upper layer callback reference passed back
-*		when the callback function is invoked.
-*
-* @return 	None.
-*
-* @note		There is no assert on the CallBackRef since the driver doesn't
-*		know what it is (nor should it)
-*
-*****************************************************************************/
+ *
+ * This function sets the handler that will be called when an event (interrupt)
+ * occurs in the driver. The purpose of the handler is to allow application
+ * specific processing to be performed.
+ *
+ * @param	InstancePtr is a pointer to the XUartLite instance .
+ * @param	FuncPtr is the pointer to the callback function.
+ * @param	CallBackRef is the upper layer callback reference passed back
+ *		when the callback function is invoked.
+ *
+ * @return 	None.
+ *
+ * @note		There is no assert on the CallBackRef since the driver doesn't
+ *		know what it is (nor should it)
+ *
+ *****************************************************************************/
 void XUartLite_SetSendHandler(XUartLite *InstancePtr,
-				XUartLite_Handler FuncPtr, void *CallBackRef)
+							  XUartLite_Handler FuncPtr, void *CallBackRef)
 {
 	/*
 	 * Assert validates the input arguments
@@ -121,21 +121,21 @@ void XUartLite_SetSendHandler(XUartLite *InstancePtr,
 
 /****************************************************************************/
 /**
-*
-* This function is the interrupt handler for the UART lite driver.
-* It must be connected to an interrupt system by the user such that it is
-* called when an interrupt for any UART lite occurs. This function
-* does not save or restore the processor context such that the user must
-* ensure this occurs.
-*
-* @param	InstancePtr contains a pointer to the instance of the UART that
-*		the interrupt is for.
-*
-* @return	None.
-*
-* @note		None.
-*
-******************************************************************************/
+ *
+ * This function is the interrupt handler for the UART lite driver.
+ * It must be connected to an interrupt system by the user such that it is
+ * called when an interrupt for any UART lite occurs. This function
+ * does not save or restore the processor context such that the user must
+ * ensure this occurs.
+ *
+ * @param	InstancePtr contains a pointer to the instance of the UART that
+ *		the interrupt is for.
+ *
+ * @return	None.
+ *
+ * @note		None.
+ *
+ ******************************************************************************/
 void XUartLite_InterruptHandler(XUartLite *InstancePtr)
 {
 	u32 IsrStatus;
@@ -149,37 +149,59 @@ void XUartLite_InterruptHandler(XUartLite *InstancePtr)
 	IsrStatus = XUartLite_GetSR(InstancePtr);
 
 	if ((IsrStatus & (XUL_SR_RX_FIFO_FULL |
-		XUL_SR_RX_FIFO_VALID_DATA)) != 0) {
+					  XUL_SR_RX_FIFO_VALID_DATA)) != 0)
+	{
 		ReceiveDataHandler(InstancePtr);
 	}
 
 	if (((IsrStatus & XUL_SR_TX_FIFO_EMPTY) != 0) &&
-		(InstancePtr->SendBuffer.RequestedBytes > 0)) {
+		(InstancePtr->SendBuffer.RequestedBytes > 0))
+	{
 		SendDataHandler(InstancePtr);
 	}
 }
 
 /****************************************************************************/
 /**
-*
-* This function handles the interrupt when data is received, either a single
-* byte when FIFOs are not enabled, or multiple bytes with the FIFO.
-*
-* @param	InstancePtr is a pointer to the XUartLite instance.
-*
-* @return	None.
-*
-* @note		None.
-*
-*****************************************************************************/
+ *
+ * This function handles the interrupt when data is received, either a single
+ * byte when FIFOs are not enabled, or multiple bytes with the FIFO.
+ *
+ * @param	InstancePtr is a pointer to the XUartLite instance.
+ *
+ * @return	None.
+ *
+ * @note		None.
+ *
+ *****************************************************************************/
 static void ReceiveDataHandler(XUartLite *InstancePtr)
 {
 	/*
 	 * If there are bytes still to be received in the specified buffer
 	 * go ahead and receive them
 	 */
-	if (InstancePtr->ReceiveBuffer.RemainingBytes != 0) {
-		XUartLite_ReceiveBuffer(InstancePtr);
+	// if (InstancePtr->ReceiveBuffer.RemainingBytes != 0) {
+	// 	XUartLite_ReceiveBuffer(InstancePtr);
+	// }
+
+	/*
+	 * Read the Status Register to determine if there is any data in
+	 * the receiver/FIFO
+	 */
+	uint32_t StatusRegister = XUartLite_GetSR(InstancePtr);
+
+	uint8_t rxd_byte = 0;
+
+	/*
+	 * If there is data ready to be removed, then put the next byte
+	 * received into the specified buffer and update the stats to
+	 * reflect any receive errors for the byte
+	 */
+	if (StatusRegister & XUL_SR_RX_FIFO_VALID_DATA)
+	{
+		rxd_byte =
+			XUartLite_ReadReg(InstancePtr->RegBaseAddress,
+							  XUL_RX_FIFO_OFFSET);
 	}
 
 	/*
@@ -188,11 +210,11 @@ static void ReceiveDataHandler(XUartLite *InstancePtr)
 	 * the number of bytes to receive because the call to receive the buffer
 	 * updates the bytes to receive
 	 */
-	if (InstancePtr->ReceiveBuffer.RemainingBytes == 0) {
-		InstancePtr->RecvHandler(InstancePtr->RecvCallBackRef,
-		InstancePtr->ReceiveBuffer.RequestedBytes -
-		InstancePtr->ReceiveBuffer.RemainingBytes);
-	}
+	// if (InstancePtr->ReceiveBuffer.RemainingBytes == 0)
+	// {
+	InstancePtr->RecvHandler(InstancePtr->RecvCallBackRef,
+							 (uint32_t)rxd_byte);
+	// }
 
 	/*
 	 * Update the receive stats to reflect the receive interrupt
@@ -202,24 +224,25 @@ static void ReceiveDataHandler(XUartLite *InstancePtr)
 
 /****************************************************************************/
 /**
-*
-* This function handles the interrupt when data has been sent, the transmit
-* FIFO is empty (transmitter holding register).
-*
-* @param	InstancePtr is a pointer to the XUartLite instance .
-*
-* @return	None.
-*
-* @note		None.
-*
-*****************************************************************************/
+ *
+ * This function handles the interrupt when data has been sent, the transmit
+ * FIFO is empty (transmitter holding register).
+ *
+ * @param	InstancePtr is a pointer to the XUartLite instance .
+ *
+ * @return	None.
+ *
+ * @note		None.
+ *
+ *****************************************************************************/
 static void SendDataHandler(XUartLite *InstancePtr)
 {
 	/*
 	 * If there are not bytes to be sent from the specified buffer,
 	 * call the callback function
 	 */
-	if (InstancePtr->SendBuffer.RemainingBytes == 0) {
+	if (InstancePtr->SendBuffer.RemainingBytes == 0)
+	{
 		int SaveReq;
 
 		/*
@@ -239,7 +262,8 @@ static void SendDataHandler(XUartLite *InstancePtr)
 	 * Otherwise there is still more data to send in the specified buffer
 	 * so go ahead and send it
 	 */
-	else {
+	else
+	{
 		XUartLite_SendBuffer(InstancePtr);
 	}
 
@@ -249,21 +273,20 @@ static void SendDataHandler(XUartLite *InstancePtr)
 	InstancePtr->Stats.TransmitInterrupts++;
 }
 
-
 /*****************************************************************************/
 /**
-*
-* This function disables the UART interrupt. After calling this function,
-* data may still be received by the UART but no interrupt will be generated
-* since the hardware device has no way to disable the receiver.
-*
-* @param	InstancePtr is a pointer to the XUartLite instance.
-*
-* @return	None.
-*
-* @note		None.
-*
-*****************************************************************************/
+ *
+ * This function disables the UART interrupt. After calling this function,
+ * data may still be received by the UART but no interrupt will be generated
+ * since the hardware device has no way to disable the receiver.
+ *
+ * @param	InstancePtr is a pointer to the XUartLite instance.
+ *
+ * @return	None.
+ *
+ * @note		None.
+ *
+ *****************************************************************************/
 void XUartLite_DisableInterrupt(XUartLite *InstancePtr)
 {
 	Xil_AssertVoid(InstancePtr != NULL);
@@ -275,25 +298,25 @@ void XUartLite_DisableInterrupt(XUartLite *InstancePtr)
 	 * writing them to zero will not affect them.
 	 */
 	XUartLite_WriteReg(InstancePtr->RegBaseAddress,
-				XUL_CONTROL_REG_OFFSET, 0);
+					   XUL_CONTROL_REG_OFFSET, 0);
 }
 
 /*****************************************************************************/
 /**
-*
-* This function enables the UART interrupt such that an interrupt will occur
-* when data is received or data has been transmitted. The device contains
-* 16 byte receive and transmit FIFOs such that an interrupt is generated
-* anytime there is data in the receive FIFO and when the transmit FIFO
-* transitions from not empty to empty.
-*
-* @param	InstancePtr is a pointer to the XUartLite instance.
-*
-* @return	None.
-*
-* @note		None.
-*
-*****************************************************************************/
+ *
+ * This function enables the UART interrupt such that an interrupt will occur
+ * when data is received or data has been transmitted. The device contains
+ * 16 byte receive and transmit FIFOs such that an interrupt is generated
+ * anytime there is data in the receive FIFO and when the transmit FIFO
+ * transitions from not empty to empty.
+ *
+ * @param	InstancePtr is a pointer to the XUartLite instance.
+ *
+ * @return	None.
+ *
+ * @note		None.
+ *
+ *****************************************************************************/
 void XUartLite_EnableInterrupt(XUartLite *InstancePtr)
 {
 	Xil_AssertVoid(InstancePtr != NULL);
@@ -305,7 +328,7 @@ void XUartLite_EnableInterrupt(XUartLite *InstancePtr)
 	 * writing them to zero will not affect them.
 	 */
 	XUartLite_WriteReg(InstancePtr->RegBaseAddress,
-				XUL_CONTROL_REG_OFFSET, XUL_CR_ENABLE_INTR);
+					   XUL_CONTROL_REG_OFFSET, XUL_CR_ENABLE_INTR);
 }
 
 /** @} */

@@ -3,8 +3,7 @@
 #include "buttons.h"
 
 #include <stdint.h>
-
-// Button events builder
+#include <stdbool.h>
 
 typedef struct
 {
@@ -14,7 +13,15 @@ typedef struct
 
 typedef struct
 {
+    float consumption_w;
+    uint8_t soc_p;
+    float charging_w;
+} system_power_t;
+
+typedef struct
+{
     system_imaging_t imaging;
+    system_power_t power;
 } system_t;
 
 void system_main(void *params);
