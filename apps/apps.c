@@ -33,7 +33,7 @@ static const app_config_t app_configs[] = {
     {
         .function = &system_main,
         .name = "System",
-        .stack_size = 128,
+        .stack_size = 512,
     },
     {
         .function = &buttons_main,
@@ -55,11 +55,11 @@ static const app_config_t app_configs[] = {
         .name = "Debugging",
         .stack_size = 512,
     },
-    {
-        .function = &cps_network_task,
-        .name = "CPS Network",
-        .stack_size = 1024,
-    },
+    // {
+    //     .function = &cps_network_task,
+    //     .name = "CPS Network",
+    //     .stack_size = 1024,
+    // },
 };
 
 void apps_launcher(void)

@@ -25,7 +25,7 @@
 
 #define LOG_TAG "SYSTEM"
 
-static system_t sys = {0};
+static volatile system_t sys = {0};
 
 static void system_timer_cb(TimerHandle_t xTimer)
 {

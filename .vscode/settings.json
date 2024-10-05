@@ -22,7 +22,8 @@
         "net_pub.h": "c",
         "apps_config.h": "c",
         "xil_exception.h": "c",
-        "base64.h": "c"
+        "base64.h": "c",
+        "gui.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,

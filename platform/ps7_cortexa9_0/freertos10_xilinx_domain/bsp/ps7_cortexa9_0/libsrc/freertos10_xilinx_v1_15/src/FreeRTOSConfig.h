@@ -1,4 +1,4 @@
- /*
+/*
  * FreeRTOS Kernel V10.3.0
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  * Copyright (C) 2010-2020 Xilinx, Inc. All Rights Reserved.
@@ -30,9 +30,9 @@
 #ifndef _FREERTOSCONFIG_H
 #define _FREERTOSCONFIG_H
 
-#include "xparameters.h" 
+#include "xparameters.h"
 
-#include "bspconfig.h" 
+#include "bspconfig.h"
 
 #define configUSE_PREEMPTION 1
 
@@ -76,9 +76,9 @@
 
 #define configMAX_CO_ROUTINE_PRIORITIES 2
 
-#define configMINIMAL_STACK_SIZE ( ( unsigned short ) 200)
+#define configMINIMAL_STACK_SIZE ((unsigned short)200)
 
-#define configTOTAL_HEAP_SIZE ( ( size_t ) ( 65536 ) )
+#define configTOTAL_HEAP_SIZE ((size_t)(2 * 1024 * 1024))
 
 #define configMAX_TASK_NAME_LEN 10
 
@@ -92,7 +92,9 @@
 
 #define configTIMER_TASK_STACK_DEPTH ((configMINIMAL_STACK_SIZE) * 2)
 
-#define configASSERT( x ) if( ( x ) == 0 ) vApplicationAssert( __FILE__, __LINE__ )
+#define configASSERT(x) \
+    if ((x) == 0)       \
+    vApplicationAssert(__FILE__, __LINE__)
 
 #define configUSE_QUEUE_SETS 1
 
@@ -116,37 +118,37 @@
 
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
 
-#define configUSE_TICKLESS_IDLE	0
-#define configTASK_RETURN_ADDRESS    prvTaskExitError
-#define INCLUDE_vTaskPrioritySet             1
-#define INCLUDE_uxTaskPriorityGet            1
-#define INCLUDE_vTaskDelete                  1
-#define INCLUDE_vTaskCleanUpResources        1
-#define INCLUDE_vTaskSuspend                 1
-#define INCLUDE_vTaskDelayUntil              1
-#define INCLUDE_vTaskDelay                   1
-#define INCLUDE_eTaskGetState                1
-#define INCLUDE_xTimerPendFunctionCall       1
-#define INCLUDE_pcTaskGetTaskName            1
-#define INCLUDE_xTaskGetHandle               1
-#define portPOINTER_SIZE_TYPE	uint32_t
+#define configUSE_TICKLESS_IDLE 0
+#define configTASK_RETURN_ADDRESS prvTaskExitError
+#define INCLUDE_vTaskPrioritySet 1
+#define INCLUDE_uxTaskPriorityGet 1
+#define INCLUDE_vTaskDelete 1
+#define INCLUDE_vTaskCleanUpResources 1
+#define INCLUDE_vTaskSuspend 1
+#define INCLUDE_vTaskDelayUntil 1
+#define INCLUDE_vTaskDelay 1
+#define INCLUDE_eTaskGetState 1
+#define INCLUDE_xTimerPendFunctionCall 1
+#define INCLUDE_pcTaskGetTaskName 1
+#define INCLUDE_xTaskGetHandle 1
+#define portPOINTER_SIZE_TYPE uint32_t
 #define portTICK_TYPE_IS_ATOMIC 1
 #define configMESSAGE_BUFFER_LENGTH_TYPE uint32_t
 #define configSTACK_DEPTH_TYPE uint32_t
 #define configMAX_API_CALL_INTERRUPT_PRIORITY (18)
 
-#define configINTERRUPT_CONTROLLER_BASE_ADDRESS         ( XPAR_PS7_SCUGIC_0_DIST_BASEADDR )
-#define configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET ( -0xf00 )
-#define configUNIQUE_INTERRUPT_PRIORITIES                32
-void vApplicationAssert( const char *pcFile, uint32_t ulLine );
-void FreeRTOS_SetupTickInterrupt( void );
+#define configINTERRUPT_CONTROLLER_BASE_ADDRESS (XPAR_PS7_SCUGIC_0_DIST_BASEADDR)
+#define configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET (-0xf00)
+#define configUNIQUE_INTERRUPT_PRIORITIES 32
+void vApplicationAssert(const char *pcFile, uint32_t ulLine);
+void FreeRTOS_SetupTickInterrupt(void);
 #define configSETUP_TICK_INTERRUPT() FreeRTOS_SetupTickInterrupt()
 
-void FreeRTOS_ClearTickInterrupt( void );
-#define configCLEAR_TICK_INTERRUPT()	FreeRTOS_ClearTickInterrupt()
+void FreeRTOS_ClearTickInterrupt(void);
+#define configCLEAR_TICK_INTERRUPT() FreeRTOS_ClearTickInterrupt()
 
-#define portSET_INTERRUPT_MASK_FROM_ISR()	ulPortSetInterruptMask()
-#define portCLEAR_INTERRUPT_MASK_FROM_ISR(x)	vPortClearInterruptMask(x)
+#define portSET_INTERRUPT_MASK_FROM_ISR() ulPortSetInterruptMask()
+#define portCLEAR_INTERRUPT_MASK_FROM_ISR(x) vPortClearInterruptMask(x)
 #ifdef FREERTOS_ENABLE_TRACE
 #include "FreeRTOSSTMTrace.h"
 #endif /* FREERTOS_ENABLE_TRACE */

@@ -22,18 +22,124 @@
 static bool tick = false;
 static bool run = true;
 
-static system_t *sys = NULL;
-static pipe_t pipe = {0};
-static uint8_t *buffer = NULL;
+static const system_gui_screen_t base_screens[] = {SYS_GUI_HOME_SCR, SYS_GUI_POWER_INFO_SCR, SYS_GUI_MEMORY_INFO_SCR};
+static uint32_t base_screen_cntr = 0;
 
 static void actions_timer_cb(TimerHandle_t timer)
 {
     tick = true;
 }
 
+static void actions_rotate_base_scr(const bool dir)
+{
+    if (dir == true)
+    {
+        base_screen_cntr += 1;
+
+        if (base_screen_cntr == SYS_GUI_N_BASE_SCRS(base_screens))
+        {
+            base_screen_cntr = 0;
+        }
+    }
+
+    else
+    {
+        if (base_screen_cntr == 0)
+        {
+            base_screen_cntr = (SYS_GUI_N_BASE_SCRS(base_screens) - 1);
+        }
+
+        else
+        {
+            base_screen_cntr -= 1;
+        }
+    }
+}
+
+static void actions_button_handler(uint32_t state, system_t *sys)
+{
+    switch (state)
+    {
+    // Adjust the ISO
+    case ACT_BTN_SCR_ISO_SET:
+        sys->gui.screen = SYS_GUI_ISO_SET_SCR;
+        break;
+    case ACT_BTN_SCR_ISO_RETURN:
+        sys->gui.screen = SYS_GUI_HOME_SCR;
+        break;
+    case ACT_BTN_INC_ISO:
+        if (sys->imaging.iso < 3200)
+        {
+            sys->imaging.iso *= 2;
+        }
+        else
+        {
+            sys->imaging.iso = 3200;
+        }
+        break;
+    case ACT_BTN_DEC_ISO:
+        if (sys->imaging.iso > 100)
+        {
+            sys->imaging.iso *= 0.5;
+        }
+        else
+        {
+            sys->imaging.iso = 100;
+        }
+        break;
+
+    // Adjust the shutter speed
+    case ACT_BTN_SCR_SHTR_SET:
+        sys->gui.screen = SYS_GUI_SHTR_SET_SCR;
+        break;
+    case ACT_BTN_SCR_SHTR_RETURN:
+        sys->gui.screen = SYS_GUI_HOME_SCR;
+        break;
+    case ACT_BTN_INC_SHTR:
+
+        if (sys->imaging.speed_us > 1000)
+        {
+            sys->imaging.speed_us *= 0.5;
+        }
+        else
+        {
+            sys->imaging.speed_us = 1000;
+        }
+        break;
+    case ACT_BTN_DEC_SHTR:
+        if (sys->imaging.speed_us < 1e6)
+        {
+            sys->imaging.speed_us *= 2;
+        }
+        else
+        {
+            sys->imaging.speed_us = 1e6;
+        }
+        break;
+
+    // Screen movement
+    case ACT_BTN_SCR_BASE_INC:
+        actions_rotate_base_scr(true);
+        sys->gui.screen = base_screens[base_screen_cntr];
+        break;
+
+    case ACT_BTN_SCR_BASE_DEC:
+        actions_rotate_base_scr(false);
+        sys->gui.screen = base_screens[base_screen_cntr];
+        break;
+
+    // Default action (nothing to do for invalid actions)
+    default:
+        break;
+    }
+}
+
 void actions_main(void *params)
 {
-    sys = (system_t *)params;
+    pipe_t pipe = {0};
+    uint8_t *buffer = NULL;
+
+    system_t *sys = (system_t *)params;
     if (sys == NULL)
     {
         log_error(LOG_TAG, "sys == NULL.\n");
@@ -45,6 +151,7 @@ void actions_main(void *params)
     cps_subscribe(MSGSystemStats_MID, MSGSystemStats_LEN, &pipe);
     cps_subscribe(MSGBatteryStats_MID, MSGBatteryStats_LEN, &pipe);
     cps_subscribe(MSGChargingStats_MID, MSGChargingStats_LEN, &pipe);
+    cps_subscribe(MSGUSBPDStats_MID, MSGUSBPDStats_LEN, &pipe);
 
     /* Assign some space for the display buffer */
     buffer = (uint8_t *)malloc((size_t)pipe_item_size(&pipe));
@@ -55,6 +162,9 @@ void actions_main(void *params)
         // Do not continue
         run = false;
     }
+
+    // Default screen
+    sys->gui.screen = SYS_GUI_HOME_SCR;
 
     TimerHandle_t timer = xTimerCreate("Actions Tick", pdMS_TO_TICKS(SYS_TICK_ACTION_PERIOD_MS), true, NULL, actions_timer_cb);
     xTimerStart(timer, 0);
@@ -79,26 +189,23 @@ void actions_main(void *params)
                 switch (mid)
                 {
                 case MSGButtonPress_MID:
+                    actions_button_handler((uint32_t)((MSGButtonPress_t *)buffer)->button_state, sys);
+                    update = true;
                     break;
                 case MSGSystemStats_MID:
-                    sys->power.consumption_w = ((MSGSystemStats_t *)buffer)->bus_power;
+                    sys->power.pmc = *((MSGSystemStats_t *)buffer);
                     update = true;
                     break;
                 case MSGBatteryStats_MID:
-                    sys->power.soc_p = ((MSGBatteryStats_t *)buffer)->soc;
+                    sys->power.battery = *((MSGBatteryStats_t *)buffer);
                     update = true;
                     break;
                 case MSGChargingStats_MID:
-                    if (((MSGChargingStats_t *)buffer)->charging == true)
-                    {
-
-                        sys->power.charging_w = ((MSGChargingStats_t *)buffer)->output_current *
-                                                ((MSGChargingStats_t *)buffer)->output_voltage;
-                    }
-                    else
-                    {
-                        sys->power.charging_w = -1;
-                    }
+                    sys->power.charging = *((MSGChargingStats_t *)buffer);
+                    update = true;
+                    break;
+                case MSGUSBPDStats_MID:
+                    sys->power.usbpd = *((MSGUSBPDStats_t *)buffer);
                     update = true;
                     break;
                 default:
@@ -109,7 +216,7 @@ void actions_main(void *params)
 
             if (update == true)
             {
-                gui_home_screen(sys->imaging.iso, sys->imaging.speed_us, sys->power.soc_p, sys->power.consumption_w, sys->power.charging_w);
+                gui_refresh(sys);
             }
         }
     }

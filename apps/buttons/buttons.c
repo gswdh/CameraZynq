@@ -65,10 +65,11 @@ static uint32_t button_state_packer(button_state_t *states, uint8_t len)
 {
     uint32_t state = 0;
 
-    for (uint8_t i = 0; i < len; i++)
-    {
-        state |= (((uint32_t)states[i]) & 0x3) << (i * 2);
-    }
+    state |= states[BTN_BL] << BTN_BTMLEFT_SHFT;
+    state |= states[BTN_BR] << BTN_BTMRIGHT_SHFT;
+    state |= states[BTN_THMB] << BTN_THUMB_SHFT;
+    state |= states[BTN_TL] << BTN_TOPLEFT_SHFT;
+    state |= states[BTN_TR] << BTN_TOPRIGHT_SHFT;
 
     return state;
 }
