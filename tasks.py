@@ -15,12 +15,13 @@ def build(ctx, prog=False, run=False, exit=False, mon=False):
 @task
 def clean(ctx):
     ctx.run("make clean")
+    ctx.run("rm -rf platform")
 
 
 @task
 def program(ctx, run=False, exit=False):
     ctx.run(
-        f"$XILINX_VITIS_HOME/xsdb load.tcl run={str(run).lower()} exit={str(exit).lower()}"
+        f"$XILINX_VITIS_HOME/xsdb scripts/load.tcl run={str(run).lower()} exit={str(exit).lower()}"
     )
 
 
@@ -41,8 +42,14 @@ def monitor(ctx, port="", baud=115200):
 
 
 @task
+def create_platform(ctx):
+    ctx.run("rm -rf platform")
+    ctx.run(f"$XILINX_VITIS_HOME/xsct scripts/create_platform.tcl")
+
+
+@task
 def build_platform(ctx):
-    ctx.run(f"$XILINX_VITIS_HOME/xsct build_platform.tcl")
+    ctx.run(f"$XILINX_VITIS_HOME/xsct scripts/build_platform.tcl")
     ctx.run(
         "mv ./platform/ps7_cortexa9_0/freertos10_xilinx_domain/bsp/ps7_cortexa9_0/lib/outbyte.o ./platform/ps7_cortexa9_0/freertos10_xilinx_domain/bsp/ps7_cortexa9_0/lib/outbyte.obckp"
     )
@@ -53,7 +60,7 @@ def build_platform(ctx):
 
 @task
 def update_platform_xsa(ctx, xsa_file):
-    ctx.run(f"$XILINX_VITIS_HOME/xsct update_platform_xsa.tcl {xsa_file}")
+    ctx.run(f"$XILINX_VITIS_HOME/xsct scripts/update_platform_xsa.tcl {xsa_file}")
     print("Building platform")
     build_platform(ctx)
 

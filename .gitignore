@@ -57,8 +57,7 @@ dkms.conf
 .metadata
 .analytics
 
-platform/platform/
-platform/logs/
+platform/
 build/
 
 BOOT.BIN

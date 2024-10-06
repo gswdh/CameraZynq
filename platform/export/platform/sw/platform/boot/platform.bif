@@ -1,7 +1,0 @@
-/*platform*/
-the_ROM_image:
-{
-  [bootloader]<platform/boot/fsbl.elf>
-   <bitstream> 
-  <elf,ps7_cortexa9_0>
-}
