@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="&lt;None&gt;-imgFile" value="/home/george/Projects/CameraZynq/platform/export/platform/sw/platform/boot/BOOT.bin"/>
+	<item key="&lt;None&gt;-offSet" value=""/>
+	<item key="&lt;None&gt;-initFile" value=""/>
+	<item key="&lt;None&gt;-flashDensity" value=""/>
+	<item key="&lt;None&gt;-verifyFlash" value="false"/>
+	<item key="&lt;None&gt;-blankCheck" value="false"/>
+	<item key="&lt;None&gt;-device" value="Auto Detect"/>
+	<item key="&lt;None&gt;-target" value="Local"/>
+	<item key="programflash.hwplatform" value="&lt;None&gt;"/>
+</section>

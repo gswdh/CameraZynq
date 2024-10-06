@@ -1,0 +1,17 @@
+/******************************************************************************
+* Copyright (c) 2023 Advanced Micro Devices, Inc. All Rights Reserved.
+* SPDX-License-Identifier: MIT
+******************************************************************************/
+#ifndef _FREERTOSUARTCONFIG_H
+#define _FREERTOSUARTCONFIG_H
+
+
+#cmakedefine XPAR_STDIN_IS_UARTLITE @XPAR_STDIN_IS_UARTLITE@
+#cmakedefine XPAR_STDIN_IS_UARTNS550 @XPAR_STDIN_IS_UARTNS550@
+#cmakedefine XPAR_STDIN_IS_UARTPS @XPAR_STDIN_IS_UARTPS@
+#cmakedefine XPAR_STDIN_IS_UARTPSV @XPAR_STDIN_IS_UARTPSV@
+#cmakedefine XPAR_STDIN_IS_CORESIGHTPS_DCC @XPAR_STDIN_IS_CORESIGHTPS_DCC@
+#cmakedefine STDIN_BASEADDRESS @STDIN_BASEADDRESS@
+#cmakedefine STDOUT_BASEADDRESS @STDOUT_BASEADDRESS@
+
+#endif /* _FREERTOSUARTCONFIG_H */

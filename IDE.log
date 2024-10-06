@@ -1,0 +1,17 @@
+14:54:37 DEBUG : Logs will be stored at '/home/george/Projects/CameraZynq/IDE.log'.
+14:54:37 INFO  : Registering command handlers for Vitis TCF services
+14:54:37 INFO  : Platform repository initialization has completed.
+14:54:37 INFO  : Result from executing command 'getProjects': 
+14:54:37 INFO  : Result from executing command 'getPlatforms': 
+21:19:44 DEBUG : Logs will be stored at '/home/george/Projects/CameraZynq/IDE.log'.
+21:19:48 INFO  : Launching XSCT server: xsct -n  -interactive /home/george/Projects/CameraZynq/temp_xsdb_launch_script.tcl
+21:19:48 INFO  : Platform repository initialization has completed.
+21:19:48 INFO  : Registering command handlers for Vitis TCF services
+21:19:50 INFO  : XSCT server has started successfully.
+21:19:51 INFO  : plnx-install-location is set to ''
+21:19:51 INFO  : Successfully done setting XSCT server connection channel  
+21:19:51 INFO  : Successfully done query RDI_DATADIR 
+21:19:51 INFO  : Successfully done setting workspace for the tool. 
+21:23:08 INFO  : Invoking Bootgen: bootgen -image platform.bif -arch zynq -o /home/george/Projects/CameraZynq/platform/export/platform/sw/platform/boot/BOOT.bin
+21:23:08 INFO  : Overwriting existing bif file /home/george/Projects/CameraZynq/platform/export/platform/sw/platform/boot/platform.bif
+21:23:10 INFO  : Bootgen command execution is done.

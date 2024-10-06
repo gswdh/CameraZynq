@@ -1,0 +1,4 @@
+timestamp=[2024-08-23 14:54:37], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.025, duration_ms=25, data={}
+timestamp=[2024-09-13 21:19:48], mode=WORKBENCH_START, duration=0:00:07.359, duration_ms=7359, data={}
+timestamp=[2024-09-13 21:19:48], mode=WORKBENCH_UI_INIT, duration=0:00:00.125, duration_ms=125, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2024-09-13 21:19:48], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.038, duration_ms=38, data={}
