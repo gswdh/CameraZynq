@@ -31,9 +31,9 @@ typedef struct
 
 static const app_config_t app_configs[] = {
     {
-        .function = &system_main,
-        .name = "System",
-        .stack_size = SYS_APP_STACK_SIZE_B,
+        .function = &display_start,
+        .name = "Display Writer",
+        .stack_size = DSP_APP_STACK_SIZE_B,
     },
     {
         .function = &buttons_main,
@@ -46,15 +46,15 @@ static const app_config_t app_configs[] = {
         .stack_size = NET_PUB_APP_STACK_SIZE_B,
     },
     {
-        .function = &display_start,
-        .name = "Display Writer",
-        .stack_size = DSP_APP_STACK_SIZE_B,
+        .function = &system_main,
+        .name = "System",
+        .stack_size = SYS_APP_STACK_SIZE_B,
     },
-    {
-        .function = &dbg_start,
-        .name = "Debugging",
-        .stack_size = DBG_APP_STACK_SIZE_B,
-    },
+    // {
+    //     .function = &dbg_start,
+    //     .name = "Debugging",
+    //     .stack_size = DBG_APP_STACK_SIZE_B,
+    // },
     // {
     //     .function = &cps_network_task,
     //     .name = "CPS Network",

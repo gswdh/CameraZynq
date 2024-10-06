@@ -5,6 +5,8 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
+#include "gmax0505.h"
+
 #include <stdio.h>
 
 #define LOG_TAG "GUI"
@@ -43,6 +45,8 @@ static void gui_welcome_screen(void)
     gui_draw_text(text, 0, 4, GUI_TXT_ALIGN_L);
 }
 
+bool show = false;
+
 static void gui_home_screen(const uint32_t iso, const uint32_t speed, const uint8_t soc, const float consumption, const float charging)
 {
     char text[64] = {0};
@@ -66,6 +70,8 @@ static void gui_home_screen(const uint32_t iso, const uint32_t speed, const uint
         sprintf(text, "Charging @ %2.3fW", charging);
         gui_draw_text(text, 0, 4, GUI_TXT_ALIGN_L);
     }
+
+    show = true;
 }
 
 static void gui_iso_set_screen(const uint32_t iso)
@@ -144,6 +150,12 @@ static void gui_power_info_screen(system_t *sys)
     gui_draw_text(text, 0, 7, GUI_TXT_ALIGN_L);
 }
 
+static void this_test(void *params)
+{
+    gmax_init();
+    vTaskDelete(NULL);
+}
+
 static void gui_memory_info_screen(void)
 {
     char text[64] = {0};
@@ -152,6 +164,13 @@ static void gui_memory_info_screen(void)
 
     sprintf(text, "MEMORY INFO");
     gui_draw_text(text, 0, 0, GUI_TXT_ALIGN_L);
+
+    if (show == true)
+    {
+        xTaskCreate(this_test, "GMAX Test", 256, NULL, tskIDLE_PRIORITY, NULL);
+    }
+
+    show = false;
 
     // TaskStatus_t *taskStatusArray;
     // UBaseType_t totalTasks;

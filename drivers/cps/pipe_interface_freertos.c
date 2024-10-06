@@ -8,7 +8,7 @@
 void pipe_init(pipe_t *pipe, uint32_t obj_size, uint32_t queue_len)
 {
     // Do we already have a queue for this pipe?
-    if (pipe->queue && pipe->obj_size < obj_size)
+    if ((pipe->queue != NULL) && (pipe->obj_size < obj_size))
     {
         // Destory this queue to make a new one
         vQueueDelete(*(QueueHandle_t *)(pipe->queue));
@@ -17,7 +17,7 @@ void pipe_init(pipe_t *pipe, uint32_t obj_size, uint32_t queue_len)
     }
 
     // Make a queue if needed
-    if (!pipe->queue)
+    if (pipe->queue == NULL)
     {
         // Create the FreeRTOS queue
         pipe->queue = malloc(sizeof(QueueHandle_t));
@@ -30,7 +30,7 @@ void pipe_init(pipe_t *pipe, uint32_t obj_size, uint32_t queue_len)
 
 void pipe_delete(pipe_t *pipe)
 {
-    if (pipe->queue)
+    if (pipe->queue != NULL)
     {
         vQueueDelete(pipe->queue);
     }

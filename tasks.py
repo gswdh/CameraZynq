@@ -15,7 +15,7 @@ def build(ctx, prog=False, run=False, exit=False, mon=False):
 @task
 def clean(ctx):
     ctx.run("make clean")
-    ctx.run("rm -rf platform")
+    # ctx.run("rm -rf platform")
 
 
 @task

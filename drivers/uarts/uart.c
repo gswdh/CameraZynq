@@ -6,8 +6,7 @@
 #include "xil_exception.h"
 
 #include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
+#include "stream_buffer.h"
 
 #include "log.h"
 
@@ -16,7 +15,7 @@
 
 #define LOG_TAG "UART"
 
-static QueueHandle_t uart_0_queue = {0};
+static StreamBufferHandle_t uart_0_stream = NULL;
 
 extern XScuGic xInterruptController;
 
@@ -51,11 +50,14 @@ static void uart_tx_handler(void *ref, unsigned int context)
 
 static void uart_rx_handler(void *ref, unsigned int context)
 {
-    xQueueSendFromISR(uart_0_queue, (void *)&context, pdMS_TO_TICKS(1));
+    xStreamBufferSendFromISR(uart_0_stream, (void *)&context, 1, NULL);
 }
 
 void uart_init(void)
 {
+    // Make a queue for the RX uart 0 data
+    uart_0_stream = xStreamBufferCreate(UART_0_BUFFER_LEN, 0);
+
     int status = XST_FAILURE;
     XUartLite_Config *config = NULL;
 
@@ -96,18 +98,15 @@ void uart_init(void)
 
     XUartLite_EnableInterrupt(&uart_0);
 
-    // Use the UART IP
-    config = XUartLite_LookupConfig(XPAR_PERIPHERALS_0_AXI_UARTLITE_ESP_DEVICE_ID);
-    status = XUartLite_CfgInitialize(&uart_1, config, config->RegBaseAddr);
-    if (status != XST_SUCCESS)
-    {
-        log_error(LOG_TAG, "UART 1 init failed with code = %d\n", status);
-    }
+    // // Use the UART IP
+    // config = XUartLite_LookupConfig(XPAR_PERIPHERALS_0_AXI_UARTLITE_ESP_DEVICE_ID);
+    // status = XUartLite_CfgInitialize(&uart_1, config, config->RegBaseAddr);
+    // if (status != XST_SUCCESS)
+    // {
+    //     log_error(LOG_TAG, "UART 1 init failed with code = %d\n", status);
+    // }
 
     log_info(LOG_TAG, "init done\n");
-
-    // Make a queue for the RX uart 0 data
-    uart_0_queue = xQueueCreate(256, sizeof(uint8_t));
 }
 
 void uart_send(uart_port_t port, uint8_t *data, uint32_t len)
@@ -124,10 +123,5 @@ void uart_send(uart_port_t port, uint8_t *data, uint32_t len)
 
 uint32_t uart_receive(uart_port_t port, uint8_t *data, uint32_t len)
 {
-    if (xQueueReceive(uart_0_queue, (void *)data, pdMS_TO_TICKS(10)) == pdTRUE)
-    {
-        return 1;
-    }
-
-    return 0;
+    return xStreamBufferReceive(uart_0_stream, (void *)data, 1, pdMS_TO_TICKS(10));
 }

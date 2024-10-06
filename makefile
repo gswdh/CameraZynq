@@ -77,6 +77,7 @@ INCLUDES = \
 -Isubmodules/embedlib/log/ \
 -Isubmodules/embedlib/ssd1309z/ \
 -Isubmodules/embedlib/dmgui/ \
+-Isubmodules/embedlib/gmax0505/ \
 
 
 # Source files
@@ -100,6 +101,7 @@ drivers/spi/spi.c \
 drivers/uarts/uart.c \
 drivers/disp/disp_interface.c \
 drivers/gui/gui.c \
+drivers/sensor/gmax_interface.c \
 \
 submodules/CameraMessages/messages.c \
 submodules/CameraMessages/cpubsub/cpubsub.c \
@@ -109,6 +111,7 @@ submodules/CameraMessages/cpubsub/base64/base64.c \
 submodules/embedlib/log/log.c \
 submodules/embedlib/ssd1309z/ssd1309z.c \
 submodules/embedlib/dmgui/dmgui.c \
+submodules/embedlib/gmax0505/gmax0505.c \
 
 
 # Directories for prebuilt object files

@@ -116,8 +116,6 @@ void net_pub_task(void *params)
                 }
             }
         }
-
-        vTaskDelay(pdMS_TO_TICKS(10));
     }
 
     vTaskDelete(NULL);
