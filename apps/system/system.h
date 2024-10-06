@@ -2,6 +2,7 @@
 
 #include "buttons.h"
 #include "messages.h"
+#include "gmax0505.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -25,8 +26,12 @@ typedef struct
 
 typedef struct
 {
+    bool sync;
     uint32_t iso;
     uint32_t speed_us;
+    bool take_image;
+    float sensor_temp_c;
+    gmax_resolution_t res;
 } system_imaging_t;
 
 typedef struct
@@ -46,6 +51,7 @@ typedef struct
 
 void system_main(void *params);
 void actions_main(void *params);
+void imaging_main(void *params);
 
 #define ACT_BTN_SCR_ISO_SET (BTN_TOPLEFT_RI)
 #define ACT_BTN_SCR_ISO_RETURN (BTN_TOPLEFT_FA)
@@ -59,3 +65,5 @@ void actions_main(void *params);
 
 #define ACT_BTN_SCR_BASE_INC (BTN_TOPRIGHT_RI)
 #define ACT_BTN_SCR_BASE_DEC (BTN_BTMRIGHT_RI)
+
+#define ACT_BTN_TAKE_IMG (BTN_THUMB_RI)

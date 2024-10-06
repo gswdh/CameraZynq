@@ -5,8 +5,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-#include "gmax0505.h"
-
 #include <stdio.h>
 
 #define LOG_TAG "GUI"
@@ -45,33 +43,39 @@ static void gui_welcome_screen(void)
     gui_draw_text(text, 0, 4, GUI_TXT_ALIGN_L);
 }
 
-bool show = false;
-
-static void gui_home_screen(const uint32_t iso, const uint32_t speed, const uint8_t soc, const float consumption, const float charging)
+static void gui_home_screen(const system_t *const sys)
 {
     char text[64] = {0};
 
     dmgui_fill_screen(GUI_CLR_BLACK);
 
-    sprintf(text, "%u ISO", iso);
+    sprintf(text, "%u ISO", sys->imaging.iso);
     gui_draw_text(text, 0, 0, GUI_TXT_ALIGN_L);
 
-    sprintf(text, "1/%us", (uint32_t)(10e6 / speed));
+    sprintf(text, "1/%us", (uint32_t)(10e6 / sys->imaging.speed_us));
     gui_draw_text(text, 0, 1, GUI_TXT_ALIGN_L);
 
-    sprintf(text, "SoC %u%%", soc);
+    sprintf(text, "SoC %u%%", (uint8_t)sys->power.battery.soc);
     gui_draw_text(text, 0, 2, GUI_TXT_ALIGN_L);
 
-    sprintf(text, "%2.3fW", consumption);
+    sprintf(text, "%2.3fW", sys->power.pmc.bus_power);
     gui_draw_text(text, 0, 3, GUI_TXT_ALIGN_L);
+
+    sprintf(text, "%2.3fC", sys->imaging.sensor_temp_c);
+    gui_draw_text(text, 0, 4, GUI_TXT_ALIGN_L);
+
+    float charging = sys->power.battery.voltage * sys->power.battery.current;
 
     if (charging > 0)
     {
         sprintf(text, "Charging @ %2.3fW", charging);
-        gui_draw_text(text, 0, 4, GUI_TXT_ALIGN_L);
+        gui_draw_text(text, 0, 5, GUI_TXT_ALIGN_L);
     }
 
-    show = true;
+    if (sys->imaging.sync == true)
+    {
+        gui_draw_text("Synced", 0, 7, GUI_TXT_ALIGN_L);
+    }
 }
 
 static void gui_iso_set_screen(const uint32_t iso)
@@ -150,12 +154,6 @@ static void gui_power_info_screen(system_t *sys)
     gui_draw_text(text, 0, 7, GUI_TXT_ALIGN_L);
 }
 
-static void this_test(void *params)
-{
-    gmax_init();
-    vTaskDelete(NULL);
-}
-
 static void gui_memory_info_screen(void)
 {
     char text[64] = {0};
@@ -164,13 +162,6 @@ static void gui_memory_info_screen(void)
 
     sprintf(text, "MEMORY INFO");
     gui_draw_text(text, 0, 0, GUI_TXT_ALIGN_L);
-
-    if (show == true)
-    {
-        xTaskCreate(this_test, "GMAX Test", 256, NULL, tskIDLE_PRIORITY, NULL);
-    }
-
-    show = false;
 
     // TaskStatus_t *taskStatusArray;
     // UBaseType_t totalTasks;
@@ -209,7 +200,7 @@ void gui_refresh(system_t *sys)
     switch (sys->gui.screen)
     {
     case SYS_GUI_HOME_SCR:
-        gui_home_screen(sys->imaging.iso, sys->imaging.speed_us, sys->power.battery.soc, sys->power.pmc.bus_power, sys->power.battery.voltage * sys->power.battery.current);
+        gui_home_screen(sys);
         break;
     case SYS_GUI_ISO_SET_SCR:
         gui_iso_set_screen(sys->imaging.iso);

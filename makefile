@@ -1,6 +1,6 @@
 # Makefile for building helloworld with arm-none-eabi-gcc
 
-DEBUG = 1
+DEBUG_ = 1
 
 # Compiler and tools
 CC = arm-none-eabi-gcc
@@ -87,6 +87,7 @@ main.c \
 apps/apps.c \
 apps/system/system.c \
 apps/system/actions.c \
+apps/system/imaging.c \
 apps/buttons/buttons.c \
 apps/buttons/shutter_button.c \
 apps/cps_network/net_pub.c \

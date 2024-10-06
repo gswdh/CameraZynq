@@ -128,6 +128,10 @@ static void actions_button_handler(uint32_t state, system_t *sys)
         sys->gui.screen = base_screens[base_screen_cntr];
         break;
 
+    case ACT_BTN_TAKE_IMG:
+        sys->imaging.take_image = true;
+        break;
+
     // Default action (nothing to do for invalid actions)
     default:
         break;

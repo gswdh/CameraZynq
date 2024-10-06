@@ -1,15 +1,21 @@
 #include "gmax0505.h"
 
 #include "gpio.h"
+#include "log.h"
+
+#include "xparameters.h"
+#include "xgpio.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
 
-#include "xil_printf.h"
-
 #include <assert.h>
 
-void gmax_delay(const uint32_t time_ms)
+#define LOG_TAG "GMAX_INT"
+
+static XGpio gmax_gpio = {0};
+
+void gmax_delay_ms(const uint32_t time_ms)
 {
     vTaskDelay(pdMS_TO_TICKS(time_ms));
 }
@@ -83,7 +89,58 @@ void gmax_pin_write(const gmax_pin_t pin, const bool value)
     }
 }
 
+#define REQ_BIT (1 << 13)
+
+void gmax_initiate_frame(void)
+{
+    XGpio_DiscreteClear(&gmax_gpio, 1, REQ_BIT);
+    XGpio_DiscreteSet(&gmax_gpio, 1, REQ_BIT);
+}
+
+void gmax_fpga_interface_init(void)
+{
+    /*
+     * Initialize the GPIO driver so that it's ready to use,§
+     * specify the device ID that is generated in xparameters.h
+     */
+    int status = XGpio_Initialize(&gmax_gpio, XPAR_SENSOR_0_AXI_GPIO_0_DEVICE_ID);
+    if (status != XST_SUCCESS)
+    {
+        log_info(LOG_TAG, "XGpio_Initialize with code %d\n", status);
+        return;
+    }
+
+    /* Set channel one to all outputs, set them to 0*/
+    XGpio_SetDataDirection(&gmax_gpio, 1, 0x0);
+    XGpio_DiscreteWrite(&gmax_gpio, 1, 0x0);
+}
+
+uint16_t gmax_get_training_word(const uint8_t *const gmax_config)
+{
+    /* Should return 0x086E for default config */
+    return ((gmax_config[216] & 0x01) << 11) + (gmax_config[215] << 3) + ((gmax_config[214] & 0xE0) >> 5);
+}
+
 void gmax_sync_word_write(const uint16_t sync_word)
 {
-    assert(false && "gmax_sync_word_write weakly def function not implemented.");
+    uint32_t reg = XGpio_DiscreteRead(&gmax_gpio, 1) & 0xFFFFF000;
+    reg |= sync_word & 0x0FFF;
+    XGpio_DiscreteWrite(&gmax_gpio, 1, reg);
+}
+
+bool gmax_sync_complete(void)
+{
+    return (bool)(XGpio_DiscreteRead(&gmax_gpio, 2) & 0x1);
+}
+
+void gmax_sync_mode(const bool en)
+{
+    if (en == true)
+    {
+        XGpio_DiscreteSet(&gmax_gpio, 1, 0x00001000);
+    }
+    else
+    {
+        XGpio_DiscreteClear(&gmax_gpio, 1, 0x00001000);
+    }
 }

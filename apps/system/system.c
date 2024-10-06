@@ -43,6 +43,7 @@ void system_main(void *params)
     xTimerStart(system_timer, 0);
 
     xTaskCreate(actions_main, "Actions Main", SYS_ACT_APP_STACK_SIZE_B, (void *)&sys, SYS_APP_ACTIONS_PRIORITY, NULL);
+    xTaskCreate(imaging_main, "Imaging Main", SYS_IMG_APP_STACK_SIZE_B, (void *)&sys, SYS_IMG_APP_PRIORITY, NULL);
 
     vTaskDelete(NULL);
 }
