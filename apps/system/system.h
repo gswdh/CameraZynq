@@ -52,6 +52,7 @@ typedef struct
 void system_main(void *params);
 void actions_main(void *params);
 void imaging_main(void *params);
+void evf_main(void *params);
 
 #define ACT_BTN_SCR_ISO_SET (BTN_TOPLEFT_RI)
 #define ACT_BTN_SCR_ISO_RETURN (BTN_TOPLEFT_FA)

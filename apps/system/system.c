@@ -44,6 +44,7 @@ void system_main(void *params)
 
     xTaskCreate(actions_main, "Actions Main", SYS_ACT_APP_STACK_SIZE_B, (void *)&sys, SYS_APP_ACTIONS_PRIORITY, NULL);
     xTaskCreate(imaging_main, "Imaging Main", SYS_IMG_APP_STACK_SIZE_B, (void *)&sys, SYS_IMG_APP_PRIORITY, NULL);
+    xTaskCreate(evf_main, "EVF Main", SYS_EVF_APP_STACK_SIZE_B, (void *)&sys, SYS_EVF_APP_PRIORITY, NULL);
 
     vTaskDelete(NULL);
 }

@@ -182,9 +182,6 @@ void actions_main(void *params)
             // Reset the flag
             tick = false;
 
-            // Flag on whether to update the UI
-            bool update = false;
-
             // Check for messages
             while (cps_receive(&pipe, (void *)buffer, PIPE_WAIT_POLL) == CPS_OK)
             {
@@ -194,32 +191,24 @@ void actions_main(void *params)
                 {
                 case MSGButtonPress_MID:
                     actions_button_handler((uint32_t)((MSGButtonPress_t *)buffer)->button_state, sys);
-                    update = true;
                     break;
                 case MSGSystemStats_MID:
                     sys->power.pmc = *((MSGSystemStats_t *)buffer);
-                    update = true;
                     break;
                 case MSGBatteryStats_MID:
                     sys->power.battery = *((MSGBatteryStats_t *)buffer);
-                    update = true;
                     break;
                 case MSGChargingStats_MID:
                     sys->power.charging = *((MSGChargingStats_t *)buffer);
-                    update = true;
                     break;
                 case MSGUSBPDStats_MID:
                     sys->power.usbpd = *((MSGUSBPDStats_t *)buffer);
-                    update = true;
                     break;
                 default:
                     log_warn(LOG_TAG, "Unhandled MID 0x%04X\n", mid);
                     break;
                 }
-            }
 
-            if (update == true)
-            {
                 gui_refresh(sys);
             }
         }

@@ -7,6 +7,7 @@ CC = arm-none-eabi-gcc
 AS = arm-none-eabi-gcc  # Use gcc for assembling as well
 OBJCOPY = arm-none-eabi-objcopy
 OBJDUMP = arm-none-eabi-objdump
+SIZE = size
 
 BUILD_DIR = build
 
@@ -68,6 +69,7 @@ INCLUDES = \
 -Idrivers/spi \
 -Idrivers/uarts \
 -Idrivers/gui \
+-Idrivers/i2c \
 \
 -Ilibs \
 \
@@ -78,6 +80,7 @@ INCLUDES = \
 -Isubmodules/embedlib/ssd1309z/ \
 -Isubmodules/embedlib/dmgui/ \
 -Isubmodules/embedlib/gmax0505/ \
+-Isubmodules/embedlib/sy103/ \
 
 
 # Source files
@@ -88,6 +91,7 @@ apps/apps.c \
 apps/system/system.c \
 apps/system/actions.c \
 apps/system/imaging.c \
+apps/system/evf.c \
 apps/buttons/buttons.c \
 apps/buttons/shutter_button.c \
 apps/cps_network/net_pub.c \
@@ -103,6 +107,8 @@ drivers/uarts/uart.c \
 drivers/disp/disp_interface.c \
 drivers/gui/gui.c \
 drivers/sensor/gmax_interface.c \
+drivers/i2c/i2c.c \
+drivers/evf/evf_interface.c \
 \
 submodules/CameraMessages/messages.c \
 submodules/CameraMessages/cpubsub/cpubsub.c \
@@ -113,6 +119,7 @@ submodules/embedlib/log/log.c \
 submodules/embedlib/ssd1309z/ssd1309z.c \
 submodules/embedlib/dmgui/dmgui.c \
 submodules/embedlib/gmax0505/gmax0505.c \
+submodules/embedlib/sy103/sy103.c \
 
 
 # Directories for prebuilt object files
@@ -140,7 +147,7 @@ TARGET = $(BUILD_DIR)/camera
 VPATH = $(dir $(SRC))
 
 # Build rules
-all: $(BUILD_DIR) $(TARGET).bin
+all: $(BUILD_DIR) $(TARGET).bin show_size
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -159,6 +166,11 @@ $(TARGET).bin: $(TARGET).elf
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+# Rule to show size of ELF and binary
+show_size: $(TARGET).elf $(TARGET).bin
+	@$(SIZE) $(TARGET).elf
+	@ls -lh $(TARGET).bin
 
 # Optional rule to display the disassembly
 disasm: $(TARGET).elf

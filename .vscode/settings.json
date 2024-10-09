@@ -28,7 +28,13 @@
         "freertosconfig.h": "c",
         "cpubsub_network.h": "c",
         "stdio.h": "c",
-        "cpubsub.h": "c"
+        "cpubsub.h": "c",
+        "xiicps.h": "c",
+        "type_traits": "c",
+        "atomic": "c",
+        "cstdint": "c",
+        "memory": "c",
+        "sy103.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,
