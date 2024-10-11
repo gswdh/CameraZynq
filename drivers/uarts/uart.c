@@ -4,6 +4,7 @@
 #include "xuartlite.h"
 #include "xscugic.h"
 #include "xil_exception.h"
+#include "xil_printf.h"
 
 #include "FreeRTOS.h"
 #include "stream_buffer.h"
@@ -83,14 +84,13 @@ void uart_init(void)
                              (Xil_ExceptionHandler)XUartLite_InterruptHandler, (void *)&uart_0);
     if (status != XST_SUCCESS)
     {
-        log_error(LOG_TAG, "gic connect failed with code = %d\n", status);
+        log_error(LOG_TAG, "XScuGic_Connect failed with code = %d\n", status);
     }
 
     XScuGic_Enable(gic, XPAR_FABRIC_PERIPHERALS_0_AXI_UARTLITE_PMC_INTERRUPT_INTR);
 
     Xil_ExceptionInit();
-    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
-                                 (Xil_ExceptionHandler)XScuGic_InterruptHandler, gic);
+    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XScuGic_InterruptHandler, gic);
     Xil_ExceptionEnable();
 
     XUartLite_SetSendHandler(&uart_0, uart_tx_handler, &uart_0);

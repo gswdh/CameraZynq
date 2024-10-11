@@ -24,6 +24,7 @@ bsp config support_static_allocation "false"
 bsp config num_logical_vol "2"
 bsp config api_mode "SOCKET_API"
 bsp config lwip_dhcp "true"
+bsp config max_task_name_len "64"
 bsp write
 bsp reload
 catch {bsp regenerate}

@@ -25,14 +25,9 @@ void sy103_delay_ms(const uint32_t time_ms)
     vTaskDelay(pdMS_TO_TICKS(time_ms));
 }
 
-void sy103_i2c_write(const uint8_t reg, const uint8_t *const data, const uint32_t len)
+void sy103_i2c_write(const uint8_t *const data, const uint32_t len)
 {
-    i2c_write_reg(SY103_I2C_ADDR, reg, data, len);
-}
-
-void sy103_i2c_read(const uint8_t reg, uint8_t *const data, const uint32_t len)
-{
-    i2c_read_reg(SY103_I2C_ADDR, reg, data, len);
+    i2c_write(SY103_I2C_ADDR, data, len);
 }
 
 void sy103_enable_avdd(const bool enable)

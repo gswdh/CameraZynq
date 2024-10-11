@@ -101,6 +101,7 @@ apps/debugging/debugging.c \
 drivers/cps/pipe_interface_freertos.c \
 drivers/cps/cps_interface.c \
 drivers/logging/logging.c \
+drivers/logging/freertos_stats.c \
 drivers/gpio/gpio.c \
 drivers/spi/spi.c \
 drivers/uarts/uart.c \

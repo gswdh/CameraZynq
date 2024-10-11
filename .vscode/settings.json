@@ -34,7 +34,9 @@
         "atomic": "c",
         "cstdint": "c",
         "memory": "c",
-        "sy103.h": "c"
+        "sy103.h": "c",
+        "assert.h": "c",
+        "stream_buffer.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,

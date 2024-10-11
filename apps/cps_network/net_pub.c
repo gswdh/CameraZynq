@@ -76,6 +76,12 @@ void net_pub_task(void *params)
 
             while (uart_receive(NET_PUB_UART, &c, NET_PUB_BUFF_LEN) == 1)
             {
+                // Reset to prevent buffer overflow
+                if (buffer_ptr == NET_PUB_BUFF_LEN)
+                {
+                    state = NET_PUB_START_STATE;
+                }
+
                 switch (state)
                 {
                 case NET_PUB_START_STATE:
@@ -95,17 +101,12 @@ void net_pub_task(void *params)
                         // Build up the buffer
                         buffer[buffer_ptr++] = c;
 
-                        // Reset to prevent buffer overflow
-                        if (buffer_ptr == NET_PUB_BUFF_LEN)
-                        {
-                            state = NET_PUB_START_STATE;
-                        }
+                        log_warn(LOG_TAG, "%u %s\n", buffer_ptr, buffer);
                     }
                     break;
                 case NET_PUB_END_STATE:
                     // Found a new line, give it to the network
                     cps_network_recieve((char *)buffer, buffer_ptr - 1);
-
                     // Reset the state machine
                     state = NET_PUB_START_STATE;
                     break;
