@@ -44,6 +44,8 @@ static void display_task(void *params)
 
             dmgui_update_done();
         }
+
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
 
     vTaskDelete(NULL);

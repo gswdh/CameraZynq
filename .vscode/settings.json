@@ -36,7 +36,9 @@
         "memory": "c",
         "sy103.h": "c",
         "assert.h": "c",
-        "stream_buffer.h": "c"
+        "stream_buffer.h": "c",
+        "bspconfig.h": "c",
+        "xtmrctr.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,

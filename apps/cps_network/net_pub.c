@@ -30,29 +30,7 @@ static void net_pub_init_rx(void)
 {
     buffer_ptr = 0;
     memset(buffer, 0, NET_PUB_BUFF_LEN);
-    // uart_receive(NET_PUB_UART, &buffer[buffer_ptr], NET_PUB_BUFF_LEN);
 }
-
-static uint32_t net_pub_has_terminator(void)
-{
-    for (uint32_t i = 0; i < NET_PUB_BUFF_LEN; i++)
-    {
-        if (buffer[i] == 0xFF)
-        {
-            return i;
-        }
-    }
-
-    return 0;
-}
-
-typedef enum
-{
-    NET_PUB_START_STATE = 0,
-    NET_PUB_PAYLOAD_STATE,
-    NET_PUB_END_STATE,
-
-} net_pub_rx_state_t;
 
 void net_pub_task(void *params)
 {
@@ -117,6 +95,8 @@ void net_pub_task(void *params)
                 }
             }
         }
+
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
 
     vTaskDelete(NULL);

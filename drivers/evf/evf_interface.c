@@ -144,12 +144,12 @@ sy103_error_t sy103_init_mipi(const uint8_t *const buffer)
         return SY103_MIPI_INIT_ERROR;
     }
 
-    status = XDsiTxSs_Activate(&dsi_tx, XDSITXSS_PHY, XDSITXSS_ENABLE);
-    if (status != XST_SUCCESS)
-    {
-        log_error(LOG_TAG, "XDsiTxSs_Activate XDSITXSS_PHY error with code = %d\n", status);
-        return SY103_MIPI_INIT_ERROR;
-    }
+    // status = XDsiTxSs_Activate(&dsi_tx, XDSITXSS_PHY, XDSITXSS_ENABLE);
+    // if (status != XST_SUCCESS)
+    // {
+    //     log_error(LOG_TAG, "XDsiTxSs_Activate XDSITXSS_PHY error with code = %d\n", status);
+    //     return SY103_MIPI_INIT_ERROR;
+    // }
 
     // All done
     log_info(LOG_TAG, "init success\n");

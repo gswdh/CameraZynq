@@ -212,6 +212,8 @@ void actions_main(void *params)
                 gui_refresh(sys);
             }
         }
+
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
 
     // Should never reach here if all is okay
