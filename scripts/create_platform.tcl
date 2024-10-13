@@ -17,7 +17,7 @@ platform generate -domains
 bsp reload
 bsp setlib -name xilffs -ver 5.2
 bsp setlib -name lwip220 -ver 1.0
-bsp config tick_rate "100"
+bsp config tick_rate "1000"
 bsp config total_heap_size "1048576"
 bsp config stream_buffer "true"
 bsp config support_static_allocation "false"

@@ -78,13 +78,11 @@ void net_pub_task(void *params)
                     {
                         // Build up the buffer
                         buffer[buffer_ptr++] = c;
-
-                        log_warn(LOG_TAG, "%u %s\n", buffer_ptr, buffer);
                     }
                     break;
                 case NET_PUB_END_STATE:
                     // Found a new line, give it to the network
-                    cps_network_recieve((char *)buffer, buffer_ptr - 1);
+                    cps_network_recieve((char *)buffer, buffer_ptr);
                     // Reset the state machine
                     state = NET_PUB_START_STATE;
                     break;
