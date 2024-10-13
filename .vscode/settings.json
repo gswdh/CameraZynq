@@ -38,7 +38,8 @@
         "assert.h": "c",
         "stream_buffer.h": "c",
         "bspconfig.h": "c",
-        "xtmrctr.h": "c"
+        "xtmrctr.h": "c",
+        "xuartlite.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,

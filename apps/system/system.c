@@ -46,7 +46,7 @@ void system_main(void *params)
 {
     // Init the system
     sys.imaging.iso = 100;
-    sys.imaging.speed_us = 10000;
+    sys.imaging.speed_us = 125e3;
 
     TimerHandle_t system_timer = xTimerCreate("System Timer", pdMS_TO_TICKS(SYS_TICK_BLINK_PERIOD_MS), true, NULL, &system_timer_cb);
     xTimerStart(system_timer, 0);

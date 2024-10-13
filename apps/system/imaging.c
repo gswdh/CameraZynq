@@ -8,6 +8,10 @@
 #include "log.h"
 #include "gmax0505.h"
 
+#include "xaxidma.h"
+#include "xscugic.h"
+#include "xil_exception.h"
+
 // FreeRTOS includes
 #include "FreeRTOS.h"
 #include "task.h"
@@ -19,12 +23,95 @@
 
 #define LOG_TAG "IMG"
 
+#define XPAR_FABRIC_SENSOR_FRAME_RDY_INTERRUPT_INTR (66)
+#define XPAR_FABRIC_SENSOR_FRAME_DONE_INTERRUPT_INTR (67)
+
+#define IMG_SIZE_B ((uint32_t)60e6)
+
+extern XScuGic xInterruptController;
+
 static bool tick = false;
 static bool run = false;
+
+static uint32_t *image_buffer = NULL;
+
+static XAxiDma dma = {0};
+
+static void imaging_frame_rdy_handler(void *ctx)
+{
+    log_warn(LOG_TAG, "Frame ready\n");
+}
+
+static void imaging_frame_done_handler(void *ctx)
+{
+    log_warn(LOG_TAG, "Frame done\n");
+}
 
 static void imaging_timer_cb(TimerHandle_t timer)
 {
     tick = true;
+}
+
+static void imaging_init_intr(void)
+{
+    XScuGic *gic = &xInterruptController;
+
+    XScuGic_SetPriorityTriggerType(gic, XPAR_FABRIC_SENSOR_FRAME_RDY_INTERRUPT_INTR, 0xA0, 0x3);
+    int status = XScuGic_Connect(gic, XPAR_FABRIC_SENSOR_FRAME_RDY_INTERRUPT_INTR, (Xil_ExceptionHandler)imaging_frame_rdy_handler, NULL);
+    if (status != XST_SUCCESS)
+    {
+        log_error(LOG_TAG, "XScuGic_Connect failed with code = %d\n", status);
+    }
+    XScuGic_Enable(gic, XPAR_FABRIC_SENSOR_FRAME_RDY_INTERRUPT_INTR);
+
+    XScuGic_SetPriorityTriggerType(gic, XPAR_FABRIC_SENSOR_FRAME_DONE_INTERRUPT_INTR, 0xA0, 0x3);
+    status = XScuGic_Connect(gic, XPAR_FABRIC_SENSOR_FRAME_DONE_INTERRUPT_INTR,
+                             (Xil_ExceptionHandler)imaging_frame_done_handler, NULL);
+    if (status != XST_SUCCESS)
+    {
+        log_error(LOG_TAG, "XScuGic_Connect failed with code = %d\n", status);
+    }
+
+    XScuGic_Enable(gic, XPAR_FABRIC_SENSOR_FRAME_DONE_INTERRUPT_INTR);
+}
+
+static void imaging_init_dma(void)
+{
+    // Attempt to get some data
+    image_buffer = (uint32_t *)malloc(IMG_SIZE_B);
+    if (image_buffer == NULL)
+    {
+        log_error(LOG_TAG, "image_buffer == NULL\n");
+        return;
+    }
+
+    XAxiDma_Config *config = XAxiDma_LookupConfig(XPAR_SENSOR_0_AXI_DMA_0_DEVICE_ID);
+    if (config == NULL)
+    {
+        log_error(LOG_TAG, "XAxiDma_LookupConfig failed\n");
+        return;
+    }
+
+    int status = XAxiDma_CfgInitialize(&dma, config);
+    if (status != XST_SUCCESS)
+    {
+        log_error(LOG_TAG, "XAxiDma_CfgInitialize failed with code = %d\n", status);
+        return;
+    }
+
+    XAxiDma_IntrDisable(&dma, XAXIDMA_IRQ_ALL_MASK, XAXIDMA_DEVICE_TO_DMA);
+    XAxiDma_IntrDisable(&dma, XAXIDMA_IRQ_ALL_MASK, XAXIDMA_DMA_TO_DEVICE);
+}
+
+static void imaging_start_dma(void)
+{
+    Xil_DCacheFlushRange((UINTPTR)image_buffer, IMG_SIZE_B);
+    int status = XAxiDma_SimpleTransfer(&dma, (UINTPTR)image_buffer, IMG_SIZE_B, XAXIDMA_DEVICE_TO_DMA);
+    if (status != XST_SUCCESS)
+    {
+        log_error(LOG_TAG, "XAxiDma_SimpleTransfer failed with code = %d\n", status);
+        return;
+    }
 }
 
 void imaging_main(void *params)
@@ -68,6 +155,9 @@ void imaging_main(void *params)
         sys->imaging.sync = false;
     }
 
+    imaging_init_intr();
+    imaging_init_dma();
+
     // Default screen
     TimerHandle_t timer = xTimerCreate("Imaging Tick", pdMS_TO_TICKS(SYS_IMG_TICK_PERIOD_MS), true, NULL, imaging_timer_cb);
     xTimerStart(timer, 0);
@@ -84,6 +174,8 @@ void imaging_main(void *params)
             if (sys->imaging.take_image == true)
             {
                 sys->imaging.take_image = false;
+
+                imaging_start_dma();
 
                 gmax_frame_request(sys->imaging.speed_us, sys->imaging.iso, sys->imaging.res);
 
