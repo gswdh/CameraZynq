@@ -63,6 +63,7 @@ INCLUDES = \
 -Iapps/cps_network/ \
 -Iapps/disp/ \
 -Iapps/debugging/ \
+-Iapps/ethernet/ \
 \
 -Idrivers \
 -Idrivers/gpio \
@@ -97,6 +98,8 @@ apps/buttons/shutter_button.c \
 apps/cps_network/net_pub.c \
 apps/disp/display.c \
 apps/debugging/debugging.c \
+apps/ethernet/ethernet.c \
+apps/ethernet/rtl8211e_debug.c \
 \
 drivers/cps/pipe_interface_freertos.c \
 drivers/cps/cps_interface.c \

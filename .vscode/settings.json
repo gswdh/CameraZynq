@@ -39,7 +39,8 @@
         "stream_buffer.h": "c",
         "bspconfig.h": "c",
         "xtmrctr.h": "c",
-        "xuartlite.h": "c"
+        "xuartlite.h": "c",
+        "timers.h": "c"
     },
     "editor.formatOnSave": true,
     "cmake.configureOnOpen": false,

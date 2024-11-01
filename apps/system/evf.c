@@ -11,17 +11,16 @@
 
 #define LOG_TAG "EVF"
 
-static uint8_t *evf_frame_buffer = NULL;
+#define EVF_FRAME_BUFF_ADDR (XPAR_PS7_DDR_0_S_AXI_BASEADDR + 0x400000)
+
+static uint32_t *evf_frame_buffer = (uint32_t *)EVF_FRAME_BUFF_ADDR;
 
 void evf_main(void *params)
 {
     // Get some memory for the frame buffer
-    evf_frame_buffer = (uint8_t *)malloc(1280 * 1280 * 3);
     if (evf_frame_buffer != NULL)
     {
-        sy103_init(evf_frame_buffer);
-
-        memset(evf_frame_buffer, 0x55, 1280 * 1280 * 3);
+        sy103_init((uint8_t *)evf_frame_buffer);
     }
 
     else

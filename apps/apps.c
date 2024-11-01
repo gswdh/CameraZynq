@@ -10,6 +10,7 @@
 #include "display.h"
 #include "debugging.h"
 #include "log.h"
+#include "ethernet.h"
 
 // Xilinx
 
@@ -67,6 +68,12 @@ static const app_config_t app_configs[] = {
     //     .stack_size = 1024,
     //.priority = DBG_APP_PRIORITY,
     // },
+    {
+        .function = &ethernet_start,
+        .name = "Ethernet",
+        .stack_size = ETHERNET_STACK_DEPTH,
+        .priority = ETHERNET_TASK_PRIORITY,
+    },
 };
 
 void apps_launcher(void)

@@ -18,8 +18,12 @@
 #include "queue.h"
 #include "timers.h"
 
+#include "ff.h"
+
 #include <string.h>
 #include <stdlib.h>
+
+#define IMG_FRAME_BUFF_ADDR (XPAR_PS7_DDR_0_S_AXI_BASEADDR + 0x1000000)
 
 #define LOG_TAG "IMG"
 
@@ -33,18 +37,20 @@ extern XScuGic xInterruptController;
 static bool tick = false;
 static bool run = false;
 
-static uint32_t *image_buffer = NULL;
+static uint32_t *image_buffer = (uint32_t *)IMG_FRAME_BUFF_ADDR;
 
 static XAxiDma dma = {0};
 
+static FATFS fatfs = {0};
+static FIL fil = {0};
+
 static void imaging_frame_rdy_handler(void *ctx)
 {
-    log_warn(LOG_TAG, "Frame ready\n");
 }
 
 static void imaging_frame_done_handler(void *ctx)
 {
-    log_warn(LOG_TAG, "Frame done\n");
+    log_info(LOG_TAG, "Frame done\n");
 }
 
 static void imaging_timer_cb(TimerHandle_t timer)
@@ -78,7 +84,6 @@ static void imaging_init_intr(void)
 static void imaging_init_dma(void)
 {
     // Attempt to get some data
-    image_buffer = (uint32_t *)malloc(IMG_SIZE_B);
     if (image_buffer == NULL)
     {
         log_error(LOG_TAG, "image_buffer == NULL\n");
@@ -112,6 +117,69 @@ static void imaging_start_dma(void)
         log_error(LOG_TAG, "XAxiDma_SimpleTransfer failed with code = %d\n", status);
         return;
     }
+}
+
+static void imaging_save_image(void)
+{
+
+    FRESULT Res;
+    BYTE work[FF_MAX_SS];
+
+    Res = f_mkfs("0:/", 0, work, sizeof work);
+    if (Res != FR_OK)
+    {
+        log_error(LOG_TAG, "f_mkfs failed with code = %u\n", Res);
+        return;
+    }
+
+    /*
+     * Register volume work area, initialize device
+     */
+    Res = f_mount(&fatfs, "0:/", 0);
+
+    if (Res != FR_OK)
+    {
+        log_error(LOG_TAG, "f_mount failed with code = %u\n", Res);
+        return;
+    }
+
+    /*
+     * Open file with required permissions.
+     * Here - Creating new file with read/write permissions. .
+     * To open file with write permissions, file system should not
+     * be in Read Only mode.
+     */
+    Res = f_open(&fil, "0:/newfile.txt", FA_CREATE_ALWAYS | FA_WRITE | FA_READ);
+    if (Res)
+    {
+        log_error(LOG_TAG, "f_open failed with code = %u\n", Res);
+        return;
+    }
+
+    /*
+     * Write data to file.
+     */
+    char data[] = "Some data to test with\n";
+    UINT NumBytesWritten = 0;
+    Res = f_write(&fil, (const void *)data, sizeof(data),
+                  &NumBytesWritten);
+    if (Res)
+    {
+        log_error(LOG_TAG, "f_write failed with code = %u\n", Res);
+        return;
+    }
+
+    /*
+     * Close file.
+     */
+    Res = f_close(&fil);
+    if (Res)
+    {
+        log_error(LOG_TAG, "f_close failed with code = %u\n", Res);
+        return;
+    }
+
+    log_info(LOG_TAG, "Write to SD card success\n");
 }
 
 void imaging_main(void *params)
@@ -180,6 +248,8 @@ void imaging_main(void *params)
                 gmax_frame_request(sys->imaging.speed_us, sys->imaging.iso, sys->imaging.res);
 
                 log_info(LOG_TAG, "Taking image\n");
+
+                // imaging_save_image();
             }
 
             gmax_sensor_temperature(&sys->imaging.sensor_temp_c);

@@ -2,6 +2,8 @@ from invoke import task
 import serial
 import time
 
+from app_template_maker import AppTemplate
+
 
 @task
 def build(ctx, prog=False, run=False, exit=False, mon=False):
@@ -73,3 +75,9 @@ def create_flash_image(ctx):
 @task
 def load_flash_image(ctx):
     return
+
+
+@task
+def app_template(ctx, name, dir, cps_pipe=False):
+    template = AppTemplate(name, cps_pipe)
+    template.output(directory=dir)
