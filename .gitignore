@@ -61,3 +61,5 @@ platform/
 build/
 
 BOOT.BIN
+
+**/.DS_Store
